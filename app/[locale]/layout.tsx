@@ -1,0 +1,106 @@
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { hasLocale } from "next-intl";
+import { routing, type Locale } from "@/i18n/routing";
+import { siteUrl } from "@/app/seo";
+import "../globals.css";
+
+type LocaleLayoutProps = {
+  children: React.ReactNode;
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {};
+  }
+
+  const t = await getTranslations({ locale, namespace: "Seo" });
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: t("defaultTitle"),
+      template: `%s | ${t("siteName")}`,
+    },
+    description: t("defaultDescription"),
+    applicationName: t("siteName"),
+    keywords: [
+      "convertir URL en video",
+      "URL to video AI",
+      "convertir articulo en video",
+      "video vertical con IA",
+      "content repurposing",
+    ],
+    authors: [{ name: t("siteName") }],
+    creator: t("siteName"),
+    publisher: t("siteName"),
+    alternates: {
+      canonical: `${siteUrl}/${locale}`,
+      languages: {
+        es: `${siteUrl}/es`,
+        en: `${siteUrl}/en`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      url: `${siteUrl}/${locale}`,
+      siteName: t("siteName"),
+      title: t("defaultTitle"),
+      description: t("defaultDescription"),
+      locale: locale === "es" ? "es_ES" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("defaultTitle"),
+      description: t("defaultDescription"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+  };
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale as Locale);
+  const messages = await getMessages();
+
+  return (
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}

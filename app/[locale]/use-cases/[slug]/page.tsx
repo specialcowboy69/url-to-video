@@ -1,64 +1,91 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { siteName, siteUrl, useCases } from "@/app/seo";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import { isUseCaseSlug, siteUrl, useCaseSlugs } from "@/app/seo";
 
 type PageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
 
 export function generateStaticParams() {
-  return useCases.map((useCase) => ({ slug: useCase.slug }));
+  return useCaseSlugs.flatMap((slug) => [
+    { locale: "es", slug },
+    { locale: "en", slug },
+  ]);
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const useCase = useCases.find((item) => item.slug === slug);
+  const { locale, slug } = await params;
 
-  if (!useCase) {
+  if (!isUseCaseSlug(slug)) {
     return {};
   }
 
+  const tUseCases = await getTranslations({
+    locale,
+    namespace: "UseCases.items",
+  });
+
   return {
-    title: `${useCase.title} | ${siteName}`,
-    description: useCase.description,
+    title: tUseCases(`${slug}.title`),
+    description: tUseCases(`${slug}.description`),
     alternates: {
-      canonical: `${siteUrl}/use-cases/${useCase.slug}`,
+      canonical: `${siteUrl}/${locale}/use-cases/${slug}`,
+      languages: {
+        es: `${siteUrl}/es/use-cases/${slug}`,
+        en: `${siteUrl}/en/use-cases/${slug}`,
+      },
     },
     openGraph: {
-      title: useCase.title,
-      description: useCase.description,
-      url: `${siteUrl}/use-cases/${useCase.slug}`,
+      title: tUseCases(`${slug}.title`),
+      description: tUseCases(`${slug}.description`),
+      url: `${siteUrl}/${locale}/use-cases/${slug}`,
       type: "website",
     },
   };
 }
 
 export default async function UseCasePage({ params }: PageProps) {
-  const { slug } = await params;
-  const useCase = useCases.find((item) => item.slug === slug);
+  const { locale, slug } = await params;
 
-  if (!useCase) {
+  if (!isUseCaseSlug(slug)) {
     notFound();
   }
+
+  setRequestLocale(locale);
+
+  const tUseCases = await getTranslations({
+    locale,
+    namespace: "UseCases.items",
+  });
+  const common = await getTranslations({ locale, namespace: "UseCases" });
+  const seo = await getTranslations({ locale, namespace: "Seo" });
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: useCase.title,
-    url: `${siteUrl}/use-cases/${useCase.slug}`,
-    description: useCase.description,
+    name: tUseCases(`${slug}.title`),
+    url: `${siteUrl}/${locale}/use-cases/${slug}`,
+    description: tUseCases(`${slug}.description`),
     isPartOf: {
       "@type": "WebSite",
-      name: siteName,
-      url: siteUrl,
+      name: seo("siteName"),
+      url: `${siteUrl}/${locale}`,
     },
   };
+
+  const benefits = [
+    common("benefits.one"),
+    common("benefits.two"),
+    common("benefits.three"),
+  ];
 
   return (
     <main>
@@ -73,13 +100,13 @@ export default async function UseCasePage({ params }: PageProps) {
             href="/"
             className="text-sm font-bold uppercase tracking-[0.2em] text-ocean"
           >
-            URL to Video
+            {common("back")}
           </Link>
           <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none text-ink sm:text-7xl">
-            {useCase.title}
+            {tUseCases(`${slug}.title`)}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/68">
-            {useCase.description}
+            {tUseCases(`${slug}.description`)}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -87,31 +114,27 @@ export default async function UseCasePage({ params }: PageProps) {
               href="/create"
               className="flex h-14 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink transition hover:brightness-95"
             >
-              <span>Crear video</span>
+              <span>{common("create")}</span>
               <ArrowRight size={19} aria-hidden />
             </Link>
             <Link
               href="/"
               className="flex h-14 items-center justify-center rounded-2xl border border-ink/14 bg-white px-6 text-sm font-black text-ink transition hover:bg-mist"
             >
-              Volver al inicio
+              {common("home")}
             </Link>
           </div>
         </div>
 
         <aside className="rounded-[32px] border border-ink/10 bg-white p-6 shadow-soft">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-ocean">
-            Para quien
+            {common("audience")}
           </p>
           <p className="mt-3 text-2xl font-black leading-tight text-ink">
-            {useCase.audience}
+            {tUseCases(`${slug}.audience`)}
           </p>
           <div className="mt-8 space-y-4">
-            {[
-              "Reduce el tiempo entre publicar y distribuir.",
-              "Mantiene un flujo visual adaptado a formato vertical.",
-              "Centraliza guion, voz, subtitulos y render en un solo proceso.",
-            ].map((benefit) => (
+            {benefits.map((benefit) => (
               <div key={benefit} className="flex gap-3">
                 <CheckCircle2
                   className="mt-0.5 shrink-0 text-ocean"

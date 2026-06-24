@@ -1,7 +1,8 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { getVideoJob } from "@/app/lib/api";
 import type { JobResponse } from "@/app/types";
 
@@ -10,10 +11,6 @@ type LoadingStateProps = {
   onCompleted: (payload: JobResponse) => void;
   onFailed: (message: string) => void;
 };
-
-const fallbackMessages = [
-  "Preparando el video",
-];
 
 const maxPollingRetries = 5;
 const pollingIntervalMs = 4000;
@@ -24,27 +21,16 @@ export function LoadingState({
   onCompleted,
   onFailed,
 }: LoadingStateProps) {
-  const [messageIndex, setMessageIndex] = useState(0);
-  const [backendMessage, setBackendMessage] = useState<string | null>(null);
+  const t = useTranslations("Loading");
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [retryCount, setRetryCount] = useState(0);
 
-  const visibleMessage = useMemo(
-    () => backendMessage ?? fallbackMessages[messageIndex],
-    [backendMessage, messageIndex]
-  );
-
   useEffect(() => {
-    const messageTimer = window.setInterval(() => {
-      setMessageIndex((current) => (current + 1) % fallbackMessages.length);
-    }, 8500);
-
     const elapsedTimer = window.setInterval(() => {
       setElapsedSeconds((current) => current + 1);
     }, 1000);
 
     return () => {
-      window.clearInterval(messageTimer);
       window.clearInterval(elapsedTimer);
     };
   }, []);
@@ -62,7 +48,6 @@ export function LoadingState({
           return;
         }
 
-        setBackendMessage(payload.message ?? null);
         failedPolls = 0;
         setRetryCount(0);
 
@@ -74,7 +59,7 @@ export function LoadingState({
         if (payload.status === "failed") {
           onFailed(
             payload.error ??
-              "No hemos podido procesar esta URL. Revisa que el enlace sea publico e intentalo de nuevo."
+              t("fallbackError")
           );
           return;
         }
@@ -92,7 +77,7 @@ export function LoadingState({
           onFailed(
             error instanceof Error
               ? error.message
-              : "No se ha podido consultar el progreso."
+              : t("progressError")
           );
           return;
         }
@@ -110,15 +95,15 @@ export function LoadingState({
         window.clearTimeout(timeoutId);
       }
     };
-  }, [jobId, onCompleted, onFailed]);
+  }, [jobId, onCompleted, onFailed, t]);
 
   useEffect(() => {
     if (elapsedSeconds >= 600) {
       onFailed(
-        "El video esta tardando mas de lo esperado. Puedes intentarlo de nuevo en unos minutos."
+        t("timeoutError")
       );
     }
-  }, [elapsedSeconds, onFailed]);
+  }, [elapsedSeconds, onFailed, t]);
 
   return (
     <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center">
@@ -126,18 +111,17 @@ export function LoadingState({
         <Loader2 className="animate-spin" size={40} aria-hidden />
       </div>
       <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-        Trabajo {jobId.slice(0, 8)}
+        {t("job", { jobId: jobId.slice(0, 8) })}
       </p>
       <h1 className="mt-4 text-4xl font-black leading-tight text-ink sm:text-6xl">
-        {visibleMessage}
+        {t("title")}
       </h1>
       <p className="mt-6 max-w-xl text-base leading-7 text-ink/62">
-        Estamos montando tu video. Esta pantalla se actualizara sola cada pocos
-        segundos. No cierres esta ventana.
+        {t("subtitle")}
       </p>
       {retryCount > 0 ? (
         <p className="mt-4 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink/62 shadow-sm">
-          Reintentando consulta de estado {retryCount}/{maxPollingRetries}
+          {t("retry", { retryCount, maxRetries: maxPollingRetries })}
         </p>
       ) : null}
     </section>

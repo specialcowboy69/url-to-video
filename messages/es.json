@@ -1,0 +1,117 @@
+{
+  "Seo": {
+    "siteName": "URL to Video",
+    "defaultTitle": "Convertir URL en video con IA | URL to Video",
+    "defaultDescription": "Convierte una URL publica en un video vertical con guion, voz, subtitulos y material visual generado para redes sociales.",
+    "createTitle": "Crear video desde URL",
+    "createDescription": "Pega una URL, elige imagenes o videos y genera un MP4 vertical con voz, subtitulos y material visual."
+  },
+  "Home": {
+    "eyebrow": "URL to Video",
+    "title": "Convertir URL en video con IA",
+    "description": "Crea videos verticales desde noticias, articulos, blogs o paginas de producto. El flujo genera guion, voz, subtitulos y material visual para publicar mas rapido en redes sociales.",
+    "createCta": "Crear video",
+    "useCasesCta": "Ver casos de uso",
+    "steps": {
+      "url": "Pega una URL publica",
+      "mode": "Elige imagenes o videos",
+      "mp4": "Genera un MP4 vertical"
+    },
+    "phone": {
+      "top": "URL analizada",
+      "bottom": "MP4 vertical listo"
+    },
+    "features": {
+      "content": {
+        "title": "Contenido reutilizable",
+        "text": "Convierte una pieza escrita en un formato audiovisual pensado para Shorts, Reels y TikTok."
+      },
+      "speed": {
+        "title": "Flujo rapido",
+        "text": "Obten tu video en menos de 5 minutos. Pueden ocasionarse retrasos en momentos de mucha demanda"
+      },
+      "social": {
+        "title": "Mejora tu presencia en redes",
+        "text": "Perfecto para dueños de negocios con poco tiempo y pocos recursos que necesitan mejorar su presencia online."
+      }
+    },
+    "useCases": {
+      "eyebrow": "Casos de uso",
+      "title": "De URL a video segun tu tipo de contenido"
+    },
+    "contact": {
+      "title": "Necesitas ayuda o tienes alguna sugerencia?",
+      "subtitle": "Contactanos al siguiente correo:"
+    }
+  },
+  "Create": {
+    "eyebrow": "URL to Video",
+    "title": "Convierte una URL en un short listo para publicar.",
+    "placeholder": "https://ejemplo.com/noticia",
+    "urlLabel": "URL de origen",
+    "modeLabel": "Elige con que montamos tu video",
+    "submit": "Crear video",
+    "submitting": "Creando",
+    "emptyUrlError": "Pega una URL publica para empezar.",
+    "startError": "No se ha podido iniciar el video.",
+    "mode": {
+      "videos": "Videos",
+      "images": "Imagenes",
+      "aria": "Tipo de material visual"
+    }
+  },
+  "Loading": {
+    "title": "Preparando el video",
+    "job": "Trabajo {jobId}",
+    "subtitle": "Estamos montando tu video. Esta pantalla se actualizara sola cada pocos segundos. No cierres esta ventana.",
+    "retry": "Reintentando consulta de estado {retryCount}/{maxRetries}",
+    "fallbackError": "No hemos podido procesar esta URL. Revisa que el enlace sea publico e intentalo de nuevo.",
+    "progressError": "No se ha podido consultar el progreso.",
+    "timeoutError": "El video esta tardando mas de lo esperado. Puedes intentarlo de nuevo en unos minutos."
+  },
+  "Result": {
+    "eyebrow": "Video listo",
+    "title": "Tu MP4 esta preparado.",
+    "subtitle": "El render ha terminado correctamente. Puedes descargar el archivo o iniciar una nueva generacion. Es posible que el video no tenga sonido si lo reproduces desde el navegador pero al descargarlo seguro que lo tiene.",
+    "download": "Descargar MP4",
+    "reset": "Crear otro video",
+    "missingUrlError": "El trabajo termino, pero no recibimos la URL del MP4."
+  },
+  "Error": {
+    "eyebrow": "No se pudo crear",
+    "title": "Algo ha fallado.",
+    "retry": "Intentarlo de nuevo",
+    "fallback": "No hemos podido procesar esta URL. Revisa que el enlace sea publico e intentalo de nuevo."
+  },
+  "UseCases": {
+    "back": "URL to Video",
+    "create": "Crear video",
+    "home": "Volver al inicio",
+    "audience": "Para quien",
+    "benefits": {
+      "one": "Reduce el tiempo entre publicar y distribuir.",
+      "two": "Mantiene un flujo visual adaptado a formato vertical.",
+      "three": "Centraliza guion, voz, subtitulos y render en un solo proceso."
+    },
+    "items": {
+      "news-to-video": {
+        "intent": "Convertir noticias en video con IA",
+        "title": "Convertir noticias en videos",
+        "description": "Transforma noticias y articulos informativos en videos verticales con subtitulos para distribuir contenido editorial en redes.",
+        "audience": "Medios digitales, newsletters y equipos editoriales"
+      },
+      "blog-to-video": {
+        "intent": "Pasar blog a video automaticamente",
+        "title": "Convertir posts de blog en videos",
+        "description": "Reutiliza articulos de blog como shorts explicativos para aumentar la distribucion de contenido SEO en canales sociales.",
+        "audience": "Agencias SEO, creadores de nichos y equipos de contenido"
+      },
+      "product-to-video": {
+        "intent": "Perfecto para dinamizar tu presencia en redes",
+        "title": "Convierte tus redes sociales en una puerta de entrada para nuevos clientes",
+        "description": "Crea videos verticales a partir de blogs o noticias relacionadas con tu negocio y despega en redes",
+        "audience": "Ecommerce, marcas DTC y equipos de paid social"
+      }
+    }
+  }
+}

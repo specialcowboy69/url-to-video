@@ -1,0 +1,117 @@
+{
+  "Seo": {
+    "siteName": "URL to Video",
+    "defaultTitle": "Convert a URL into an AI video | URL to Video",
+    "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
+    "createTitle": "Create a video from a URL",
+    "createDescription": "Paste a URL, choose images or videos and generate a vertical MP4 with voice, subtitles and visual assets."
+  },
+  "Home": {
+    "eyebrow": "URL to Video",
+    "title": "Convert a URL into an AI video",
+    "description": "Create vertical videos from news, articles, blogs or product pages. The workflow generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
+    "createCta": "Create video",
+    "useCasesCta": "View use cases",
+    "steps": {
+      "url": "Paste a public URL",
+      "mode": "Choose images or videos",
+      "mp4": "Generate a vertical MP4"
+    },
+    "phone": {
+      "top": "URL analyzed",
+      "bottom": "Vertical MP4 ready"
+    },
+    "features": {
+      "content": {
+        "title": "Reusable content",
+        "text": "Turn written content into an audiovisual format designed for Shorts, Reels and TikTok."
+      },
+      "speed": {
+        "title": "Fast workflow",
+        "text": "Get your video in under 5 minutes. Delays may happen during periods of high demand."
+      },
+      "social": {
+        "title": "Improve your social presence",
+        "text": "Perfect for business owners with little time and limited resources who need to improve their online presence."
+      }
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "From URL to video for each type of content"
+    },
+    "contact": {
+      "title": "Need help or have a suggestion?",
+      "subtitle": "Contact us at:"
+    }
+  },
+  "Create": {
+    "eyebrow": "URL to Video",
+    "title": "Turn a URL into a short ready to publish.",
+    "placeholder": "https://example.com/article",
+    "urlLabel": "Source URL",
+    "modeLabel": "Choose what we use to build your video",
+    "submit": "Create video",
+    "submitting": "Creating",
+    "emptyUrlError": "Paste a public URL to start.",
+    "startError": "The video could not be started.",
+    "mode": {
+      "videos": "Videos",
+      "images": "Images",
+      "aria": "Visual media type"
+    }
+  },
+  "Loading": {
+    "title": "Preparing the video",
+    "job": "Job {jobId}",
+    "subtitle": "We are building your video. This screen will update automatically every few seconds. Do not close this window.",
+    "retry": "Retrying status check {retryCount}/{maxRetries}",
+    "fallbackError": "We could not process this URL. Check that the link is public and try again.",
+    "progressError": "The progress could not be checked.",
+    "timeoutError": "The video is taking longer than expected. Please try again in a few minutes."
+  },
+  "Result": {
+    "eyebrow": "Video ready",
+    "title": "Your MP4 is ready.",
+    "subtitle": "The render finished successfully. You can download the file or start a new generation. The video may have no sound if you play it from the browser, but it will have sound after downloading.",
+    "download": "Download MP4",
+    "reset": "Create another video",
+    "missingUrlError": "The job finished, but we did not receive the MP4 URL."
+  },
+  "Error": {
+    "eyebrow": "Could not create",
+    "title": "Something went wrong.",
+    "retry": "Try again",
+    "fallback": "We could not process this URL. Check that the link is public and try again."
+  },
+  "UseCases": {
+    "back": "URL to Video",
+    "create": "Create video",
+    "home": "Back home",
+    "audience": "Who it is for",
+    "benefits": {
+      "one": "Reduce the time between publishing and distributing.",
+      "two": "Keep a visual flow adapted to vertical format.",
+      "three": "Bring script, voice, subtitles and rendering into one process."
+    },
+    "items": {
+      "news-to-video": {
+        "intent": "Convert news into AI video",
+        "title": "Convert news into videos",
+        "description": "Turn news and informational articles into vertical videos with subtitles for editorial distribution on social media.",
+        "audience": "Digital media, newsletters and editorial teams"
+      },
+      "blog-to-video": {
+        "intent": "Automatically turn blog posts into video",
+        "title": "Convert blog posts into videos",
+        "description": "Repurpose blog articles as explanatory shorts to increase distribution of SEO content on social channels.",
+        "audience": "SEO agencies, niche creators and content teams"
+      },
+      "product-to-video": {
+        "intent": "Perfect for energizing your social presence",
+        "title": "Turn your social channels into an entry point for new customers",
+        "description": "Create vertical videos from blogs or news related to your business and grow on social media.",
+        "audience": "Ecommerce, DTC brands and paid social teams"
+      }
+    }
+  }
+}

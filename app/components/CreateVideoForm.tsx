@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Link2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
 import { ModeToggle } from "@/app/components/ModeToggle";
 import type { MediaMode } from "@/app/types";
@@ -10,6 +11,7 @@ type CreateVideoFormProps = {
 };
 
 export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
+  const t = useTranslations("Create");
   const [sourceUrl, setSourceUrl] = useState("");
   const [mediaMode, setMediaMode] = useState<MediaMode>("videos");
   const [submitting, setSubmitting] = useState(false);
@@ -20,7 +22,7 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
     setLocalError(null);
 
     if (!sourceUrl.trim()) {
-      setLocalError("Pega una URL publica para empezar.");
+      setLocalError(t("emptyUrlError"));
       return;
     }
 
@@ -32,7 +34,7 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
       setLocalError(
         error instanceof Error
           ? error.message
-          : "No se ha podido iniciar el video."
+          : t("startError")
       );
       setSubmitting(false);
     }
@@ -43,10 +45,10 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
       <div className="mb-10 flex items-center justify-between gap-4">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-            URL to Video
+            {t("eyebrow")}
           </p>
           <h1 className="mt-4 max-w-3xl text-5xl font-black leading-none text-ink sm:text-7xl">
-            Convierte una URL en un short listo para publicar.
+            {t("title")}
           </h1>
         </div>
       </div>
@@ -58,20 +60,20 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
         <div className="flex flex-col gap-4 lg:flex-row">
           <label className="relative flex min-h-16 flex-1 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
             <Link2 className="mr-3 shrink-0 text-ocean" size={22} aria-hidden />
-            <span className="sr-only">URL de origen</span>
+            <span className="sr-only">{t("urlLabel")}</span>
             <input
               value={sourceUrl}
               onChange={(event) => setSourceUrl(event.target.value)}
               disabled={submitting}
               inputMode="url"
-              placeholder="https://ejemplo.com/noticia"
+              placeholder={t("placeholder")}
               className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
             />
           </label>
 
           <div className="w-full lg:w-[280px]">
             <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">
-              Elige con que montamos tu video
+              {t("modeLabel")}
             </p>
             <ModeToggle
               value={mediaMode}
@@ -85,7 +87,7 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
             disabled={submitting}
             className="flex h-14 min-w-40 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65"
           >
-            <span>{submitting ? "Creando" : "Crear video"}</span>
+            <span>{submitting ? t("submitting") : t("submit")}</span>
             <ArrowRight size={19} aria-hidden />
           </button>
         </div>
