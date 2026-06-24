@@ -42,6 +42,11 @@
     "contact": {
       "title": "Need help or have a suggestion?",
       "subtitle": "Contact us at:"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "contact": "Contact"
     }
   },
   "Create": {
@@ -111,6 +116,64 @@
         "title": "Turn your social channels into an entry point for new customers",
         "description": "Create vertical videos from blogs or news related to your business and grow on social media.",
         "audience": "Ecommerce, DTC brands and paid social teams"
+      }
+    }
+  },
+  "Legal": {
+    "backHome": "Back home",
+    "lastUpdated": "Last updated: June 24, 2026",
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "Basic information about how URL to Video handles the data needed to generate videos from public URLs.",
+      "intro": "URL to Video is a web tool that lets you submit a public URL to generate an MP4 video. This policy explains, in simple terms, what information we use to provide the service.",
+      "sections": {
+        "data": {
+          "title": "Data we process",
+          "body": "We process the URL you enter, the selected media mode and technical data needed to process the request, such as job identifiers, render status and technical errors if they occur."
+        },
+        "purpose": {
+          "title": "How we use the data",
+          "body": "We use this information to analyze the submitted URL, generate the script, find visual resources, create the voice, render the MP4 and make it available for download."
+        },
+        "sensitive": {
+          "title": "Sensitive data",
+          "body": "We do not ask for passwords, banking information or software installation. You should not submit private URLs, login-protected pages or links containing confidential information."
+        },
+        "providers": {
+          "title": "Technical providers",
+          "body": "The service may rely on external tools for automation, voice generation, visual asset search, rendering and hosting. These tools are used only to provide the requested functionality."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "For privacy questions or data deletion requests, email testappbelleza@gmail.com."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms of use",
+      "description": "Basic conditions for using URL to Video responsibly.",
+      "intro": "By using URL to Video, you accept these basic terms. The tool is designed to convert public URLs into vertical videos for social media.",
+      "sections": {
+        "use": {
+          "title": "Allowed use",
+          "body": "You may use the tool to generate videos from news, blogs, articles or public pages related to your activity."
+        },
+        "responsibility": {
+          "title": "User responsibility",
+          "body": "You are responsible for the URLs you submit and for the final use of generated videos. You must respect copyright, privacy, trademarks and the rules of the platforms where you publish the content."
+        },
+        "limitations": {
+          "title": "Service limitations",
+          "body": "The service may fail, take longer than expected or be unable to process some URLs. We do not guarantee continuous availability or perfect results in every case."
+        },
+        "prohibited": {
+          "title": "Prohibited uses",
+          "body": "Do not use the tool to create misleading, fraudulent, illegal, abusive, defamatory content or content that impersonates others."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "If you have questions or suggestions, email testappbelleza@gmail.com."
+        }
       }
     }
   }

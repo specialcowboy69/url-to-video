@@ -194,6 +194,23 @@ export default async function Home({ params }: HomeProps) {
               testappbelleza@gmail.com
             </a>
           </p>
+          <nav
+            aria-label="Legal"
+            className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-ink/56"
+          >
+            <Link href="/privacy" className="transition hover:text-ocean">
+              {home("footer.privacy")}
+            </Link>
+            <Link href="/terms" className="transition hover:text-ocean">
+              {home("footer.terms")}
+            </Link>
+            <a
+              href="mailto:testappbelleza@gmail.com"
+              className="transition hover:text-ocean"
+            >
+              {home("footer.contact")}
+            </a>
+          </nav>
         </div>
       </section>
     </main>

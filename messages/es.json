@@ -42,6 +42,11 @@
     "contact": {
       "title": "Necesitas ayuda o tienes alguna sugerencia?",
       "subtitle": "Contactanos al siguiente correo:"
+    },
+    "footer": {
+      "privacy": "Privacidad",
+      "terms": "Terminos",
+      "contact": "Contacto"
     }
   },
   "Create": {
@@ -111,6 +116,64 @@
         "title": "Convierte tus redes sociales en una puerta de entrada para nuevos clientes",
         "description": "Crea videos verticales a partir de blogs o noticias relacionadas con tu negocio y despega en redes",
         "audience": "Ecommerce, marcas DTC y equipos de paid social"
+      }
+    }
+  },
+  "Legal": {
+    "backHome": "Volver al inicio",
+    "lastUpdated": "Ultima actualizacion: 24 de junio de 2026",
+    "privacy": {
+      "title": "Politica de privacidad",
+      "description": "Informacion basica sobre como URL to Video trata los datos necesarios para generar videos desde URLs publicas.",
+      "intro": "URL to Video es una herramienta web que permite enviar una URL publica para generar un video MP4. Esta politica explica, de forma sencilla, que informacion usamos para prestar el servicio.",
+      "sections": {
+        "data": {
+          "title": "Datos que tratamos",
+          "body": "Tratamos la URL que introduces, el modo elegido para montar el video y datos tecnicos necesarios para procesar la solicitud, como identificadores de trabajo, estado del render y errores tecnicos si se producen."
+        },
+        "purpose": {
+          "title": "Para que usamos los datos",
+          "body": "Usamos esta informacion para analizar la URL enviada, generar el guion, buscar recursos visuales, crear la voz, renderizar el MP4 y permitir su descarga."
+        },
+        "sensitive": {
+          "title": "Datos sensibles",
+          "body": "No solicitamos contraseñas, datos bancarios ni instalacion de software. No debes enviar URLs privadas, protegidas por login o que contengan informacion confidencial."
+        },
+        "providers": {
+          "title": "Proveedores tecnicos",
+          "body": "El servicio puede apoyarse en herramientas externas de automatizacion, generacion de voz, busqueda de recursos visuales, renderizado y alojamiento. Estas herramientas se usan solo para prestar la funcionalidad solicitada."
+        },
+        "contact": {
+          "title": "Contacto",
+          "body": "Para dudas sobre privacidad o eliminacion de datos, escribe a testappbelleza@gmail.com."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terminos de uso",
+      "description": "Condiciones basicas para usar URL to Video de forma responsable.",
+      "intro": "Al usar URL to Video aceptas estas condiciones basicas. La herramienta esta pensada para convertir URLs publicas en videos verticales para redes sociales.",
+      "sections": {
+        "use": {
+          "title": "Uso permitido",
+          "body": "Puedes usar la herramienta para generar videos a partir de noticias, blogs, articulos o paginas publicas relacionadas con tu actividad."
+        },
+        "responsibility": {
+          "title": "Responsabilidad del usuario",
+          "body": "Eres responsable de las URLs que envias y del uso final de los videos generados. Debes respetar derechos de autor, privacidad, marcas y normas de las plataformas donde publiques el contenido."
+        },
+        "limitations": {
+          "title": "Limitaciones del servicio",
+          "body": "El servicio puede fallar, tardar mas de lo esperado o no procesar algunas URLs. No garantizamos disponibilidad continua ni resultados perfectos en todos los casos."
+        },
+        "prohibited": {
+          "title": "Usos prohibidos",
+          "body": "No uses la herramienta para crear contenido engañoso, fraudulento, ilegal, abusivo, difamatorio o que suplante a terceros."
+        },
+        "contact": {
+          "title": "Contacto",
+          "body": "Si tienes dudas o sugerencias, escribe a testappbelleza@gmail.com."
+        }
       }
     }
   }

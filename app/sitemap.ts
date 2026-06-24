@@ -19,6 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "weekly" as const,
         priority: 0.9,
       },
+      {
+        url: `${siteUrl}/${locale}/privacy`,
+        lastModified: now,
+        changeFrequency: "yearly" as const,
+        priority: 0.35,
+      },
+      {
+        url: `${siteUrl}/${locale}/terms`,
+        lastModified: now,
+        changeFrequency: "yearly" as const,
+        priority: 0.35,
+      },
       ...useCaseSlugs.map((slug) => ({
         url: `${siteUrl}/${locale}/use-cases/${slug}`,
         lastModified: now,
