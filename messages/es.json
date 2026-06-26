@@ -54,6 +54,7 @@
     "title": "Convierte una URL en un short listo para publicar.",
     "placeholder": "https://ejemplo.com/noticia",
     "urlLabel": "URL de origen",
+    "urlNotice": "Existen URLs que tienen bloqueos de captcha o similares que no nos permiten rastrear la URL. El proceso de renderizado de video puede tardar unos minutos, se paciente. Gracias.",
     "modeLabel": "Elige con que montamos tu video",
     "submit": "Crear video",
     "submitting": "Creando",

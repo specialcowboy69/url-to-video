@@ -58,18 +58,27 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
         className="rounded-[32px] border border-ink/10 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
       >
         <div className="flex flex-col gap-4 lg:flex-row">
-          <label className="relative flex min-h-16 flex-1 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
-            <Link2 className="mr-3 shrink-0 text-ocean" size={22} aria-hidden />
-            <span className="sr-only">{t("urlLabel")}</span>
-            <input
-              value={sourceUrl}
-              onChange={(event) => setSourceUrl(event.target.value)}
-              disabled={submitting}
-              inputMode="url"
-              placeholder={t("placeholder")}
-              className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
-            />
-          </label>
+          <div className="flex-1">
+            <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
+              <Link2
+                className="mr-3 shrink-0 text-ocean"
+                size={22}
+                aria-hidden
+              />
+              <span className="sr-only">{t("urlLabel")}</span>
+              <input
+                value={sourceUrl}
+                onChange={(event) => setSourceUrl(event.target.value)}
+                disabled={submitting}
+                inputMode="url"
+                placeholder={t("placeholder")}
+                className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
+              />
+            </label>
+            <p className="mt-3 text-sm font-semibold leading-6 text-ink/58">
+              {t("urlNotice")}
+            </p>
+          </div>
 
           <div className="w-full lg:w-[280px]">
             <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">

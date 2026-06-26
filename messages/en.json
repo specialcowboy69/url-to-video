@@ -54,6 +54,7 @@
     "title": "Turn a URL into a short ready to publish.",
     "placeholder": "https://example.com/article",
     "urlLabel": "Source URL",
+    "urlNotice": "Some URLs have captcha blocks or similar protections that prevent us from crawling them. The video rendering process may take a few minutes, please be patient. Thank you.",
     "modeLabel": "Choose what we use to build your video",
     "submit": "Create video",
     "submitting": "Creating",
