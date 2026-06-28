@@ -64,6 +64,11 @@
       "videos": "Videos",
       "images": "Images",
       "aria": "Visual media type"
+    },
+    "recommendedSources": {
+      "title": "Recommended sources",
+      "description": "Open a source, choose a public article and paste its URL above.",
+      "hint": "Links point to each site home. Some pages may block crawling or require a subscription."
     }
   },
   "Loading": {

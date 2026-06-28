@@ -64,6 +64,11 @@
       "videos": "Videos",
       "images": "Imagenes",
       "aria": "Tipo de material visual"
+    },
+    "recommendedSources": {
+      "title": "Fuentes recomendadas",
+      "description": "Abre una fuente, elige un articulo publico y pega su URL arriba.",
+      "hint": "Los enlaces apuntan a la home de cada sitio. Algunas paginas pueden bloquear el rastreo o exigir suscripcion."
     }
   },
   "Loading": {

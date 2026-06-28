@@ -4,6 +4,7 @@ import { ArrowRight, Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
 import { ModeToggle } from "@/app/components/ModeToggle";
+import { RecommendedSources } from "@/app/components/RecommendedSources";
 import type { MediaMode } from "@/app/types";
 
 type CreateVideoFormProps = {
@@ -107,6 +108,8 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
           </p>
         ) : null}
       </form>
+
+      <RecommendedSources />
     </section>
   );
 }
