@@ -1,4 +1,9 @@
-import type { CreateVideoResponse, JobResponse, MediaMode } from "@/app/types";
+import type {
+  CreateVideoResponse,
+  JobResponse,
+  MediaMode,
+  VideoLanguage,
+} from "@/app/types";
 
 async function readJsonResponse<T>(response: Response, fallbackMessage: string) {
   const contentType = response.headers.get("content-type") ?? "";
@@ -17,13 +22,17 @@ async function readJsonResponse<T>(response: Response, fallbackMessage: string) 
   };
 }
 
-export async function createVideo(sourceUrl: string, mediaMode: MediaMode) {
+export async function createVideo(
+  sourceUrl: string,
+  mediaMode: MediaMode,
+  language: VideoLanguage
+) {
   const response = await fetch("/api/videos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ sourceUrl, mediaMode }),
+    body: JSON.stringify({ sourceUrl, mediaMode, language }),
   });
 
   const payload = await readJsonResponse<CreateVideoResponse>(

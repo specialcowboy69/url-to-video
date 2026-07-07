@@ -1,5 +1,7 @@
 export type MediaMode = "videos" | "images";
 
+export type VideoLanguage = "es" | "en";
+
 export type AppState = "idle" | "loading" | "success" | "error";
 
 export type JobStatus = "pending" | "processing" | "completed" | "failed";

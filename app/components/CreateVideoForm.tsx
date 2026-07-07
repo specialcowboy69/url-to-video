@@ -3,18 +3,24 @@
 import { ArrowRight, Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
+import { LanguageToggle } from "@/app/components/LanguageToggle";
 import { ModeToggle } from "@/app/components/ModeToggle";
 import { RecommendedSources } from "@/app/components/RecommendedSources";
-import type { MediaMode } from "@/app/types";
+import type { MediaMode, VideoLanguage } from "@/app/types";
 
 type CreateVideoFormProps = {
-  onSubmit: (sourceUrl: string, mediaMode: MediaMode) => Promise<void>;
+  onSubmit: (
+    sourceUrl: string,
+    mediaMode: MediaMode,
+    language: VideoLanguage
+  ) => Promise<void>;
 };
 
 export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
   const t = useTranslations("Create");
   const [sourceUrl, setSourceUrl] = useState("");
   const [mediaMode, setMediaMode] = useState<MediaMode>("videos");
+  const [language, setLanguage] = useState<VideoLanguage>("es");
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
 
@@ -30,12 +36,10 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
     setSubmitting(true);
 
     try {
-      await onSubmit(sourceUrl.trim(), mediaMode);
+      await onSubmit(sourceUrl.trim(), mediaMode, language);
     } catch (error) {
       setLocalError(
-        error instanceof Error
-          ? error.message
-          : t("startError")
+        error instanceof Error ? error.message : t("startError")
       );
       setSubmitting(false);
     }
@@ -58,48 +62,63 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
         onSubmit={handleSubmit}
         className="rounded-[32px] border border-ink/10 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
       >
-        <div className="flex flex-col gap-4 lg:flex-row">
-          <div className="flex-1">
-            <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
-              <Link2
-                className="mr-3 shrink-0 text-ocean"
-                size={22}
-                aria-hidden
-              />
-              <span className="sr-only">{t("urlLabel")}</span>
-              <input
-                value={sourceUrl}
-                onChange={(event) => setSourceUrl(event.target.value)}
-                disabled={submitting}
-                inputMode="url"
-                placeholder={t("placeholder")}
-                className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
-              />
-            </label>
-            <p className="mt-3 text-sm font-semibold leading-6 text-ink/58">
-              {t("urlNotice")}
-            </p>
-          </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:flex-row">
+            <div className="flex-1">
+              <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
+                <Link2
+                  className="mr-3 shrink-0 text-ocean"
+                  size={22}
+                  aria-hidden
+                />
+                <span className="sr-only">{t("urlLabel")}</span>
+                <input
+                  value={sourceUrl}
+                  onChange={(event) => setSourceUrl(event.target.value)}
+                  disabled={submitting}
+                  inputMode="url"
+                  placeholder={t("placeholder")}
+                  className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
+                />
+              </label>
+              <p className="mt-3 text-sm font-semibold leading-6 text-ink/58">
+                {t("urlNotice")}
+              </p>
+            </div>
 
-          <div className="w-full lg:w-[280px]">
-            <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">
-              {t("modeLabel")}
-            </p>
-            <ModeToggle
-              value={mediaMode}
-              onChange={setMediaMode}
+            <button
+              type="submit"
               disabled={submitting}
-            />
+              className="flex h-14 min-w-40 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65 lg:mt-1"
+            >
+              <span>{submitting ? t("submitting") : t("submit")}</span>
+              <ArrowRight size={19} aria-hidden />
+            </button>
           </div>
 
-          <button
-            type="submit"
-            disabled={submitting}
-            className="flex h-14 min-w-40 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65"
-          >
-            <span>{submitting ? t("submitting") : t("submit")}</span>
-            <ArrowRight size={19} aria-hidden />
-          </button>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">
+                {t("modeLabel")}
+              </p>
+              <ModeToggle
+                value={mediaMode}
+                onChange={setMediaMode}
+                disabled={submitting}
+              />
+            </div>
+
+            <div>
+              <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">
+                {t("languageLabel")}
+              </p>
+              <LanguageToggle
+                value={language}
+                onChange={setLanguage}
+                disabled={submitting}
+              />
+            </div>
+          </div>
         </div>
 
         {localError ? (

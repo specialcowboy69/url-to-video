@@ -6,6 +6,7 @@ export const runtime = "nodejs";
 const createVideoSchema = z.object({
   sourceUrl: z.string().url(),
   mediaMode: z.enum(["videos", "images"]).default("videos"),
+  language: z.enum(["es", "en"]).default("es"),
 });
 
 const requestTimeoutMs = 30000;
@@ -87,6 +88,8 @@ export async function POST(request: Request) {
         sourceUrl: parsed.data.sourceUrl,
         link: parsed.data.sourceUrl,
         mediaMode: parsed.data.mediaMode,
+        language: parsed.data.language,
+        targetLanguage: parsed.data.language,
       }),
       signal: controller.signal,
     });

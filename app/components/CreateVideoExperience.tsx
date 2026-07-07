@@ -7,7 +7,12 @@ import { ErrorState } from "@/app/components/ErrorState";
 import { LoadingState } from "@/app/components/LoadingState";
 import { ResultView } from "@/app/components/ResultView";
 import { createVideo } from "@/app/lib/api";
-import type { AppState, JobResponse, MediaMode } from "@/app/types";
+import type {
+  AppState,
+  JobResponse,
+  MediaMode,
+  VideoLanguage,
+} from "@/app/types";
 
 export function CreateVideoExperience() {
   const result = useTranslations("Result");
@@ -18,8 +23,12 @@ export function CreateVideoExperience() {
   const [downloadUrl, setDownloadUrl] = useState<string | undefined>();
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function handleCreateVideo(sourceUrl: string, mediaMode: MediaMode) {
-    const payload = await createVideo(sourceUrl, mediaMode);
+  async function handleCreateVideo(
+    sourceUrl: string,
+    mediaMode: MediaMode,
+    language: VideoLanguage
+  ) {
+    const payload = await createVideo(sourceUrl, mediaMode, language);
     setJobId(payload.jobId);
     setVideoUrl(null);
     setDownloadUrl(undefined);

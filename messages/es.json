@@ -56,6 +56,7 @@
     "urlLabel": "URL de origen",
     "urlNotice": "Existen URLs que tienen bloqueos de captcha o similares que no nos permiten rastrear la URL. El proceso de renderizado de video puede tardar unos minutos, se paciente. Gracias.",
     "modeLabel": "Elige con que montamos tu video",
+    "languageLabel": "Idioma del video",
     "submit": "Crear video",
     "submitting": "Creando",
     "emptyUrlError": "Pega una URL publica para empezar.",
@@ -64,6 +65,11 @@
       "videos": "Videos",
       "images": "Imagenes",
       "aria": "Tipo de material visual"
+    },
+    "language": {
+      "es": "Español",
+      "en": "English",
+      "aria": "Idioma del video"
     },
     "recommendedSources": {
       "title": "Fuentes recomendadas",

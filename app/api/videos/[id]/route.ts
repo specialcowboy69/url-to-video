@@ -23,14 +23,31 @@ function buildStatusUrl(baseUrl: string, jobId: string) {
 }
 
 function normalizeStatus(payload: Record<string, unknown>) {
-  const status = payload.status;
+  const status =
+    typeof payload.status === "string" ? payload.status.toLowerCase() : "pending";
 
   if (
-    status === "pending" ||
-    status === "processing" ||
-    status === "completed" ||
-    status === "failed"
+    status === "failed" ||
+    status === "error" ||
+    status === "rejected" ||
+    payload.fatal === true
   ) {
+    return "failed";
+  }
+
+  if (status === "completed" || status === "success" || status === "done") {
+    return "completed";
+  }
+
+  if (
+    status !== "completed" &&
+    typeof payload.error === "string" &&
+    payload.error.trim() !== ""
+  ) {
+    return "failed";
+  }
+
+  if (status === "pending" || status === "processing") {
     return status;
   }
 
@@ -41,18 +58,17 @@ function normalizePublicUrl(payload: Record<string, unknown>) {
   const direct =
     payload.videoUrl ??
     payload.downloadUrl ??
-    payload.publicUrl ??
-    payload.url ??
-    payload.fileUrl;
+    payload.publicUrl;
 
-  if (typeof direct === "string" && direct.startsWith("http")) {
+  if (
+    typeof direct === "string" &&
+    (direct.startsWith("http://") || direct.startsWith("https://"))
+  ) {
     return direct;
   }
 
-  const resultFile = payload.result_file ?? payload.file;
-
-  if (typeof resultFile === "string" && resultFile.startsWith("http")) {
-    return resultFile;
+  if (typeof direct === "string" && direct.startsWith("/api/")) {
+    return direct;
   }
 
   return null;
