@@ -1,14 +1,14 @@
 {
   "Seo": {
     "siteName": "URL to Video",
-    "defaultTitle": "Convert a URL into an AI video | URL to Video",
+    "defaultTitle": "Convert a URL into a video with stock videos and images | URL to Video",
     "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
     "createTitle": "Create a video from a URL",
     "createDescription": "Paste a URL, choose images or videos and generate a vertical MP4 with voice, subtitles and visual assets."
   },
   "Home": {
     "eyebrow": "URL to Video",
-    "title": "Convert a URL into an AI video",
+    "title": "Convert a URL into a video with stock videos and images",
     "description": "Create vertical videos from news, articles, blogs or product pages. The workflow generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
     "createCta": "Create video",
     "useCasesCta": "View use cases",
@@ -33,6 +33,27 @@
       "social": {
         "title": "Improve your social presence",
         "text": "Perfect for business owners with little time and limited resources who need to improve their online presence."
+      }
+    },
+    "examples": {
+      "eyebrow": "Examples",
+      "title": "Videos created from real articles",
+      "languageLabel": "Language",
+      "open": "Watch video: {title}",
+      "close": "Close video",
+      "items": {
+        "inflacion": {
+          "title": "Inflation fell at the fastest pace in years in June as gas prices moderated.",
+          "language": "English"
+        },
+        "calorResidual": {
+          "title": "Scientists manage to create electricity from waste heat",
+          "language": "Spanish"
+        },
+        "adultez": {
+          "title": "What happened to adult life? Welcome to Generation Z's liquid adulthood.",
+          "language": "English"
+        }
       }
     },
     "useCases": {

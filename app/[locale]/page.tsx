@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, CheckCircle2, FileVideo, Gauge, Shield } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { ExampleVideos } from "@/app/components/ExampleVideos";
 import { siteUrl, useCaseSlugs } from "@/app/seo";
 
 type HomeProps = {
@@ -149,6 +150,8 @@ export default async function Home({ params }: HomeProps) {
           />
         </div>
       </section>
+
+      <ExampleVideos />
 
       <section id="casos-de-uso" className="mx-auto max-w-6xl px-5 py-16">
         <div className="max-w-2xl">

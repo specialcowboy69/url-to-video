@@ -1,14 +1,14 @@
 {
   "Seo": {
     "siteName": "URL to Video",
-    "defaultTitle": "Convertir URL en video con IA | URL to Video",
+    "defaultTitle": "Convertir URL en video con videos e imagenes de stock | URL to Video",
     "defaultDescription": "Convierte una URL publica en un video vertical con guion, voz, subtitulos y material visual generado para redes sociales.",
     "createTitle": "Crear video desde URL",
     "createDescription": "Pega una URL, elige imagenes o videos y genera un MP4 vertical con voz, subtitulos y material visual."
   },
   "Home": {
     "eyebrow": "URL to Video",
-    "title": "Convertir URL en video con IA",
+    "title": "Convertir URL en video con videos e imagenes de stock",
     "description": "Crea videos verticales desde noticias, articulos, blogs o paginas de producto. El flujo genera guion, voz, subtitulos y material visual para publicar mas rapido en redes sociales.",
     "createCta": "Crear video",
     "useCasesCta": "Ver casos de uso",
@@ -33,6 +33,27 @@
       "social": {
         "title": "Mejora tu presencia en redes",
         "text": "Perfecto para dueños de negocios con poco tiempo y pocos recursos que necesitan mejorar su presencia online."
+      }
+    },
+    "examples": {
+      "eyebrow": "Ejemplos",
+      "title": "Videos creados desde articulos reales",
+      "languageLabel": "Idioma",
+      "open": "Ver video: {title}",
+      "close": "Cerrar video",
+      "items": {
+        "inflacion": {
+          "title": "La inflacion cayo al ritmo mas rapido en anos en junio, debido a la moderacion de los precios de la gasolina.",
+          "language": "Ingles"
+        },
+        "calorResidual": {
+          "title": "Cientificos consiguen crear electricidad a partir de calor residual",
+          "language": "Espanol"
+        },
+        "adultez": {
+          "title": "Que paso con la vida adulta? Bienvenidos a la adultez liquida de la Generacion Z.",
+          "language": "Ingles"
+        }
       }
     },
     "useCases": {
