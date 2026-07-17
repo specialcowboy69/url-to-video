@@ -9,6 +9,7 @@ import { ResultView } from "@/app/components/ResultView";
 import { createVideo } from "@/app/lib/api";
 import type {
   AppState,
+  InputMode,
   JobResponse,
   MediaMode,
   VideoLanguage,
@@ -24,11 +25,12 @@ export function CreateVideoExperience() {
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleCreateVideo(
-    sourceUrl: string,
+    input: string,
+    inputMode: InputMode,
     mediaMode: MediaMode,
     language: VideoLanguage
   ) {
-    const payload = await createVideo(sourceUrl, mediaMode, language);
+    const payload = await createVideo(input, inputMode, mediaMode, language);
     setJobId(payload.jobId);
     setVideoUrl(null);
     setDownloadUrl(undefined);

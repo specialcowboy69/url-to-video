@@ -1,3 +1,5 @@
+export type InputMode = "url" | "text";
+
 export type MediaMode = "videos" | "images";
 
 export type VideoLanguage = "es" | "en";

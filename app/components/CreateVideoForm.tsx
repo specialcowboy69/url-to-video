@@ -3,14 +3,20 @@
 import { ArrowRight, Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
+import { InputModeToggle } from "@/app/components/InputModeToggle";
 import { LanguageToggle } from "@/app/components/LanguageToggle";
 import { ModeToggle } from "@/app/components/ModeToggle";
 import { RecommendedSources } from "@/app/components/RecommendedSources";
-import type { MediaMode, VideoLanguage } from "@/app/types";
+import {
+  maxArticleTextLength,
+  minArticleTextLength,
+} from "@/app/lib/videoInputLimits";
+import type { InputMode, MediaMode, VideoLanguage } from "@/app/types";
 
 type CreateVideoFormProps = {
   onSubmit: (
-    sourceUrl: string,
+    input: string,
+    inputMode: InputMode,
     mediaMode: MediaMode,
     language: VideoLanguage
   ) => Promise<void>;
@@ -19,6 +25,8 @@ type CreateVideoFormProps = {
 export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
   const t = useTranslations("Create");
   const [sourceUrl, setSourceUrl] = useState("");
+  const [articleText, setArticleText] = useState("");
+  const [inputMode, setInputMode] = useState<InputMode>("url");
   const [mediaMode, setMediaMode] = useState<MediaMode>("videos");
   const [language, setLanguage] = useState<VideoLanguage>("es");
   const [submitting, setSubmitting] = useState(false);
@@ -28,15 +36,27 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
     event.preventDefault();
     setLocalError(null);
 
-    if (!sourceUrl.trim()) {
+    const input = inputMode === "text" ? articleText.trim() : sourceUrl.trim();
+
+    if (inputMode === "url" && !input) {
       setLocalError(t("emptyUrlError"));
+      return;
+    }
+
+    if (inputMode === "text" && input.length < minArticleTextLength) {
+      setLocalError(t("emptyTextError"));
+      return;
+    }
+
+    if (inputMode === "text" && input.length > maxArticleTextLength) {
+      setLocalError(t("textTooLongError", { max: maxArticleTextLength }));
       return;
     }
 
     setSubmitting(true);
 
     try {
-      await onSubmit(sourceUrl.trim(), mediaMode, language);
+      await onSubmit(input, inputMode, mediaMode, language);
     } catch (error) {
       setLocalError(
         error instanceof Error ? error.message : t("startError")
@@ -63,27 +83,61 @@ export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
         className="rounded-[32px] border border-ink/10 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
       >
         <div className="flex flex-col gap-4">
+          <div>
+            <p className="mb-2 text-center text-sm font-black text-ink/68 lg:text-left">
+              {t("inputModeLabel")}
+            </p>
+            <InputModeToggle
+              value={inputMode}
+              onChange={setInputMode}
+              disabled={submitting}
+            />
+          </div>
+
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="flex-1">
-              <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
-                <Link2
-                  className="mr-3 shrink-0 text-ocean"
-                  size={22}
-                  aria-hidden
-                />
-                <span className="sr-only">{t("urlLabel")}</span>
-                <input
-                  value={sourceUrl}
-                  onChange={(event) => setSourceUrl(event.target.value)}
-                  disabled={submitting}
-                  inputMode="url"
-                  placeholder={t("placeholder")}
-                  className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
-                />
-              </label>
-              <p className="mt-3 text-sm font-semibold leading-6 text-ink/58">
-                {t("urlNotice")}
-              </p>
+              {inputMode === "text" ? (
+                <label className="relative block rounded-2xl border border-ink/12 bg-white px-4 py-3 focus-within:border-ocean">
+                  <span className="sr-only">{t("textLabel")}</span>
+                  <textarea
+                    value={articleText}
+                    onChange={(event) => setArticleText(event.target.value)}
+                    disabled={submitting}
+                    placeholder={t("textPlaceholder")}
+                    rows={7}
+                    maxLength={maxArticleTextLength}
+                    className="min-h-44 w-full resize-y border-0 bg-transparent text-base font-medium leading-7 text-ink outline-none placeholder:text-ink/35"
+                  />
+                </label>
+              ) : (
+                <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
+                  <Link2
+                    className="mr-3 shrink-0 text-ocean"
+                    size={22}
+                    aria-hidden
+                  />
+                  <span className="sr-only">{t("urlLabel")}</span>
+                  <input
+                    value={sourceUrl}
+                    onChange={(event) => setSourceUrl(event.target.value)}
+                    disabled={submitting}
+                    inputMode="url"
+                    placeholder={t("placeholder")}
+                    className="h-14 w-full border-0 bg-transparent text-base font-medium text-ink outline-none placeholder:text-ink/35"
+                  />
+                </label>
+              )}
+              <div className="mt-3 flex flex-col gap-2 text-sm font-semibold leading-6 text-ink/58 sm:flex-row sm:items-start sm:justify-between">
+                <p>{inputMode === "text" ? t("textNotice") : t("urlNotice")}</p>
+                {inputMode === "text" ? (
+                  <p className="shrink-0 text-ink/45">
+                    {t("textCharacterCount", {
+                      count: articleText.trim().length,
+                      max: maxArticleTextLength,
+                    })}
+                  </p>
+                ) : null}
+              </div>
             </div>
 
             <button

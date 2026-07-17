@@ -1,5 +1,6 @@
 import type {
   CreateVideoResponse,
+  InputMode,
   JobResponse,
   MediaMode,
   VideoLanguage,
@@ -23,7 +24,8 @@ async function readJsonResponse<T>(response: Response, fallbackMessage: string) 
 }
 
 export async function createVideo(
-  sourceUrl: string,
+  input: string,
+  inputMode: InputMode,
   mediaMode: MediaMode,
   language: VideoLanguage
 ) {
@@ -32,7 +34,11 @@ export async function createVideo(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ sourceUrl, mediaMode, language }),
+    body: JSON.stringify(
+      inputMode === "text"
+        ? { inputMode, articleText: input, mediaMode, language }
+        : { inputMode, sourceUrl: input, mediaMode, language }
+    ),
   });
 
   const payload = await readJsonResponse<CreateVideoResponse>(
