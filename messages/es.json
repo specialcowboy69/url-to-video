@@ -4,7 +4,9 @@
     "defaultTitle": "Convertir URL en video con videos e imagenes de stock | URL to Video",
     "defaultDescription": "Convierte una URL publica en un video vertical con guion, voz, subtitulos y material visual generado para redes sociales.",
     "createTitle": "Crear video desde URL",
-    "createDescription": "Pega una URL, elige imagenes o videos y genera un MP4 vertical con voz, subtitulos y material visual."
+    "createDescription": "Pega una URL, elige imagenes o videos y genera un MP4 vertical con voz, subtitulos y material visual.",
+    "mp3Title": "Convertir video a MP3 online | URL to Video",
+    "mp3Description": "Sube un archivo de video y convierte su audio a MP3 para descargarlo desde el navegador."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -12,6 +14,10 @@
     "description": "Crea videos verticales desde noticias, articulos, blogs o paginas de producto. El flujo genera guion, voz, subtitulos y material visual para publicar mas rapido en redes sociales.",
     "createCta": "Crear video",
     "useCasesCta": "Ver casos de uso",
+    "navigation": {
+      "label": "Menu principal",
+      "videoToMp3": "Video to MP3"
+    },
     "steps": {
       "url": "Pega una URL publica",
       "mode": "Elige imagenes o videos",
@@ -132,6 +138,41 @@
     "title": "Algo ha fallado.",
     "retry": "Intentarlo de nuevo",
     "fallback": "No hemos podido procesar esta URL. Revisa que el enlace sea publico e intentalo de nuevo."
+  },
+  "Audio": {
+    "eyebrow": "Video to MP3",
+    "title": "Convierte tu video en MP3.",
+    "description": "Sube un archivo de video y extraemos el audio en formato MP3 listo para descargar.",
+    "dropTitle": "Selecciona un video",
+    "dropSubtitle": "Aceptamos archivos de video comunes como MP4, MOV, WEBM o MKV.",
+    "selectedFile": "Archivo seleccionado: {size}",
+    "sizeLimit": "Tamano maximo: 500 MB",
+    "durationLimit": "Duracion maxima: 1 hora",
+    "submit": "Convertir a MP3",
+    "submitting": "Subiendo",
+    "emptyFileError": "Selecciona un archivo de video para empezar.",
+    "fileTooLargeError": "El archivo supera el limite de 500 MB.",
+    "durationTooLongError": "El video supera el limite de 1 hora.",
+    "invalidFileError": "Formato no permitido. Sube un archivo de video.",
+    "metadataError": "No hemos podido leer la duracion del video.",
+    "startError": "No se ha podido iniciar la conversion."
+  },
+  "AudioLoading": {
+    "title": "Convirtiendo el audio",
+    "job": "Trabajo {jobId}",
+    "subtitle": "Estamos extrayendo el audio y generando tu MP3. Esta pantalla se actualizara sola.",
+    "retry": "Reintentando consulta de estado {retryCount}/{maxRetries}",
+    "fallbackError": "No hemos podido convertir este video.",
+    "progressError": "No se ha podido consultar el progreso.",
+    "timeoutError": "La conversion esta tardando mas de lo esperado. Puedes intentarlo de nuevo en unos minutos."
+  },
+  "AudioResult": {
+    "eyebrow": "MP3 listo",
+    "title": "Tu audio esta preparado.",
+    "subtitle": "La conversion ha terminado correctamente. Puedes escuchar el audio o descargar el archivo MP3.",
+    "download": "Descargar MP3",
+    "reset": "Convertir otro video",
+    "missingUrlError": "El trabajo termino, pero no recibimos la URL del MP3."
   },
   "UseCases": {
     "back": "URL to Video",

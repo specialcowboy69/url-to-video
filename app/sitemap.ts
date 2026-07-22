@@ -20,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.9,
       },
       {
+        url: `${siteUrl}/${locale}/video-to-mp3-converter`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.82,
+      },
+      {
         url: `${siteUrl}/${locale}/privacy`,
         lastModified: now,
         changeFrequency: "yearly" as const,

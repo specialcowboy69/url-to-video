@@ -2,7 +2,7 @@
 
 import { ArrowRight, Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { InputModeToggle } from "@/app/components/InputModeToggle";
 import { LanguageToggle } from "@/app/components/LanguageToggle";
 import { ModeToggle } from "@/app/components/ModeToggle";
@@ -11,9 +11,15 @@ import {
   maxArticleTextLength,
   minArticleTextLength,
 } from "@/app/lib/videoInputLimits";
-import type { InputMode, MediaMode, VideoLanguage } from "@/app/types";
+import type {
+  CreateVideoInitialValues,
+  InputMode,
+  MediaMode,
+  VideoLanguage,
+} from "@/app/types";
 
 type CreateVideoFormProps = {
+  initialValues: CreateVideoInitialValues;
   onSubmit: (
     input: string,
     inputMode: InputMode,
@@ -22,15 +28,45 @@ type CreateVideoFormProps = {
   ) => Promise<void>;
 };
 
-export function CreateVideoForm({ onSubmit }: CreateVideoFormProps) {
+export function CreateVideoForm({
+  initialValues,
+  onSubmit,
+}: CreateVideoFormProps) {
   const t = useTranslations("Create");
-  const [sourceUrl, setSourceUrl] = useState("");
-  const [articleText, setArticleText] = useState("");
-  const [inputMode, setInputMode] = useState<InputMode>("url");
-  const [mediaMode, setMediaMode] = useState<MediaMode>("videos");
-  const [language, setLanguage] = useState<VideoLanguage>("es");
+  const [sourceUrl, setSourceUrl] = useState(initialValues.sourceUrl);
+  const [articleText, setArticleText] = useState(initialValues.articleText);
+  const [inputMode, setInputMode] = useState<InputMode>(initialValues.inputMode);
+  const [mediaMode, setMediaMode] = useState<MediaMode>(initialValues.mediaMode);
+  const [language, setLanguage] = useState<VideoLanguage>(initialValues.language);
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryInputMode = searchParams.get("inputMode");
+    const querySourceUrl = searchParams.get("sourceUrl");
+    const queryArticleText = searchParams.get("articleText");
+    const queryMediaMode = searchParams.get("mediaMode");
+    const queryLanguage = searchParams.get("language");
+
+    if (queryMediaMode === "images" || queryMediaMode === "videos") {
+      setMediaMode(queryMediaMode);
+    }
+
+    if (queryLanguage === "es" || queryLanguage === "en") {
+      setLanguage(queryLanguage);
+    }
+
+    if (queryInputMode === "text" && queryArticleText) {
+      setInputMode("text");
+      setArticleText(queryArticleText.slice(0, maxArticleTextLength));
+      return;
+    }
+
+    if (querySourceUrl) {
+      setInputMode("url");
+      setSourceUrl(querySourceUrl.slice(0, 2048));
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

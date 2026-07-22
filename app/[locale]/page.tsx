@@ -71,7 +71,27 @@ export default async function Home({ params }: HomeProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
-      <section className="mx-auto grid min-h-screen w-full max-w-6xl items-center gap-12 px-5 py-10 lg:grid-cols-[1fr,420px]">
+      <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 pt-6">
+        <Link href="/" className="text-sm font-black uppercase tracking-[0.2em] text-ink">
+          {seo("siteName")}
+        </Link>
+        <nav
+          aria-label={home("navigation.label")}
+          className="flex items-center gap-4 text-sm font-black text-ink/64"
+        >
+          <Link href="/create" className="transition hover:text-ocean">
+            {home("createCta")}
+          </Link>
+          <Link
+            href="/video-to-mp3-converter"
+            className="transition hover:text-ocean"
+          >
+            {home("navigation.videoToMp3")}
+          </Link>
+        </nav>
+      </header>
+
+      <section className="mx-auto grid min-h-[calc(100vh-76px)] w-full max-w-6xl items-center gap-12 px-5 py-10 lg:grid-cols-[1fr,420px]">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
             {home("eyebrow")}

@@ -2,57 +2,41 @@
 
 import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
-import { CreateVideoForm } from "@/app/components/CreateVideoForm";
+import { AudioLoadingState } from "@/app/components/AudioLoadingState";
+import { AudioResultView } from "@/app/components/AudioResultView";
+import { CreateAudioForm } from "@/app/components/CreateAudioForm";
 import { ErrorState } from "@/app/components/ErrorState";
-import { LoadingState } from "@/app/components/LoadingState";
-import { ResultView } from "@/app/components/ResultView";
-import { createVideo } from "@/app/lib/api";
-import type {
-  AppState,
-  CreateVideoInitialValues,
-  InputMode,
-  JobResponse,
-  MediaMode,
-  VideoLanguage,
-} from "@/app/types";
+import { createAudio } from "@/app/lib/api";
+import type { AppState, JobResponse } from "@/app/types";
 
-type CreateVideoExperienceProps = {
-  initialValues: CreateVideoInitialValues;
-};
-
-export function CreateVideoExperience({
-  initialValues,
-}: CreateVideoExperienceProps) {
-  const result = useTranslations("Result");
+export function CreateAudioExperience() {
+  const result = useTranslations("AudioResult");
   const error = useTranslations("Error");
   const [appState, setAppState] = useState<AppState>("idle");
   const [jobId, setJobId] = useState<string | null>(null);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | undefined>();
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function handleCreateVideo(
-    input: string,
-    inputMode: InputMode,
-    mediaMode: MediaMode,
-    language: VideoLanguage
-  ) {
-    const payload = await createVideo(input, inputMode, mediaMode, language);
+  async function handleCreateAudio(file: File) {
+    const payload = await createAudio(file);
     setJobId(payload.jobId);
-    setVideoUrl(null);
+    setAudioUrl(null);
     setDownloadUrl(undefined);
     setErrorMessage("");
     setAppState("loading");
   }
 
   const handleCompleted = useCallback((payload: JobResponse) => {
-    if (!payload.videoUrl) {
+    const finalAudioUrl = payload.audioUrl ?? payload.downloadUrl;
+
+    if (!finalAudioUrl) {
       setErrorMessage(result("missingUrlError"));
       setAppState("error");
       return;
     }
 
-    setVideoUrl(payload.videoUrl);
+    setAudioUrl(finalAudioUrl);
     setDownloadUrl(payload.downloadUrl);
     setAppState("success");
   }, [result]);
@@ -65,14 +49,14 @@ export function CreateVideoExperience({
   function reset() {
     setAppState("idle");
     setJobId(null);
-    setVideoUrl(null);
+    setAudioUrl(null);
     setDownloadUrl(undefined);
     setErrorMessage("");
   }
 
   if (appState === "loading" && jobId) {
     return (
-      <LoadingState
+      <AudioLoadingState
         jobId={jobId}
         onCompleted={handleCompleted}
         onFailed={handleFailed}
@@ -80,10 +64,10 @@ export function CreateVideoExperience({
     );
   }
 
-  if (appState === "success" && videoUrl) {
+  if (appState === "success" && audioUrl) {
     return (
-      <ResultView
-        videoUrl={videoUrl}
+      <AudioResultView
+        audioUrl={audioUrl}
         downloadUrl={downloadUrl}
         onReset={reset}
       />
@@ -93,19 +77,11 @@ export function CreateVideoExperience({
   if (appState === "error") {
     return (
       <ErrorState
-        message={
-            errorMessage ||
-            error("fallback")
-        }
+        message={errorMessage || error("fallback")}
         onReset={reset}
       />
     );
   }
 
-  return (
-    <CreateVideoForm
-      initialValues={initialValues}
-      onSubmit={handleCreateVideo}
-    />
-  );
+  return <CreateAudioForm onSubmit={handleCreateAudio} />;
 }

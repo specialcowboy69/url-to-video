@@ -6,9 +6,22 @@ export type VideoLanguage = "es" | "en";
 
 export type AppState = "idle" | "loading" | "success" | "error";
 
+export type CreateVideoInitialValues = {
+  inputMode: InputMode;
+  sourceUrl: string;
+  articleText: string;
+  mediaMode: MediaMode;
+  language: VideoLanguage;
+};
+
 export type JobStatus = "pending" | "processing" | "completed" | "failed";
 
 export type CreateVideoResponse = {
+  jobId: string;
+  status: JobStatus;
+};
+
+export type CreateAudioResponse = {
   jobId: string;
   status: JobStatus;
 };
@@ -18,6 +31,7 @@ export type JobResponse = {
   message?: string;
   stage?: string;
   videoUrl?: string;
+  audioUrl?: string;
   downloadUrl?: string;
   error?: string;
 };
