@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalPage } from "@/app/[locale]/legal-page";
-import { siteUrl } from "@/app/seo";
+import { localeAlternates, siteUrl } from "@/app/seo";
 
 type PageProps = {
   params: Promise<{
@@ -20,10 +20,7 @@ export async function generateMetadata({
     description: t("description"),
     alternates: {
       canonical: `${siteUrl}/${locale}/privacy`,
-      languages: {
-        es: `${siteUrl}/es/privacy`,
-        en: `${siteUrl}/en/privacy`,
-      },
+      languages: localeAlternates("/privacy"),
     },
   };
 }

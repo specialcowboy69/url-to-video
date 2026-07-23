@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { CreateAudioExperience } from "@/app/components/CreateAudioExperience";
+import { CreateSubtitlesExperience } from "@/app/components/CreateSubtitlesExperience";
 import { localeAlternates, siteUrl } from "@/app/seo";
 
-type VideoToMp3PageProps = {
+type AudioToSubtitlesPageProps = {
   params: Promise<{
     locale: string;
   }>;
@@ -11,26 +11,26 @@ type VideoToMp3PageProps = {
 
 export async function generateMetadata({
   params,
-}: VideoToMp3PageProps): Promise<Metadata> {
+}: AudioToSubtitlesPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Seo" });
 
   return {
-    title: t("mp3Title"),
-    description: t("mp3Description"),
+    title: t("srtTitle"),
+    description: t("srtDescription"),
     alternates: {
-      canonical: `${siteUrl}/${locale}/video-to-mp3-converter`,
-      languages: localeAlternates("/video-to-mp3-converter"),
+      canonical: `${siteUrl}/${locale}/audio-to-subtitles`,
+      languages: localeAlternates("/audio-to-subtitles"),
     },
   };
 }
 
-export default async function VideoToMp3Page({
+export default async function AudioToSubtitlesPage({
   params,
-}: VideoToMp3PageProps) {
+}: AudioToSubtitlesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const seo = await getTranslations({ locale, namespace: "AudioSeo" });
+  const seo = await getTranslations({ locale, namespace: "SubtitlesSeo" });
 
   const faqs = [
     {
@@ -38,12 +38,12 @@ export default async function VideoToMp3Page({
       answer: seo("faq.items.formats.answer"),
     },
     {
-      question: seo("faq.items.privacy.question"),
-      answer: seo("faq.items.privacy.answer"),
+      question: seo("faq.items.segments.question"),
+      answer: seo("faq.items.segments.answer"),
     },
     {
-      question: seo("faq.items.duration.question"),
-      answer: seo("faq.items.duration.answer"),
+      question: seo("faq.items.privacy.question"),
+      answer: seo("faq.items.privacy.answer"),
     },
   ];
 
@@ -66,7 +66,7 @@ export default async function VideoToMp3Page({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <CreateAudioExperience />
+      <CreateSubtitlesExperience />
       <section className="border-t border-ink/10 bg-white/72 px-5 py-16">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr,0.9fr]">
           <div>
@@ -81,7 +81,7 @@ export default async function VideoToMp3Page({
             </p>
           </div>
           <ol className="grid gap-3">
-            {["upload", "extract", "download"].map((step, index) => (
+            {["upload", "transcribe", "download"].map((step, index) => (
               <li
                 key={step}
                 className="rounded-2xl border border-ink/10 bg-white p-5 shadow-sm"

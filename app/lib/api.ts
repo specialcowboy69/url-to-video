@@ -1,5 +1,6 @@
 import type {
   CreateAudioResponse,
+  CreateSubtitlesResponse,
   CreateVideoResponse,
   InputMode,
   JobResponse,
@@ -153,6 +154,67 @@ export async function getAudioJob(jobId: string) {
 
   if (!response.ok) {
     throw new Error(payload.error ?? "No se ha podido consultar el trabajo de audio.");
+  }
+
+  return payload;
+}
+
+export async function createSubtitles(file: File, wordsPerSegment: number) {
+  const directWebhookUrl =
+    process.env.NEXT_PUBLIC_N8N_SRT_GENERATE_WEBHOOK_URL?.trim();
+  const uploadUrl = directWebhookUrl || "/api/srt";
+  const formData = new FormData();
+  formData.append(directWebhookUrl ? "data" : "file", file);
+  formData.append("wordsPerSegment", String(wordsPerSegment));
+
+  if (directWebhookUrl) {
+    formData.append("originalName", file.name || "audio.mp3");
+  }
+
+  const response = await fetch(uploadUrl, {
+    method: "POST",
+    body: formData,
+  });
+
+  const payload = await readJsonResponse<unknown>(
+    response,
+    "No se ha podido crear el trabajo de subtitulos."
+  );
+  const normalizedPayload = normalizeCreateJobPayload(payload);
+
+  if (!response.ok) {
+    const errorMessage =
+      payload && typeof payload === "object" && "error" in payload
+        ? String((payload as { error?: unknown }).error)
+        : undefined;
+
+    throw new Error(
+      errorMessage ?? "No se ha podido crear el trabajo de subtitulos."
+    );
+  }
+
+  if (!normalizedPayload) {
+    throw new Error("n8n no ha devuelto un jobId valido.");
+  }
+
+  return normalizedPayload as CreateSubtitlesResponse;
+}
+
+export async function getSubtitlesJob(jobId: string) {
+  const response = await fetch(`/api/srt/${encodeURIComponent(jobId)}`, {
+    method: "GET",
+    cache: "no-store",
+  });
+
+  const payload = await readJsonResponse<JobResponse>(
+    response,
+    "No se ha podido consultar el trabajo de subtitulos."
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      payload.error ?? "No se ha podido consultar el trabajo de subtitulos."
+    );
   }
 
   return payload;

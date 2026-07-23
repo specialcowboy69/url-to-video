@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { isUseCaseSlug, siteUrl, useCaseSlugs } from "@/app/seo";
+import { isUseCaseSlug, localeAlternates, siteUrl, useCaseSlugs } from "@/app/seo";
 
 type PageProps = {
   params: Promise<{
@@ -38,10 +38,7 @@ export async function generateMetadata({
     description: tUseCases(`${slug}.description`),
     alternates: {
       canonical: `${siteUrl}/${locale}/use-cases/${slug}`,
-      languages: {
-        es: `${siteUrl}/es/use-cases/${slug}`,
-        en: `${siteUrl}/en/use-cases/${slug}`,
-      },
+      languages: localeAlternates(`/use-cases/${slug}`),
     },
     openGraph: {
       title: tUseCases(`${slug}.title`),

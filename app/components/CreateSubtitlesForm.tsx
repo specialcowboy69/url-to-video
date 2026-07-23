@@ -1,58 +1,91 @@
 "use client";
 
-import { ArrowRight, FileAudio, UploadCloud } from "lucide-react";
+import { ArrowRight, FileText, UploadCloud } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
-type CreateAudioFormProps = {
-  onSubmit: (file: File) => Promise<void>;
+type CreateSubtitlesFormProps = {
+  onSubmit: (file: File, wordsPerSegment: number) => Promise<void>;
 };
 
-const maxFileSizeBytes = 1024 * 1024 * 1024;
+const maxFileSizeBytes = 500 * 1024 * 1024;
 const maxDurationSeconds = 60 * 60;
-const allowedExtensions = [".mp4", ".webm", ".mov", ".mkv", ".avi", ".mpeg", ".mpg"];
+const minWordsPerSegment = 1;
+const maxWordsPerSegment = 20;
+const allowedExtensions = [
+  ".mp3",
+  ".wav",
+  ".m4a",
+  ".aac",
+  ".ogg",
+  ".opus",
+  ".flac",
+  ".mp4",
+  ".webm",
+  ".mov",
+  ".mkv",
+  ".avi",
+  ".mpeg",
+  ".mpg",
+];
 
 function formatMegabytes(bytes: number) {
   return `${Math.max(1, Math.round(bytes / (1024 * 1024)))} MB`;
 }
 
-function getVideoDuration(file: File) {
+function getMediaDuration(file: File) {
   return new Promise<number>((resolve, reject) => {
-    const video = document.createElement("video");
+    const media = document.createElement(
+      file.type.startsWith("video/") ? "video" : "audio"
+    );
     const objectUrl = URL.createObjectURL(file);
 
-    video.preload = "metadata";
-    video.onloadedmetadata = () => {
+    media.preload = "metadata";
+    media.onloadedmetadata = () => {
       URL.revokeObjectURL(objectUrl);
-      resolve(video.duration);
+      resolve(media.duration);
     };
-    video.onerror = () => {
+    media.onerror = () => {
       URL.revokeObjectURL(objectUrl);
       reject(new Error("metadata"));
     };
-    video.src = objectUrl;
+    media.src = objectUrl;
   });
 }
 
-function isAllowedVideo(file: File) {
+function isAllowedMedia(file: File) {
   const name = file.name.toLowerCase();
 
   return (
+    file.type.startsWith("audio/") ||
     file.type.startsWith("video/") ||
     allowedExtensions.some((extension) => name.endsWith(extension))
   );
 }
 
-export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
-  const t = useTranslations("Audio");
+function clampWordsPerSegment(value: number) {
+  if (!Number.isFinite(value)) {
+    return 5;
+  }
+
+  return Math.min(maxWordsPerSegment, Math.max(minWordsPerSegment, value));
+}
+
+export function CreateSubtitlesForm({ onSubmit }: CreateSubtitlesFormProps) {
+  const t = useTranslations("Subtitles");
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [wordsPerSegment, setWordsPerSegment] = useState(5);
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     setLocalError(null);
     setFile(event.target.files?.[0] ?? null);
+  }
+
+  function handleWordsChange(event: ChangeEvent<HTMLInputElement>) {
+    setWordsPerSegment(clampWordsPerSegment(Number(event.target.value)));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -69,13 +102,13 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
       return;
     }
 
-    if (!isAllowedVideo(file)) {
+    if (!isAllowedMedia(file)) {
       setLocalError(t("invalidFileError"));
       return;
     }
 
     try {
-      const duration = await getVideoDuration(file);
+      const duration = await getMediaDuration(file);
 
       if (Number.isFinite(duration) && duration > maxDurationSeconds) {
         setLocalError(t("durationTooLongError"));
@@ -89,7 +122,7 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
     setSubmitting(true);
 
     try {
-      await onSubmit(file);
+      await onSubmit(file, wordsPerSegment);
     } catch (error) {
       setLocalError(error instanceof Error ? error.message : t("startError"));
       setSubmitting(false);
@@ -123,13 +156,13 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
           <input
             ref={inputRef}
             type="file"
-            accept="video/*"
+            accept="audio/*,video/*"
             disabled={submitting}
             onChange={handleFileChange}
             className="sr-only"
           />
           <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-ocean shadow-sm">
-            {file ? <FileAudio size={30} /> : <UploadCloud size={30} />}
+            {file ? <FileText size={30} /> : <UploadCloud size={30} />}
           </div>
           <span className="text-xl font-black text-ink">
             {file ? file.name : t("dropTitle")}
@@ -140,6 +173,35 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
               : t("dropSubtitle")}
           </span>
         </button>
+
+        <label className="mt-5 block rounded-2xl bg-white px-4 py-4">
+          <span className="text-sm font-black text-ink">
+            {t("wordsPerSegmentLabel")}
+          </span>
+          <span className="mt-1 block text-sm font-semibold leading-6 text-ink/58">
+            {t("wordsPerSegmentHint")}
+          </span>
+          <div className="mt-4 flex items-center gap-4">
+            <input
+              type="range"
+              min={minWordsPerSegment}
+              max={maxWordsPerSegment}
+              value={wordsPerSegment}
+              disabled={submitting}
+              onChange={handleWordsChange}
+              className="w-full accent-ocean"
+            />
+            <input
+              type="number"
+              min={minWordsPerSegment}
+              max={maxWordsPerSegment}
+              value={wordsPerSegment}
+              disabled={submitting}
+              onChange={handleWordsChange}
+              className="h-12 w-20 rounded-xl border border-ink/12 px-3 text-center text-sm font-black text-ink"
+            />
+          </div>
+        </label>
 
         <div className="mt-4 grid gap-3 text-sm font-bold text-ink/62 sm:grid-cols-2">
           <div className="rounded-2xl bg-white px-4 py-3">

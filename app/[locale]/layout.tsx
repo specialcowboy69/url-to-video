@@ -5,7 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { routing, type Locale } from "@/i18n/routing";
-import { siteUrl } from "@/app/seo";
+import { localeAlternates, siteUrl } from "@/app/seo";
 import "../globals.css";
 
 type LocaleLayoutProps = {
@@ -50,10 +50,7 @@ export async function generateMetadata({
     publisher: t("siteName"),
     alternates: {
       canonical: `${siteUrl}/${locale}`,
-      languages: {
-        es: `${siteUrl}/es`,
-        en: `${siteUrl}/en`,
-      },
+      languages: localeAlternates(),
     },
     openGraph: {
       type: "website",

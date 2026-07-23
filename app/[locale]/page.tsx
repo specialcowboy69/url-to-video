@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, CheckCircle2, FileVideo, Gauge, Shield } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { ExampleVideos } from "@/app/components/ExampleVideos";
-import { siteUrl, useCaseSlugs } from "@/app/seo";
+import { localeAlternates, siteUrl, useCaseSlugs } from "@/app/seo";
 
 type HomeProps = {
   params: Promise<{
@@ -22,10 +22,7 @@ export async function generateMetadata({
     description: t("defaultDescription"),
     alternates: {
       canonical: `${siteUrl}/${locale}`,
-      languages: {
-        es: `${siteUrl}/es`,
-        en: `${siteUrl}/en`,
-      },
+      languages: localeAlternates(),
     },
   };
 }
@@ -87,6 +84,12 @@ export default async function Home({ params }: HomeProps) {
             className="transition hover:text-ocean"
           >
             {home("navigation.videoToMp3")}
+          </Link>
+          <Link
+            href="/audio-to-subtitles"
+            className="transition hover:text-ocean"
+          >
+            {home("navigation.audioToSubtitles")}
           </Link>
         </nav>
       </header>

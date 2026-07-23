@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.82,
       },
       {
+        url: `${siteUrl}/${locale}/audio-to-subtitles`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.82,
+      },
+      {
         url: `${siteUrl}/${locale}/privacy`,
         lastModified: now,
         changeFrequency: "yearly" as const,

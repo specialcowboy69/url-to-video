@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-const maxFileSizeBytes = 1024 * 1024 * 1024;
+const maxFileSizeBytes = 500 * 1024 * 1024;
 const requestTimeoutMs = 10 * 60 * 1000;
 
 function jsonError(message: string, status = 400) {
@@ -51,22 +51,48 @@ function normalizeStatus(payload: unknown) {
   return "pending";
 }
 
-function isAllowedVideo(file: File) {
+function normalizeWordsPerSegment(value: FormDataEntryValue | null) {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+
+  if (!Number.isFinite(parsed)) {
+    return 5;
+  }
+
+  return Math.max(1, Math.min(20, parsed));
+}
+
+function isAllowedMedia(file: File) {
   const name = file.name.toLowerCase();
-  const allowedExtensions = [".mp4", ".webm", ".mov", ".mkv", ".avi", ".mpeg", ".mpg"];
+  const allowedExtensions = [
+    ".mp3",
+    ".wav",
+    ".m4a",
+    ".aac",
+    ".ogg",
+    ".opus",
+    ".flac",
+    ".mp4",
+    ".webm",
+    ".mov",
+    ".mkv",
+    ".avi",
+    ".mpeg",
+    ".mpg",
+  ];
 
   return (
+    file.type.startsWith("audio/") ||
     file.type.startsWith("video/") ||
     allowedExtensions.some((extension) => name.endsWith(extension))
   );
 }
 
 export async function POST(request: Request) {
-  const webhookUrl = process.env.N8N_MP3_GENERATE_WEBHOOK_URL;
+  const webhookUrl = process.env.N8N_SRT_GENERATE_WEBHOOK_URL;
 
   if (!webhookUrl) {
     return jsonError(
-      "Falta configurar N8N_MP3_GENERATE_WEBHOOK_URL en el servidor.",
+      "Falta configurar N8N_SRT_GENERATE_WEBHOOK_URL en el servidor.",
       500
     );
   }
@@ -75,7 +101,7 @@ export async function POST(request: Request) {
   const file = formData?.get("file");
 
   if (!(file instanceof File)) {
-    return jsonError("Sube un archivo de video valido.");
+    return jsonError("Sube un archivo de audio o video valido.");
   }
 
   if (file.size <= 0) {
@@ -83,16 +109,20 @@ export async function POST(request: Request) {
   }
 
   if (file.size > maxFileSizeBytes) {
-    return jsonError("El archivo supera el limite de 1 GB.");
+    return jsonError("El archivo supera el limite de 500 MB.");
   }
 
-  if (!isAllowedVideo(file)) {
-    return jsonError("Formato no permitido. Sube un archivo de video.");
+  if (!isAllowedMedia(file)) {
+    return jsonError("Formato no permitido. Sube un archivo de audio o video.");
   }
 
+  const wordsPerSegment = normalizeWordsPerSegment(
+    formData ? formData.get("wordsPerSegment") : null
+  );
   const n8nFormData = new FormData();
-  n8nFormData.append("data", file, file.name || "video.mp4");
-  n8nFormData.append("originalName", file.name || "video.mp4");
+  n8nFormData.append("data", file, file.name || "audio.mp3");
+  n8nFormData.append("originalName", file.name || "audio.mp3");
+  n8nFormData.append("wordsPerSegment", String(wordsPerSegment));
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), requestTimeoutMs);
@@ -108,7 +138,7 @@ export async function POST(request: Request) {
 
     if (!n8nResponse.ok) {
       return jsonError(
-        "n8n no ha aceptado la conversion a MP3.",
+        "n8n no ha aceptado la generacion de subtitulos.",
         n8nResponse.status
       );
     }
@@ -128,7 +158,7 @@ export async function POST(request: Request) {
 
     return jsonError(
       aborted
-        ? "La subida del video ha tardado demasiado."
+        ? "La subida del archivo ha tardado demasiado."
         : "No se ha podido conectar con n8n.",
       502
     );

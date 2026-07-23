@@ -1,12 +1,14 @@
 {
   "Seo": {
     "siteName": "URL to Video",
-    "defaultTitle": "Convert a URL into a video with stock videos and images | URL to Video",
+    "defaultTitle": "Convert a URL into a video with stock videos and images",
     "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
     "createTitle": "Create a video from a URL",
     "createDescription": "Paste a URL, choose images or videos and generate a vertical MP4 with voice, subtitles and visual assets.",
-    "mp3Title": "Convert video to MP3 online | URL to Video",
-    "mp3Description": "Upload a video file and convert its audio to MP3 for browser download."
+    "mp3Title": "Convert video to MP3 online",
+    "mp3Description": "Upload a video file and convert its audio to MP3 for browser download.",
+    "srtTitle": "Convert audio to SRT subtitles online",
+    "srtDescription": "Upload an audio or video file and generate SRT subtitles with configurable segments."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -16,7 +18,8 @@
     "useCasesCta": "View use cases",
     "navigation": {
       "label": "Main menu",
-      "videoToMp3": "Video to MP3"
+      "videoToMp3": "Video to MP3",
+      "audioToSubtitles": "Audio to SRT"
     },
     "steps": {
       "url": "Paste a public URL",
@@ -106,7 +109,7 @@
       "aria": "Visual media type"
     },
     "language": {
-      "es": "Español",
+      "es": "Spanish",
       "en": "English",
       "aria": "Video language"
     },
@@ -146,12 +149,12 @@
     "dropTitle": "Select a video",
     "dropSubtitle": "Common video files such as MP4, MOV, WEBM or MKV are supported.",
     "selectedFile": "Selected file: {size}",
-    "sizeLimit": "Maximum size: 500 MB",
+    "sizeLimit": "Maximum size: 1 GB",
     "durationLimit": "Maximum duration: 1 hour",
     "submit": "Convert to MP3",
     "submitting": "Uploading",
     "emptyFileError": "Select a video file to start.",
-    "fileTooLargeError": "The file exceeds the 500 MB limit.",
+    "fileTooLargeError": "The file exceeds the 1 GB limit.",
     "durationTooLongError": "The video exceeds the 1 hour limit.",
     "invalidFileError": "Unsupported format. Upload a video file.",
     "metadataError": "We could not read the video duration.",
@@ -173,6 +176,46 @@
     "download": "Download MP3",
     "reset": "Convert another video",
     "missingUrlError": "The job finished, but we did not receive the MP3 URL."
+  },
+  "Subtitles": {
+    "eyebrow": "Audio to SRT",
+    "title": "Convert audio or video into SRT subtitles.",
+    "description": "Upload a spoken file and we will generate a .srt file with timestamps, ready to edit, publish or use in your videos.",
+    "dropTitle": "Select audio or video",
+    "dropSubtitle": "Common audio and video files such as MP3, WAV, M4A, MP4, MOV or WEBM are supported.",
+    "selectedFile": "Selected file: {size}",
+    "wordsPerSegmentLabel": "Words per segment",
+    "wordsPerSegmentHint": "Choose how many words each subtitle block should contain. Fewer words create more dynamic subtitles.",
+    "sizeLimit": "Maximum size: 500 MB",
+    "durationLimit": "Maximum duration: 1 hour",
+    "submit": "Generate SRT",
+    "submitting": "Uploading",
+    "emptyFileError": "Select an audio or video file to start.",
+    "fileTooLargeError": "The file exceeds the 500 MB limit.",
+    "durationTooLongError": "The file exceeds the 1 hour limit.",
+    "invalidFileError": "Unsupported format. Upload an audio or video file.",
+    "metadataError": "We could not read the file duration.",
+    "startError": "The transcription could not be started."
+  },
+  "SubtitlesLoading": {
+    "title": "Generating subtitles",
+    "job": "Job {jobId}",
+    "subtitle": "We are transcribing the file and building the SRT. This screen will update automatically.",
+    "retry": "Retrying status check {retryCount}/{maxRetries}",
+    "fallbackError": "We could not generate the subtitles.",
+    "progressError": "The progress could not be checked.",
+    "timeoutError": "The transcription is taking longer than expected. Please try again in a few minutes."
+  },
+  "SubtitlesResult": {
+    "eyebrow": "SRT ready",
+    "title": "Your subtitles are ready.",
+    "subtitle": "The transcription finished successfully. Download the SRT file and use it in your video editor or platform.",
+    "download": "Download SRT",
+    "reset": "Create another SRT",
+    "cueCount": "{count} segments",
+    "wordCount": "{count} words",
+    "transcriptTitle": "Transcript preview",
+    "missingUrlError": "The job finished, but we did not receive the SRT URL."
   },
   "UseCases": {
     "back": "URL to Video",
@@ -259,6 +302,84 @@
         "contact": {
           "title": "Contact",
           "body": "If you have questions or suggestions, email testappbelleza@gmail.com."
+        }
+      }
+    }
+  },
+  "AudioSeo": {
+    "eyebrow": "Online converter",
+    "howItWorks": {
+      "title": "Extract audio from your videos as an MP3 file",
+      "description": "This tool converts common video files into a downloadable MP3 from the browser. It is useful for saving interviews, lessons, clips, meetings or content where you only need the audio.",
+      "steps": {
+        "upload": {
+          "title": "Upload your video",
+          "text": "Choose an MP4, MOV, WEBM or MKV video format."
+        },
+        "extract": {
+          "title": "We process the audio",
+          "text": "The system extracts the audio track and creates an MP3 file optimized for download."
+        },
+        "download": {
+          "title": "Download the MP3",
+          "text": "When the conversion finishes, you receive a download link for the audio file."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions about converting video to MP3",
+      "items": {
+        "formats": {
+          "question": "Which video formats can I upload?",
+          "answer": "The tool supports common formats such as MP4, MOV, WEBM, MKV, AVI, MPEG and MPG."
+        },
+        "privacy": {
+          "question": "Is my file published anywhere?",
+          "answer": "No. The file is used to generate the MP3 and return a download link."
+        },
+        "duration": {
+          "question": "Is there a duration limit?",
+          "answer": "Yes. For now, videos can be up to one hour long to avoid overly long processing jobs."
+        }
+      }
+    }
+  },
+  "SubtitlesSeo": {
+    "eyebrow": "Online transcription",
+    "howItWorks": {
+      "title": "Generate SRT subtitles from audio or video files",
+      "description": "This tool transcribes spoken files and builds an SRT with timestamps. You can control how many words appear in each segment to match your editing style.",
+      "steps": {
+        "upload": {
+          "title": "Upload your file",
+          "text": "Choose an audio or video file with clear speech in common formats such as MP3, WAV, M4A, MP4 or WEBM."
+        },
+        "transcribe": {
+          "title": "We create the transcript",
+          "text": "The system detects words and timestamps to build subtitle segments."
+        },
+        "download": {
+          "title": "Download the SRT",
+          "text": "When the process finishes, you receive a link to download the .srt file."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions about audio to subtitles",
+      "items": {
+        "formats": {
+          "question": "Which formats can I upload?",
+          "answer": "The tool supports common audio and video files such as MP3, WAV, M4A, AAC, OGG, MP4, MOV, WEBM and MKV."
+        },
+        "segments": {
+          "question": "Can I choose how many words each subtitle has?",
+          "answer": "Yes. You can choose between 1 and 20 words per segment before starting the transcription."
+        },
+        "privacy": {
+          "question": "Is my file published anywhere?",
+          "answer": "No. The file is processed to generate the SRT and return a download link."
         }
       }
     }

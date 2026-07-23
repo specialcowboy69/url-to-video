@@ -26,12 +26,22 @@ export type CreateAudioResponse = {
   status: JobStatus;
 };
 
+export type CreateSubtitlesResponse = {
+  jobId: string;
+  status: JobStatus;
+};
+
 export type JobResponse = {
   status: JobStatus;
   message?: string;
   stage?: string;
   videoUrl?: string;
   audioUrl?: string;
+  srtUrl?: string;
   downloadUrl?: string;
+  transcript?: string;
+  cueCount?: number;
+  wordCount?: number;
+  wordsPerSegment?: number;
   error?: string;
 };

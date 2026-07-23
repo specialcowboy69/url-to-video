@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { CreateVideoExperience } from "@/app/components/CreateVideoExperience";
 import { maxArticleTextLength } from "@/app/lib/videoInputLimits";
-import { siteUrl } from "@/app/seo";
+import { localeAlternates, siteUrl } from "@/app/seo";
 import type {
   CreateVideoInitialValues,
   InputMode,
@@ -75,10 +75,7 @@ export async function generateMetadata({
     description: t("createDescription"),
     alternates: {
       canonical: `${siteUrl}/${locale}/create`,
-      languages: {
-        es: `${siteUrl}/es/create`,
-        en: `${siteUrl}/en/create`,
-      },
+      languages: localeAlternates("/create"),
     },
   };
 }

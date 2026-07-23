@@ -17,3 +17,11 @@ export type UseCaseSlug = (typeof useCaseSlugs)[number];
 export function isUseCaseSlug(slug: string): slug is UseCaseSlug {
   return (useCaseSlugs as readonly string[]).includes(slug);
 }
+
+export function localeAlternates(path = "") {
+  return {
+    es: `${siteUrl}/es${path}`,
+    en: `${siteUrl}/en${path}`,
+    "x-default": `${siteUrl}/es${path}`,
+  };
+}

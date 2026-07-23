@@ -1,12 +1,14 @@
 {
   "Seo": {
     "siteName": "URL to Video",
-    "defaultTitle": "Convertir URL en video con videos e imagenes de stock | URL to Video",
+    "defaultTitle": "Convertir URL en video con videos e imagenes de stock",
     "defaultDescription": "Convierte una URL publica en un video vertical con guion, voz, subtitulos y material visual generado para redes sociales.",
     "createTitle": "Crear video desde URL",
     "createDescription": "Pega una URL, elige imagenes o videos y genera un MP4 vertical con voz, subtitulos y material visual.",
-    "mp3Title": "Convertir video a MP3 online | URL to Video",
-    "mp3Description": "Sube un archivo de video y convierte su audio a MP3 para descargarlo desde el navegador."
+    "mp3Title": "Convertir video a MP3 online",
+    "mp3Description": "Sube un archivo de video y convierte su audio a MP3 para descargarlo desde el navegador.",
+    "srtTitle": "Convertir audio a subtitulos SRT online",
+    "srtDescription": "Sube un archivo de audio o video y genera subtitulos SRT con segmentos configurables."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -16,7 +18,8 @@
     "useCasesCta": "Ver casos de uso",
     "navigation": {
       "label": "Menu principal",
-      "videoToMp3": "Video to MP3"
+      "videoToMp3": "Video to MP3",
+      "audioToSubtitles": "Audio to SRT"
     },
     "steps": {
       "url": "Pega una URL publica",
@@ -106,7 +109,7 @@
       "aria": "Tipo de material visual"
     },
     "language": {
-      "es": "Español",
+      "es": "Espanol",
       "en": "English",
       "aria": "Idioma del video"
     },
@@ -146,12 +149,12 @@
     "dropTitle": "Selecciona un video",
     "dropSubtitle": "Aceptamos archivos de video comunes como MP4, MOV, WEBM o MKV.",
     "selectedFile": "Archivo seleccionado: {size}",
-    "sizeLimit": "Tamano maximo: 500 MB",
+    "sizeLimit": "Tamano maximo: 1 GB",
     "durationLimit": "Duracion maxima: 1 hora",
     "submit": "Convertir a MP3",
     "submitting": "Subiendo",
     "emptyFileError": "Selecciona un archivo de video para empezar.",
-    "fileTooLargeError": "El archivo supera el limite de 500 MB.",
+    "fileTooLargeError": "El archivo supera el limite de 1 GB.",
     "durationTooLongError": "El video supera el limite de 1 hora.",
     "invalidFileError": "Formato no permitido. Sube un archivo de video.",
     "metadataError": "No hemos podido leer la duracion del video.",
@@ -173,6 +176,46 @@
     "download": "Descargar MP3",
     "reset": "Convertir otro video",
     "missingUrlError": "El trabajo termino, pero no recibimos la URL del MP3."
+  },
+  "Subtitles": {
+    "eyebrow": "Audio to SRT",
+    "title": "Convierte audio o video en subtitulos SRT.",
+    "description": "Sube un archivo hablado y generamos un archivo .srt con timestamps listo para editar, publicar o usar en tus videos.",
+    "dropTitle": "Selecciona audio o video",
+    "dropSubtitle": "Aceptamos archivos de audio y video comunes como MP3, WAV, M4A, MP4, MOV o WEBM.",
+    "selectedFile": "Archivo seleccionado: {size}",
+    "wordsPerSegmentLabel": "Palabras por segmento",
+    "wordsPerSegmentHint": "Elige cuantas palabras quieres por bloque de subtitulo. Menos palabras generan subtitulos mas dinamicos.",
+    "sizeLimit": "Tamano maximo: 500 MB",
+    "durationLimit": "Duracion maxima: 1 hora",
+    "submit": "Generar SRT",
+    "submitting": "Subiendo",
+    "emptyFileError": "Selecciona un archivo de audio o video para empezar.",
+    "fileTooLargeError": "El archivo supera el limite de 500 MB.",
+    "durationTooLongError": "El archivo supera el limite de 1 hora.",
+    "invalidFileError": "Formato no permitido. Sube un archivo de audio o video.",
+    "metadataError": "No hemos podido leer la duracion del archivo.",
+    "startError": "No se ha podido iniciar la transcripcion."
+  },
+  "SubtitlesLoading": {
+    "title": "Generando subtitulos",
+    "job": "Trabajo {jobId}",
+    "subtitle": "Estamos transcribiendo el archivo y construyendo el SRT. Esta pantalla se actualizara sola.",
+    "retry": "Reintentando consulta de estado {retryCount}/{maxRetries}",
+    "fallbackError": "No hemos podido generar los subtitulos.",
+    "progressError": "No se ha podido consultar el progreso.",
+    "timeoutError": "La transcripcion esta tardando mas de lo esperado. Puedes intentarlo de nuevo en unos minutos."
+  },
+  "SubtitlesResult": {
+    "eyebrow": "SRT listo",
+    "title": "Tus subtitulos estan preparados.",
+    "subtitle": "La transcripcion ha terminado correctamente. Descarga el archivo SRT y usalo en tu editor de video o plataforma.",
+    "download": "Descargar SRT",
+    "reset": "Crear otro SRT",
+    "cueCount": "{count} segmentos",
+    "wordCount": "{count} palabras",
+    "transcriptTitle": "Vista previa de la transcripcion",
+    "missingUrlError": "El trabajo termino, pero no recibimos la URL del SRT."
   },
   "UseCases": {
     "back": "URL to Video",
@@ -254,11 +297,89 @@
         },
         "prohibited": {
           "title": "Usos prohibidos",
-          "body": "No uses la herramienta para crear contenido engañoso, fraudulento, ilegal, abusivo, difamatorio o que suplante a terceros."
+          "body": "No uses la herramienta para crear contenido enganoso, fraudulento, ilegal, abusivo, difamatorio o que suplante a terceros."
         },
         "contact": {
           "title": "Contacto",
           "body": "Si tienes dudas o sugerencias, escribe a testappbelleza@gmail.com."
+        }
+      }
+    }
+  },
+  "AudioSeo": {
+    "eyebrow": "Convertidor online",
+    "howItWorks": {
+      "title": "Extrae el audio de tus videos en formato MP3",
+      "description": "Esta herramienta convierte archivos de video comunes en un MP3 descargable desde el navegador. Es util para guardar entrevistas, clases, clips, reuniones o piezas de contenido donde solo necesitas el audio.",
+      "steps": {
+        "upload": {
+          "title": "Sube tu video",
+          "text": "Selecciona un archivo MP4, MOV, WEBM, MKV u otro formato de video compatible."
+        },
+        "extract": {
+          "title": "Procesamos el audio",
+          "text": "El sistema extrae la pista de audio y genera un archivo MP3 optimizado para descarga."
+        },
+        "download": {
+          "title": "Descarga el MP3",
+          "text": "Cuando la conversion termina, recibes un enlace para descargar el archivo de audio."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Dudas sobre convertir video a MP3",
+      "items": {
+        "formats": {
+          "question": "Que formatos de video puedo subir?",
+          "answer": "La herramienta acepta formatos habituales como MP4, MOV, WEBM, MKV, AVI, MPEG y MPG."
+        },
+        "privacy": {
+          "question": "Mi archivo se publica en algun sitio?",
+          "answer": "No. El archivo se usa para generar el MP3 y devolverte un enlace de descarga."
+        },
+        "duration": {
+          "question": "Hay limite de duracion?",
+          "answer": "Si. Por ahora el video puede durar como maximo una hora para evitar procesos demasiado largos."
+        }
+      }
+    }
+  },
+  "SubtitlesSeo": {
+    "eyebrow": "Transcripcion online",
+    "howItWorks": {
+      "title": "Genera subtitulos SRT desde tus audios o videos",
+      "description": "Esta herramienta transcribe archivos hablados y construye un SRT con timestamps. Puedes controlar cuantas palabras aparecen en cada segmento para adaptar el resultado a tu estilo de edicion.",
+      "steps": {
+        "upload": {
+          "title": "Sube tu archivo",
+          "text": "Selecciona un audio o video con voz clara en formatos habituales como MP3, WAV, M4A, MP4 o WEBM."
+        },
+        "transcribe": {
+          "title": "Creamos la transcripcion",
+          "text": "El sistema detecta las palabras y sus tiempos para construir segmentos de subtitulo."
+        },
+        "download": {
+          "title": "Descarga el SRT",
+          "text": "Cuando termina el proceso, recibes un enlace para descargar el archivo .srt."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Dudas sobre audio a subtitulos",
+      "items": {
+        "formats": {
+          "question": "Que formatos puedo subir?",
+          "answer": "La herramienta acepta archivos de audio y video comunes como MP3, WAV, M4A, AAC, OGG, MP4, MOV, WEBM y MKV."
+        },
+        "segments": {
+          "question": "Puedo elegir cuantas palabras tiene cada subtitulo?",
+          "answer": "Si. Puedes elegir entre 1 y 20 palabras por segmento antes de iniciar la transcripcion."
+        },
+        "privacy": {
+          "question": "Mi archivo se publica en algun sitio?",
+          "answer": "No. El archivo se procesa para generar el SRT y devolverte un enlace de descarga."
         }
       }
     }
