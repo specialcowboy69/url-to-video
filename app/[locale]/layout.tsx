@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
-import { routing, type Locale } from "@/i18n/routing";
+import { Link, routing, type Locale } from "@/i18n/routing";
 import { localeAlternates, siteUrl } from "@/app/seo";
 import "../globals.css";
 
@@ -91,6 +91,8 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale as Locale);
   const messages = await getMessages();
+  const home = await getTranslations({ locale, namespace: "Home" });
+  const seo = await getTranslations({ locale, namespace: "Seo" });
 
   return (
     <html lang={locale}>
@@ -108,6 +110,34 @@ export default async function LocaleLayout({
       </Script>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <header className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 pt-6">
+            <Link
+              href="/"
+              className="text-sm font-black uppercase tracking-[0.2em] text-ink"
+            >
+              {seo("siteName")}
+            </Link>
+            <nav
+              aria-label={home("navigation.label")}
+              className="flex flex-wrap items-center gap-4 text-sm font-black text-ink/64"
+            >
+              <Link href="/create" className="transition hover:text-ocean">
+                {home("createCta")}
+              </Link>
+              <Link
+                href="/video-to-mp3-converter"
+                className="transition hover:text-ocean"
+              >
+                {home("navigation.videoToMp3")}
+              </Link>
+              <Link
+                href="/audio-to-subtitles"
+                className="transition hover:text-ocean"
+              >
+                {home("navigation.audioToSubtitles")}
+              </Link>
+            </nav>
+          </header>
           {children}
         </NextIntlClientProvider>
       </body>
