@@ -136,6 +136,9 @@ export default async function LocaleLayout({
               >
                 {home("navigation.audioToSubtitles")}
               </Link>
+              <Link href="/share-video" className="transition hover:text-ocean">
+                {home("navigation.shareVideo")}
+              </Link>
             </nav>
           </header>
           {children}

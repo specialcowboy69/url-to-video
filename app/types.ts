@@ -4,6 +4,8 @@ export type MediaMode = "videos" | "images";
 
 export type VideoLanguage = "es" | "en";
 
+export type SubtitleOutputFormat = "srt" | "vtt" | "csv";
+
 export type AppState = "idle" | "loading" | "success" | "error";
 
 export type CreateVideoInitialValues = {
@@ -29,6 +31,35 @@ export type CreateAudioResponse = {
 export type CreateSubtitlesResponse = {
   jobId: string;
   status: JobStatus;
+  outputFormat?: SubtitleOutputFormat;
+};
+
+export type CreateSharedVideoResponse = {
+  jobId: string;
+  slug: string;
+  status: "completed" | "failed";
+  stage?: string;
+  shareUrl?: string;
+  sharePath?: string;
+  videoUrl?: string;
+  directVideoUrl?: string;
+  expiresAt?: string;
+  error?: string;
+};
+
+export type SharedVideoLookupResponse = {
+  slug: string;
+  status: "active" | "expired" | "not_found" | "failed";
+  shareUrl?: string;
+  sharePath?: string;
+  videoUrl?: string;
+  directVideoUrl?: string;
+  originalName?: string;
+  mimeType?: string;
+  fileSizeBytes?: number;
+  createdAt?: string;
+  expiresAt?: string;
+  error?: string;
 };
 
 export type JobResponse = {
@@ -43,5 +74,6 @@ export type JobResponse = {
   cueCount?: number;
   wordCount?: number;
   wordsPerSegment?: number;
+  outputFormat?: SubtitleOutputFormat;
   error?: string;
 };

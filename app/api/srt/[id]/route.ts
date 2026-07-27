@@ -117,6 +117,7 @@ export async function GET(_request: Request, { params }: StatusRouteProps) {
       cueCount: payload.cueCount,
       wordCount: payload.wordCount,
       wordsPerSegment: payload.wordsPerSegment,
+      outputFormat: payload.outputFormat,
       error,
     });
   } catch {

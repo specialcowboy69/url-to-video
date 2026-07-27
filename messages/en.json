@@ -5,10 +5,12 @@
     "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
     "createTitle": "Create a video from a URL",
     "createDescription": "Paste a URL, choose images or videos and generate a vertical MP4 with voice, subtitles and visual assets.",
-    "mp3Title": "Convert video to MP3 online",
-    "mp3Description": "Upload a video file and convert its audio to MP3 for browser download.",
-    "srtTitle": "Convert audio to SRT subtitles online",
-    "srtDescription": "Upload an audio or video file and generate SRT subtitles with configurable segments."
+    "mp3Title": "Convert video to MP3 free and online",
+    "mp3Description": "Extract audio from video files such as MP4, MOV, MKV or AVI and download an MP3 from the browser without installing software.",
+    "srtTitle": "Convert audio to subtitles online",
+    "srtDescription": "Upload an audio or video file and generate SRT, VTT or CSV subtitles with configurable segments.",
+    "shareVideoTitle": "Online video to shareable link converter",
+    "shareVideoDescription": "Upload your video and generate a temporary public URL to share it for 24 hours."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -19,7 +21,8 @@
     "navigation": {
       "label": "Main menu",
       "videoToMp3": "Video to MP3",
-      "audioToSubtitles": "Audio to SRT"
+      "audioToSubtitles": "Audio to SRT",
+      "shareVideo": "Share video"
     },
     "steps": {
       "url": "Paste a public URL",
@@ -113,6 +116,11 @@
       "en": "English",
       "aria": "Video language"
     },
+    "featureCards": {
+      "stock": "Stock images and videos",
+      "subtitles": "Subtitles",
+      "voice": "Voice narrating the news"
+    },
     "recommendedSources": {
       "title": "Recommended sources",
       "description": "Open a source, choose a public article and paste its URL above.",
@@ -178,17 +186,24 @@
     "missingUrlError": "The job finished, but we did not receive the MP3 URL."
   },
   "Subtitles": {
-    "eyebrow": "Audio to SRT",
-    "title": "Convert audio or video into SRT subtitles.",
-    "description": "Upload a spoken file and we will generate a .srt file with timestamps, ready to edit, publish or use in your videos.",
+    "eyebrow": "Audio to subtitles",
+    "title": "Convert audio or video into subtitles.",
+    "description": "Upload a spoken file and we will generate subtitles with timestamps, ready to edit, publish or use in your videos.",
     "dropTitle": "Select audio or video",
     "dropSubtitle": "Common audio and video files such as MP3, WAV, M4A, MP4, MOV or WEBM are supported.",
     "selectedFile": "Selected file: {size}",
     "wordsPerSegmentLabel": "Words per segment",
     "wordsPerSegmentHint": "Choose how many words each subtitle block should contain. Fewer words create more dynamic subtitles.",
+    "formatLabel": "Download format",
+    "formatHint": "Choose the file type you want to receive.",
+    "formats": {
+      "srt": "SRT",
+      "vtt": "VTT",
+      "csv": "CSV"
+    },
     "sizeLimit": "Maximum size: 500 MB",
     "durationLimit": "Maximum duration: 1 hour",
-    "submit": "Generate SRT",
+    "submit": "Generate subtitles",
     "submitting": "Uploading",
     "emptyFileError": "Select an audio or video file to start.",
     "fileTooLargeError": "The file exceeds the 500 MB limit.",
@@ -200,22 +215,167 @@
   "SubtitlesLoading": {
     "title": "Generating subtitles",
     "job": "Job {jobId}",
-    "subtitle": "We are transcribing the file and building the SRT. This screen will update automatically.",
+    "subtitle": "We are transcribing the file and building the subtitles. This screen will update automatically.",
     "retry": "Retrying status check {retryCount}/{maxRetries}",
     "fallbackError": "We could not generate the subtitles.",
     "progressError": "The progress could not be checked.",
     "timeoutError": "The transcription is taking longer than expected. Please try again in a few minutes."
   },
   "SubtitlesResult": {
-    "eyebrow": "SRT ready",
+    "eyebrow": "Subtitles ready",
     "title": "Your subtitles are ready.",
-    "subtitle": "The transcription finished successfully. Download the SRT file and use it in your video editor or platform.",
-    "download": "Download SRT",
-    "reset": "Create another SRT",
+    "subtitle": "The transcription finished successfully. Download the file and use it in your video editor or platform.",
+    "download": "Download subtitles",
+    "downloadFormat": "Download {format}",
+    "reset": "Create other subtitles",
     "cueCount": "{count} segments",
     "wordCount": "{count} words",
+    "format": "{format} format",
     "transcriptTitle": "Transcript preview",
-    "missingUrlError": "The job finished, but we did not receive the SRT URL."
+    "missingUrlError": "The job finished, but we did not receive the file URL."
+  },
+  "ShareVideo": {
+    "eyebrow": "Share video",
+    "title": "Online video to shareable link converter",
+    "description": "Upload your video and generate a public URL to share on social media, documentation or messages without losing quality. The link remains active for 24 hours.",
+    "dropTitle": "Select a video from your device",
+    "dropSubtitle": "Supported formats: MP4, MOV, WebM, AVI and MKV. Files up to 1 GB.",
+    "selectedFile": "Selected file: {size}",
+    "slugLabel": "Custom link",
+    "slugHint": "Optional. Use letters, numbers and hyphens. If it already exists, we will add a suffix automatically.",
+    "slugPlaceholder": "my-video",
+    "sizeLimit": "Maximum size: 1 GB",
+    "durationLimit": "Maximum duration: 1 hour",
+    "submit": "Create link",
+    "submitting": "Uploading",
+    "emptyFileError": "Select a video file to start.",
+    "fileTooLargeError": "The file exceeds the 1 GB limit.",
+    "durationTooLongError": "The video exceeds the 1 hour limit.",
+    "invalidFileError": "Unsupported format. Upload a video file.",
+    "metadataError": "We could not read the video duration.",
+    "startError": "The link could not be created.",
+    "resultEyebrow": "Link ready",
+    "expiresAt": "Expires: {date}",
+    "copy": "Copy link",
+    "copied": "Copied"
+  },
+  "ShareVideoLanding": {
+    "howTo": {
+      "eyebrow": "How it works",
+      "title": "How to convert a video into a link in 3 steps",
+      "steps": {
+        "upload": {
+          "title": "Upload your file",
+          "text": "Drag your video or select it from your computer or mobile device."
+        },
+        "generate": {
+          "title": "Automatic URL generation",
+          "text": "The system uploads the video to Cloudflare R2 and creates a public link optimized for browser playback."
+        },
+        "share": {
+          "title": "Copy and share",
+          "text": "Get your link to send by email, WhatsApp, Notion or share with anyone for 24 hours."
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "Benefits",
+      "title": "Why use our service to share videos by URL",
+      "items": {
+        "noAccount": {
+          "title": "No signup or downloads",
+          "text": "Create a direct link without a user account and without installing heavy software."
+        },
+        "fastPlayback": {
+          "title": "Fast playback",
+          "text": "Videos are served from Cloudflare R2 so the link loads reliably in the browser."
+        },
+        "privacy": {
+          "title": "Automatic expiration",
+          "text": "Each link lasts 24 hours and the file is deleted automatically when it expires."
+        },
+        "formats": {
+          "title": "Multi-format compatibility",
+          "text": "Support for common formats such as MP4, MOV, WebM, MKV, AVI, MPEG and MPG."
+        }
+      }
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "Solutions for creators, developers and teams",
+      "items": {
+        "developers": {
+          "title": "For developers and QA",
+          "text": "Share bug demos, bug reports or product previews through direct video links."
+        },
+        "creators": {
+          "title": "For content creators",
+          "text": "Share fragments and clips quickly without filling up storage on your main platforms."
+        },
+        "education": {
+          "title": "For education and students",
+          "text": "Attach project demos to digital submissions without depending on email size limits."
+        }
+      }
+    },
+    "comparison": {
+      "eyebrow": "Comparison",
+      "title": "Why choose a direct converter instead of Google Drive or YouTube",
+      "headers": {
+        "feature": "Feature",
+        "ours": "Our converter",
+        "drive": "Google Drive / Dropbox",
+        "youtube": "YouTube"
+      },
+      "rows": {
+        "speed": {
+          "feature": "Time to get URL",
+          "ours": "After upload completes",
+          "drive": "Upload plus manual permissions",
+          "youtube": "Upload and processing"
+        },
+        "permissions": {
+          "feature": "Permission settings",
+          "ours": "Automatic public link",
+          "drive": "Manual configuration",
+          "youtube": "Requires Unlisted setup"
+        },
+        "distractions": {
+          "feature": "Ads or distractions",
+          "ours": "No ads",
+          "drive": "Storage interface",
+          "youtube": "Recommendations and ads"
+        },
+        "account": {
+          "feature": "No account required",
+          "ours": "Yes",
+          "drive": "Requires account",
+          "youtube": "Requires account"
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently asked questions about converting video to URL",
+      "items": {
+        "free": {
+          "question": "Is it free to convert a video to a shareable link?",
+          "answer": "Yes. You can create temporary links for videos up to 1 GB without registration."
+        },
+        "duration": {
+          "question": "How long does the video link remain active?",
+          "answer": "Generated links remain active for 24 hours. After that, the file is deleted automatically."
+        },
+        "formats": {
+          "question": "Which video formats can I convert to URL?",
+          "answer": "We support common formats such as MP4, MOV, WebM, AVI, MKV, MPEG and MPG."
+        },
+        "security": {
+          "question": "Is it safe to upload my videos to this platform?",
+          "answer": "Transfers use HTTPS. The link is public to anyone who has it, and the video is deleted when it expires."
+        }
+      }
+    }
   },
   "UseCases": {
     "back": "URL to Video",
@@ -309,16 +469,16 @@
   "AudioSeo": {
     "eyebrow": "Online converter",
     "howItWorks": {
-      "title": "Extract audio from your videos as an MP3 file",
+      "title": "How to convert a video to MP3 in 3 simple steps",
       "description": "This tool converts common video files into a downloadable MP3 from the browser. It is useful for saving interviews, lessons, clips, meetings or content where you only need the audio.",
       "steps": {
         "upload": {
           "title": "Upload your video",
-          "text": "Choose an MP4, MOV, WEBM or MKV video format."
+          "text": "Drag or select an MP4, MOV, WEBM, MKV, AVI, MPEG or MPG file from your device."
         },
         "extract": {
-          "title": "We process the audio",
-          "text": "The system extracts the audio track and creates an MP3 file optimized for download."
+          "title": "We extract the audio track",
+          "text": "The system processes the video file and creates a downloadable MP3 with the available audio track."
         },
         "download": {
           "title": "Download the MP3",
@@ -326,10 +486,128 @@
         }
       }
     },
+    "features": {
+      "eyebrow": "Benefits",
+      "title": "Benefits of our video to MP3 audio converter",
+      "items": {
+        "audio": {
+          "title": "Direct audio extraction",
+          "text": "Convert the audio track from your videos into an MP3 file ready to save or reuse."
+        },
+        "formats": {
+          "title": "Multi-format support",
+          "text": "Supports common formats such as MP4, MOV, WEBM, MKV, AVI, MPEG and MPG."
+        },
+        "browser": {
+          "title": "No software installation",
+          "text": "Start the conversion from the browser without downloading desktop programs."
+        },
+        "speed": {
+          "title": "Simple workflow",
+          "text": "Upload the file, wait for processing and download the MP3 when the job finishes."
+        },
+        "limits": {
+          "title": "Up to 1 GB and 1 hour",
+          "text": "The current limit avoids overly long conversions and helps keep the service stable."
+        },
+        "privacy": {
+          "title": "HTTPS connection",
+          "text": "Uploads use a secure connection and the file is processed to generate your download."
+        }
+      }
+    },
+    "formats": {
+      "eyebrow": "Formats",
+      "title": "Converters by specific video format",
+      "items": {
+        "mp4": {
+          "title": "MP4 to MP3",
+          "text": "Extract audio from the most common video format and download it as MP3."
+        },
+        "mov": {
+          "title": "MOV to MP3",
+          "text": "Convert videos recorded with iPhone, QuickTime or compatible cameras."
+        },
+        "mkv": {
+          "title": "MKV to MP3",
+          "text": "Extract the audio track from MKV files when you only need to listen to the content."
+        },
+        "avi": {
+          "title": "AVI to MP3",
+          "text": "Convert classic AVI videos into MP3 audio files that are easy to play."
+        },
+        "webm": {
+          "title": "WebM to MP3",
+          "text": "Turn web recordings or downloaded WebM videos into an MP3 audio track."
+        }
+      }
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "What to use an MP3 audio extractor for",
+      "items": {
+        "podcasts": {
+          "title": "Podcasts and interviews",
+          "text": "Separate the voice track from video recordings so you can listen to it or edit it independently."
+        },
+        "students": {
+          "title": "Lessons and conferences",
+          "text": "Convert recorded classes into MP3 files to listen from your phone while doing other tasks."
+        },
+        "music": {
+          "title": "Clips and audio references",
+          "text": "Extract audio from demos, meetings or video fragments you need to keep as MP3."
+        }
+      }
+    },
+    "comparison": {
+      "eyebrow": "Comparison",
+      "title": "Why choose an online converter instead of desktop software",
+      "headers": {
+        "feature": "Feature",
+        "ours": "Our web converter",
+        "desktop": "Desktop programs",
+        "editor": "Video editors"
+      },
+      "rows": {
+        "install": {
+          "feature": "Installation",
+          "ours": "No installation required",
+          "desktop": "Requires download",
+          "editor": "Heavy software"
+        },
+        "setup": {
+          "feature": "Setup",
+          "ours": "Guided upload and conversion",
+          "desktop": "Technical options",
+          "editor": "Learning curve"
+        },
+        "device": {
+          "feature": "Compatibility",
+          "ours": "From a modern browser",
+          "desktop": "Depends on the system",
+          "editor": "Better on powerful computers"
+        },
+        "cost": {
+          "feature": "Cost",
+          "ours": "No signup to use it",
+          "desktop": "Free or paid",
+          "editor": "Licenses or subscription"
+        }
+      }
+    },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "Questions about converting video to MP3",
+      "title": "Frequently asked questions about converting video to MP3",
       "items": {
+        "mp4": {
+          "question": "How can I convert an MP4 video to MP3?",
+          "answer": "Upload your MP4 file in the box above and click convert. When processing finishes, you can download the audio as an MP3."
+        },
+        "quality": {
+          "question": "Can I choose the MP3 quality or bitrate?",
+          "answer": "There is no bitrate selector in the interface yet. The system automatically generates an MP3 prepared for download."
+        },
         "formats": {
           "question": "Which video formats can I upload?",
           "answer": "The tool supports common formats such as MP4, MOV, WEBM, MKV, AVI, MPEG and MPG."
@@ -341,6 +619,14 @@
         "duration": {
           "question": "Is there a duration limit?",
           "answer": "Yes. For now, videos can be up to one hour long to avoid overly long processing jobs."
+        },
+        "fileSize": {
+          "question": "What is the file size limit?",
+          "answer": "You can currently upload videos up to 1 GB."
+        },
+        "trim": {
+          "question": "Can I trim the video before converting it?",
+          "answer": "Not yet. The tool converts the full audio track from the uploaded file."
         }
       }
     }
@@ -348,8 +634,8 @@
   "SubtitlesSeo": {
     "eyebrow": "Online transcription",
     "howItWorks": {
-      "title": "Generate SRT subtitles from audio or video files",
-      "description": "This tool transcribes spoken files and builds an SRT with timestamps. You can control how many words appear in each segment to match your editing style.",
+      "title": "How to convert audio to subtitles in 3 steps",
+      "description": "This tool transcribes spoken files and builds timestamped subtitles in SRT, VTT or CSV. You can control how many words appear in each segment to match your editing style.",
       "steps": {
         "upload": {
           "title": "Upload your file",
@@ -360,15 +646,136 @@
           "text": "The system detects words and timestamps to build subtitle segments."
         },
         "download": {
-          "title": "Download the SRT",
-          "text": "When the process finishes, you receive a link to download the .srt file."
+          "title": "Download the file",
+          "text": "When the process finishes, you receive a link to download the selected format."
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "Benefits",
+      "title": "Why use our subtitle generator",
+      "items": {
+        "timestamps": {
+          "title": "Synchronized timestamps",
+          "text": "The file includes start and end timecodes so subtitles line up with the voice."
+        },
+        "segments": {
+          "title": "Configurable segments",
+          "text": "Choose between 1 and 20 words per segment before starting the transcription."
+        },
+        "formats": {
+          "title": "SRT, VTT and CSV export",
+          "text": "Download the result in the format that best fits your editor, player or workflow."
+        },
+        "privacy": {
+          "title": "HTTPS processing",
+          "text": "Uploads use an encrypted connection and the file is processed to generate your download."
+        },
+        "speech": {
+          "title": "Optimized for clear speech",
+          "text": "Works best with interviews, podcasts, lessons, voice notes and videos with spoken audio."
+        },
+        "noSignup": {
+          "title": "No signup",
+          "text": "Generate subtitles without creating an account or installing desktop software."
+        }
+      }
+    },
+    "formats": {
+      "eyebrow": "Formats",
+      "title": "Convert other audio and video formats to subtitles",
+      "items": {
+        "mp3": {
+          "title": "MP3 to SRT",
+          "text": "Convert podcasts, interviews and compressed tracks into downloadable subtitles."
+        },
+        "wav": {
+          "title": "WAV to SRT",
+          "text": "Transcribe high-quality recordings or audio exported from professional tools."
+        },
+        "m4a": {
+          "title": "M4A to SRT",
+          "text": "Ideal for voice notes, mobile recordings and common Apple audio files."
+        },
+        "mp4": {
+          "title": "MP4 to SRT",
+          "text": "Extract speech from an MP4 video and generate a synchronized subtitle file."
+        },
+        "webm": {
+          "title": "WebM to SRT",
+          "text": "Convert browser recordings or web videos with speech into subtitles."
+        }
+      }
+    },
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "Subtitle solutions for creators and professionals",
+      "items": {
+        "creators": {
+          "title": "For creators and podcasters",
+          "text": "Generate subtitle files to improve accessibility, repurpose clips and publish content with text."
+        },
+        "editors": {
+          "title": "For video editors",
+          "text": "Import SRT or VTT into your editor and reduce manual transcription time."
+        },
+        "education": {
+          "title": "For courses and training",
+          "text": "Turn classes, lessons or spoken materials into useful subtitles for students."
+        }
+      }
+    },
+    "comparison": {
+      "eyebrow": "Comparison",
+      "title": "Why use AI instead of manual transcription",
+      "headers": {
+        "feature": "Feature",
+        "ours": "Our converter",
+        "manual": "Manual transcription"
+      },
+      "rows": {
+        "time": {
+          "feature": "Processing time",
+          "ours": "Automated after upload",
+          "manual": "Can take hours"
+        },
+        "timestamps": {
+          "feature": "Timestamp generation",
+          "ours": "Included automatically",
+          "manual": "Tedious and error-prone"
+        },
+        "cost": {
+          "feature": "Work cost",
+          "ours": "Fast and no signup",
+          "manual": "Consumes a lot of time"
+        },
+        "exports": {
+          "feature": "Export formats",
+          "ours": "SRT, VTT and CSV",
+          "manual": "Depends on how you prepare it"
         }
       }
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "Questions about audio to subtitles",
+      "title": "Frequently asked questions about converting audio to subtitles",
       "items": {
+        "srt": {
+          "question": "What is an SRT file and what is it used for?",
+          "answer": "An SRT is a text file with subtitles and timecodes. It is used to add subtitles to videos in editors, players and platforms."
+        },
+        "mp3": {
+          "question": "How can I convert an MP3 to SRT?",
+          "answer": "Upload the MP3 file, choose how many words you want per segment and select SRT as the download format."
+        },
+        "precision": {
+          "question": "How accurate is the transcription?",
+          "answer": "Accuracy depends on voice clarity, background noise, language and file quality. Clear spoken audio usually gives better results."
+        },
+        "compatibility": {
+          "question": "Does the generated SRT work with CapCut, Premiere or YouTube?",
+          "answer": "Yes. SRT and VTT are common formats for video editors and platforms. CSV is useful if you need to review or reuse segments as data."
+        },
         "formats": {
           "question": "Which formats can I upload?",
           "answer": "The tool supports common audio and video files such as MP3, WAV, M4A, AAC, OGG, MP4, MOV, WEBM and MKV."
@@ -379,7 +786,7 @@
         },
         "privacy": {
           "question": "Is my file published anywhere?",
-          "answer": "No. The file is processed to generate the SRT and return a download link."
+          "answer": "No. The file is processed to generate the subtitles and return a download link."
         }
       }
     }

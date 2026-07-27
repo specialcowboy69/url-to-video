@@ -61,6 +61,16 @@ function normalizeWordsPerSegment(value: FormDataEntryValue | null) {
   return Math.max(1, Math.min(20, parsed));
 }
 
+function normalizeOutputFormat(value: FormDataEntryValue | null) {
+  const format = String(value ?? "").trim().toLowerCase();
+
+  if (format === "vtt" || format === "csv") {
+    return format;
+  }
+
+  return "srt";
+}
+
 function isAllowedMedia(file: File) {
   const name = file.name.toLowerCase();
   const allowedExtensions = [
@@ -119,10 +129,14 @@ export async function POST(request: Request) {
   const wordsPerSegment = normalizeWordsPerSegment(
     formData ? formData.get("wordsPerSegment") : null
   );
+  const outputFormat = normalizeOutputFormat(
+    formData ? formData.get("outputFormat") : null
+  );
   const n8nFormData = new FormData();
   n8nFormData.append("data", file, file.name || "audio.mp3");
   n8nFormData.append("originalName", file.name || "audio.mp3");
   n8nFormData.append("wordsPerSegment", String(wordsPerSegment));
+  n8nFormData.append("outputFormat", outputFormat);
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), requestTimeoutMs);
@@ -152,6 +166,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       jobId,
       status: normalizeStatus(payload),
+      outputFormat,
     });
   } catch (error) {
     const aborted = error instanceof Error && error.name === "AbortError";

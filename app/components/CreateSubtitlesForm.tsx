@@ -3,15 +3,21 @@
 import { ArrowRight, FileText, UploadCloud } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import type { SubtitleOutputFormat } from "@/app/types";
 
 type CreateSubtitlesFormProps = {
-  onSubmit: (file: File, wordsPerSegment: number) => Promise<void>;
+  onSubmit: (
+    file: File,
+    wordsPerSegment: number,
+    outputFormat: SubtitleOutputFormat
+  ) => Promise<void>;
 };
 
 const maxFileSizeBytes = 500 * 1024 * 1024;
 const maxDurationSeconds = 60 * 60;
 const minWordsPerSegment = 1;
 const maxWordsPerSegment = 20;
+const outputFormats: SubtitleOutputFormat[] = ["srt", "vtt", "csv"];
 const allowedExtensions = [
   ".mp3",
   ".wav",
@@ -76,6 +82,8 @@ export function CreateSubtitlesForm({ onSubmit }: CreateSubtitlesFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [wordsPerSegment, setWordsPerSegment] = useState(5);
+  const [outputFormat, setOutputFormat] =
+    useState<SubtitleOutputFormat>("srt");
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
 
@@ -122,7 +130,7 @@ export function CreateSubtitlesForm({ onSubmit }: CreateSubtitlesFormProps) {
     setSubmitting(true);
 
     try {
-      await onSubmit(file, wordsPerSegment);
+      await onSubmit(file, wordsPerSegment, outputFormat);
     } catch (error) {
       setLocalError(error instanceof Error ? error.message : t("startError"));
       setSubmitting(false);
@@ -202,6 +210,40 @@ export function CreateSubtitlesForm({ onSubmit }: CreateSubtitlesFormProps) {
             />
           </div>
         </label>
+
+        <div className="mt-5 rounded-2xl bg-white px-4 py-4">
+          <p className="text-sm font-black text-ink">{t("formatLabel")}</p>
+          <p className="mt-1 text-sm font-semibold leading-6 text-ink/58">
+            {t("formatHint")}
+          </p>
+          <div
+            className="mt-4 grid grid-cols-3 gap-2"
+            role="radiogroup"
+            aria-label={t("formatLabel")}
+          >
+            {outputFormats.map((format) => {
+              const selected = outputFormat === format;
+
+              return (
+                <button
+                  key={format}
+                  type="button"
+                  role="radio"
+                  aria-checked={selected}
+                  disabled={submitting}
+                  onClick={() => setOutputFormat(format)}
+                  className={`h-12 rounded-xl px-3 text-sm font-black transition disabled:cursor-not-allowed disabled:opacity-65 ${
+                    selected
+                      ? "bg-ink text-white"
+                      : "bg-mist text-ink/64 hover:bg-white"
+                  }`}
+                >
+                  {t(`formats.${format}`)}
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <div className="mt-4 grid gap-3 text-sm font-bold text-ink/62 sm:grid-cols-2">
           <div className="rounded-2xl bg-white px-4 py-3">

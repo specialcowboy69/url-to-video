@@ -2,6 +2,7 @@
 
 import { CheckCircle2, Download, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
+import type { SubtitleOutputFormat } from "@/app/types";
 
 type SubtitlesResultViewProps = {
   srtUrl: string;
@@ -9,6 +10,7 @@ type SubtitlesResultViewProps = {
   transcript?: string;
   cueCount?: number;
   wordCount?: number;
+  outputFormat: SubtitleOutputFormat;
   onReset: () => void;
 };
 
@@ -18,10 +20,12 @@ export function SubtitlesResultView({
   transcript,
   cueCount,
   wordCount,
+  outputFormat,
   onReset,
 }: SubtitlesResultViewProps) {
   const t = useTranslations("SubtitlesResult");
   const finalDownloadUrl = downloadUrl ?? srtUrl;
+  const formatLabel = outputFormat.toUpperCase();
 
   return (
     <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center">
@@ -38,12 +42,15 @@ export function SubtitlesResultView({
         {t("subtitle")}
       </p>
 
-      <div className="mt-8 grid w-full max-w-xl gap-3 text-sm font-bold text-ink/62 sm:grid-cols-2">
+      <div className="mt-8 grid w-full max-w-xl gap-3 text-sm font-bold text-ink/62 sm:grid-cols-3">
         <div className="rounded-2xl bg-white px-4 py-3 shadow-sm">
           {t("cueCount", { count: cueCount ?? 0 })}
         </div>
         <div className="rounded-2xl bg-white px-4 py-3 shadow-sm">
           {t("wordCount", { count: wordCount ?? 0 })}
+        </div>
+        <div className="rounded-2xl bg-white px-4 py-3 shadow-sm">
+          {t("format", { format: formatLabel })}
         </div>
       </div>
 
@@ -63,7 +70,7 @@ export function SubtitlesResultView({
           className="flex h-14 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink transition hover:brightness-95"
         >
           <Download size={19} aria-hidden />
-          <span>{t("download")}</span>
+          <span>{t("downloadFormat", { format: formatLabel })}</span>
         </a>
         <button
           type="button"

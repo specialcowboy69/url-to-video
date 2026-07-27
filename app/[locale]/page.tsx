@@ -70,10 +70,7 @@ export default async function Home({ params }: HomeProps) {
 
       <section className="mx-auto grid min-h-[calc(100vh-76px)] w-full max-w-6xl items-center gap-12 px-5 py-10 lg:grid-cols-[1fr,420px]">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-            {home("eyebrow")}
-          </p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-none text-ink sm:text-7xl">
+          <h1 className="max-w-4xl text-5xl font-black leading-none text-ink sm:text-7xl">
             {home("title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/68">

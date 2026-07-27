@@ -7,7 +7,7 @@ import { ErrorState } from "@/app/components/ErrorState";
 import { SubtitlesLoadingState } from "@/app/components/SubtitlesLoadingState";
 import { SubtitlesResultView } from "@/app/components/SubtitlesResultView";
 import { createSubtitles } from "@/app/lib/api";
-import type { AppState, JobResponse } from "@/app/types";
+import type { AppState, JobResponse, SubtitleOutputFormat } from "@/app/types";
 
 export function CreateSubtitlesExperience() {
   const result = useTranslations("SubtitlesResult");
@@ -19,19 +19,27 @@ export function CreateSubtitlesExperience() {
   const [transcript, setTranscript] = useState<string | undefined>();
   const [cueCount, setCueCount] = useState<number | undefined>();
   const [wordCount, setWordCount] = useState<number | undefined>();
+  const [outputFormat, setOutputFormat] =
+    useState<SubtitleOutputFormat>("srt");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleCreateSubtitles(
     file: File,
-    wordsPerSegment: number
+    wordsPerSegment: number,
+    selectedOutputFormat: SubtitleOutputFormat
   ) {
-    const payload = await createSubtitles(file, wordsPerSegment);
+    const payload = await createSubtitles(
+      file,
+      wordsPerSegment,
+      selectedOutputFormat
+    );
     setJobId(payload.jobId);
     setSrtUrl(null);
     setDownloadUrl(undefined);
     setTranscript(undefined);
     setCueCount(undefined);
     setWordCount(undefined);
+    setOutputFormat(payload.outputFormat ?? selectedOutputFormat);
     setErrorMessage("");
     setAppState("loading");
   }
@@ -51,9 +59,10 @@ export function CreateSubtitlesExperience() {
       setTranscript(payload.transcript);
       setCueCount(payload.cueCount);
       setWordCount(payload.wordCount);
+      setOutputFormat(payload.outputFormat ?? outputFormat);
       setAppState("success");
     },
-    [result]
+    [outputFormat, result]
   );
 
   const handleFailed = useCallback((message: string) => {
@@ -69,6 +78,7 @@ export function CreateSubtitlesExperience() {
     setTranscript(undefined);
     setCueCount(undefined);
     setWordCount(undefined);
+    setOutputFormat("srt");
     setErrorMessage("");
   }
 
@@ -90,6 +100,7 @@ export function CreateSubtitlesExperience() {
         transcript={transcript}
         cueCount={cueCount}
         wordCount={wordCount}
+        outputFormat={outputFormat}
         onReset={reset}
       />
     );

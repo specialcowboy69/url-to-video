@@ -1,10 +1,12 @@
 import type {
   CreateAudioResponse,
+  CreateSharedVideoResponse,
   CreateSubtitlesResponse,
   CreateVideoResponse,
   InputMode,
   JobResponse,
   MediaMode,
+  SubtitleOutputFormat,
   VideoLanguage,
 } from "@/app/types";
 
@@ -40,6 +42,12 @@ function normalizeCreateJobPayload(payload: unknown) {
     return {
       jobId: jobId.trim(),
       status,
+      outputFormat:
+        data.outputFormat === "vtt" || data.outputFormat === "csv"
+          ? data.outputFormat
+          : data.outputFormat === "srt"
+            ? "srt"
+            : undefined,
       error: typeof data.error === "string" ? data.error : undefined,
     };
   }
@@ -48,6 +56,12 @@ function normalizeCreateJobPayload(payload: unknown) {
     return {
       jobId: String(jobId),
       status,
+      outputFormat:
+        data.outputFormat === "vtt" || data.outputFormat === "csv"
+          ? data.outputFormat
+          : data.outputFormat === "srt"
+            ? "srt"
+            : undefined,
       error: typeof data.error === "string" ? data.error : undefined,
     };
   }
@@ -159,13 +173,18 @@ export async function getAudioJob(jobId: string) {
   return payload;
 }
 
-export async function createSubtitles(file: File, wordsPerSegment: number) {
+export async function createSubtitles(
+  file: File,
+  wordsPerSegment: number,
+  outputFormat: SubtitleOutputFormat
+) {
   const directWebhookUrl =
     process.env.NEXT_PUBLIC_N8N_SRT_GENERATE_WEBHOOK_URL?.trim();
   const uploadUrl = directWebhookUrl || "/api/srt";
   const formData = new FormData();
   formData.append(directWebhookUrl ? "data" : "file", file);
   formData.append("wordsPerSegment", String(wordsPerSegment));
+  formData.append("outputFormat", outputFormat);
 
   if (directWebhookUrl) {
     formData.append("originalName", file.name || "audio.mp3");
@@ -215,6 +234,45 @@ export async function getSubtitlesJob(jobId: string) {
     throw new Error(
       payload.error ?? "No se ha podido consultar el trabajo de subtitulos."
     );
+  }
+
+  return payload;
+}
+
+export async function createSharedVideo(file: File, slug: string) {
+  const uploadUrl =
+    process.env.NEXT_PUBLIC_N8N_SHARE_VIDEO_GENERATE_WEBHOOK_URL?.trim();
+
+  if (!uploadUrl) {
+    throw new Error(
+      "Falta configurar NEXT_PUBLIC_N8N_SHARE_VIDEO_GENERATE_WEBHOOK_URL."
+    );
+  }
+
+  const formData = new FormData();
+  formData.append("data", file);
+  formData.append("originalName", file.name || "video.mp4");
+
+  if (slug.trim()) {
+    formData.append("slug", slug.trim());
+  }
+
+  const response = await fetch(uploadUrl, {
+    method: "POST",
+    body: formData,
+  });
+
+  const payload = await readJsonResponse<CreateSharedVideoResponse>(
+    response,
+    "No se ha podido crear el enlace del video."
+  );
+
+  if (!response.ok || payload.status === "failed") {
+    throw new Error(payload.error ?? "No se ha podido crear el enlace del video.");
+  }
+
+  if (!payload.slug || !payload.shareUrl) {
+    throw new Error("n8n no ha devuelto un enlace valido.");
   }
 
   return payload;

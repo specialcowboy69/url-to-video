@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Link2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { FormEvent, useEffect, useState } from "react";
 import { InputModeToggle } from "@/app/components/InputModeToggle";
@@ -40,6 +40,11 @@ export function CreateVideoForm({
   const [language, setLanguage] = useState<VideoLanguage>(initialValues.language);
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  const featureCards = [
+    t("featureCards.stock"),
+    t("featureCards.subtitles"),
+    t("featureCards.voice"),
+  ];
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const queryInputMode = searchParams.get("inputMode");
@@ -105,12 +110,20 @@ export function CreateVideoForm({
     <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-10">
       <div className="mb-10 flex items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-            {t("eyebrow")}
-          </p>
-          <h1 className="mt-4 max-w-3xl text-5xl font-black leading-none text-ink sm:text-7xl">
+          <h1 className="max-w-3xl text-5xl font-black leading-none text-ink sm:text-7xl">
             {t("title")}
           </h1>
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {featureCards.map((feature) => (
+              <div
+                key={feature}
+                className="flex min-h-16 items-center gap-3 rounded-2xl border border-ink/10 bg-white/82 px-4 text-sm font-bold text-ink shadow-sm"
+              >
+                <CheckCircle2 className="shrink-0 text-ocean" size={18} />
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
