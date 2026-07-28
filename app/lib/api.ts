@@ -118,17 +118,10 @@ export async function getVideoJob(jobId: string) {
 }
 
 export async function createAudio(file: File) {
-  const directWebhookUrl =
-    process.env.NEXT_PUBLIC_N8N_MP3_GENERATE_WEBHOOK_URL?.trim();
-  const uploadUrl = directWebhookUrl || "/api/mp3";
   const formData = new FormData();
-  formData.append(directWebhookUrl ? "data" : "file", file);
+  formData.append("file", file);
 
-  if (directWebhookUrl) {
-    formData.append("originalName", file.name || "video.mp4");
-  }
-
-  const response = await fetch(uploadUrl, {
+  const response = await fetch("/api/mp3", {
     method: "POST",
     body: formData,
   });
