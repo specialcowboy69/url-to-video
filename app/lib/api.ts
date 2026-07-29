@@ -69,6 +69,53 @@ function normalizeCreateJobPayload(payload: unknown) {
   return null;
 }
 
+type DirectUploadResponse = {
+  uploadUrl: string;
+  objectKey: string;
+  sourceUrl: string;
+  originalName: string;
+  mimeType?: string;
+  fileSizeBytes: number;
+};
+
+async function createDirectUpload(file: File, service: "mp3") {
+  const response = await fetch("/api/uploads/r2", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      service,
+      fileName: file.name,
+      contentType: file.type,
+      fileSize: file.size,
+    }),
+  });
+
+  const payload = await readJsonResponse<DirectUploadResponse>(
+    response,
+    "No se ha podido preparar la subida del archivo."
+  );
+
+  if (!response.ok) {
+    throw new Error(payload.error ?? "No se ha podido preparar la subida.");
+  }
+
+  return payload;
+}
+
+async function uploadFileToSignedUrl(file: File, uploadUrl: string) {
+  const response = await fetch(uploadUrl, {
+    method: "PUT",
+    headers: file.type ? { "Content-Type": file.type } : undefined,
+    body: file,
+  });
+
+  if (!response.ok) {
+    throw new Error("No se ha podido subir el archivo a Cloudflare R2.");
+  }
+}
+
 export async function createVideo(
   input: string,
   inputMode: InputMode,
@@ -118,12 +165,21 @@ export async function getVideoJob(jobId: string) {
 }
 
 export async function createAudio(file: File) {
-  const formData = new FormData();
-  formData.append("file", file);
+  const upload = await createDirectUpload(file, "mp3");
+  await uploadFileToSignedUrl(file, upload.uploadUrl);
 
   const response = await fetch("/api/mp3", {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      sourceKey: upload.objectKey,
+      sourceUrl: upload.sourceUrl,
+      originalName: upload.originalName,
+      mimeType: upload.mimeType || file.type,
+      fileSizeBytes: upload.fileSizeBytes,
+    }),
   });
 
   const payload = await readJsonResponse<unknown>(
