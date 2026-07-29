@@ -171,19 +171,12 @@ export async function createSubtitles(
   wordsPerSegment: number,
   outputFormat: SubtitleOutputFormat
 ) {
-  const directWebhookUrl =
-    process.env.NEXT_PUBLIC_N8N_SRT_GENERATE_WEBHOOK_URL?.trim();
-  const uploadUrl = directWebhookUrl || "/api/srt";
   const formData = new FormData();
-  formData.append(directWebhookUrl ? "data" : "file", file);
+  formData.append("file", file);
   formData.append("wordsPerSegment", String(wordsPerSegment));
   formData.append("outputFormat", outputFormat);
 
-  if (directWebhookUrl) {
-    formData.append("originalName", file.name || "audio.mp3");
-  }
-
-  const response = await fetch(uploadUrl, {
+  const response = await fetch("/api/srt", {
     method: "POST",
     body: formData,
   });
@@ -233,24 +226,14 @@ export async function getSubtitlesJob(jobId: string) {
 }
 
 export async function createSharedVideo(file: File, slug: string) {
-  const uploadUrl =
-    process.env.NEXT_PUBLIC_N8N_SHARE_VIDEO_GENERATE_WEBHOOK_URL?.trim();
-
-  if (!uploadUrl) {
-    throw new Error(
-      "Falta configurar NEXT_PUBLIC_N8N_SHARE_VIDEO_GENERATE_WEBHOOK_URL."
-    );
-  }
-
   const formData = new FormData();
-  formData.append("data", file);
-  formData.append("originalName", file.name || "video.mp4");
+  formData.append("file", file);
 
   if (slug.trim()) {
     formData.append("slug", slug.trim());
   }
 
-  const response = await fetch(uploadUrl, {
+  const response = await fetch("/api/share-video", {
     method: "POST",
     body: formData,
   });
