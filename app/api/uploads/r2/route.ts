@@ -5,6 +5,7 @@ export const runtime = "nodejs";
 
 const maxMp3SourceBytes = 1024 * 1024 * 1024;
 const maxSrtSourceBytes = 500 * 1024 * 1024;
+const maxShareSourceBytes = 1024 * 1024 * 1024;
 const uploadExpiresSeconds = 15 * 60;
 const allowedVideoExtensions = [
   ".mp4",
@@ -97,8 +98,13 @@ function getAllowedExtension(fileName: string, allowedExtensions: string[]) {
   return allowedExtensions.find((extension) => lowerName.endsWith(extension));
 }
 
-function assertMp3Source(input: Record<string, unknown>) {
-  const fileName = sanitizeFileName(input.fileName, "video.mp4");
+function assertVideoSource(
+  input: Record<string, unknown>,
+  fallbackName: string,
+  maxBytes: number,
+  maxSizeLabel: string
+) {
+  const fileName = sanitizeFileName(input.fileName, fallbackName);
   const extension = getAllowedExtension(fileName, allowedVideoExtensions);
   const contentType = String(input.contentType || "").toLowerCase();
   const fileSize = Number(input.fileSize || 0);
@@ -111,8 +117,8 @@ function assertMp3Source(input: Record<string, unknown>) {
     throw new Error("El archivo esta vacio.");
   }
 
-  if (fileSize > maxMp3SourceBytes) {
-    throw new Error("El archivo supera el limite de 1 GB.");
+  if (fileSize > maxBytes) {
+    throw new Error(`El archivo supera el limite de ${maxSizeLabel}.`);
   }
 
   if (
@@ -124,6 +130,14 @@ function assertMp3Source(input: Record<string, unknown>) {
   }
 
   return { fileName, extension: extension.slice(1), contentType, fileSize };
+}
+
+function assertMp3Source(input: Record<string, unknown>) {
+  return assertVideoSource(input, "video.mp4", maxMp3SourceBytes, "1 GB");
+}
+
+function assertShareSource(input: Record<string, unknown>) {
+  return assertVideoSource(input, "video.mp4", maxShareSourceBytes, "1 GB");
 }
 
 function assertSrtSource(input: Record<string, unknown>) {
@@ -159,6 +173,7 @@ function assertSrtSource(input: Record<string, unknown>) {
 function assertUploadSource(input: Record<string, unknown>) {
   if (input.service === "mp3") return assertMp3Source(input);
   if (input.service === "srt") return assertSrtSource(input);
+  if (input.service === "share") return assertShareSource(input);
   throw new Error("Servicio de subida no permitido.");
 }
 
@@ -259,7 +274,7 @@ export async function POST(request: Request) {
     return jsonError(error instanceof Error ? error.message : "Solicitud invalida.", 400);
   }
 
-  const service = body.service === "srt" ? "srt" : "mp3";
+  const service = body.service === "srt" ? "srt" : body.service === "share" ? "share" : "mp3";
   const uploadId = crypto.randomUUID();
   const objectKey = `${service}/uploads/${uploadId}/input.${source.extension}`;
   const uploadUrl = createPresignedPutUrl({
