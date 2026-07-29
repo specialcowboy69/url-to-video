@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   CreateAudioResponse,
   CreateSharedVideoResponse,
   CreateSubtitlesResponse,
@@ -78,7 +78,7 @@ type DirectUploadResponse = {
   fileSizeBytes: number;
 };
 
-async function createDirectUpload(file: File, service: "mp3") {
+async function createDirectUpload(file: File, service: "mp3" | "srt") {
   const response = await fetch("/api/uploads/r2", {
     method: "POST",
     headers: {
@@ -227,14 +227,23 @@ export async function createSubtitles(
   wordsPerSegment: number,
   outputFormat: SubtitleOutputFormat
 ) {
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("wordsPerSegment", String(wordsPerSegment));
-  formData.append("outputFormat", outputFormat);
+  const upload = await createDirectUpload(file, "srt");
+  await uploadFileToSignedUrl(file, upload.uploadUrl);
 
   const response = await fetch("/api/srt", {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      sourceKey: upload.objectKey,
+      sourceUrl: upload.sourceUrl,
+      originalName: upload.originalName,
+      mimeType: upload.mimeType || file.type,
+      fileSizeBytes: upload.fileSizeBytes,
+      wordsPerSegment,
+      outputFormat,
+    }),
   });
 
   const payload = await readJsonResponse<unknown>(
@@ -309,3 +318,4 @@ export async function createSharedVideo(file: File, slug: string) {
 
   return payload;
 }
+

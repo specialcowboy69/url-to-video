@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
@@ -51,7 +51,7 @@ function normalizeStatus(payload: unknown) {
   return "pending";
 }
 
-function normalizeWordsPerSegment(value: FormDataEntryValue | null) {
+function normalizeWordsPerSegmentValue(value: unknown) {
   const parsed = Number.parseInt(String(value ?? ""), 10);
 
   if (!Number.isFinite(parsed)) {
@@ -61,7 +61,11 @@ function normalizeWordsPerSegment(value: FormDataEntryValue | null) {
   return Math.max(1, Math.min(20, parsed));
 }
 
-function normalizeOutputFormat(value: FormDataEntryValue | null) {
+function normalizeWordsPerSegment(value: FormDataEntryValue | null) {
+  return normalizeWordsPerSegmentValue(value);
+}
+
+function normalizeOutputFormatValue(value: unknown) {
   const format = String(value ?? "").trim().toLowerCase();
 
   if (format === "vtt" || format === "csv") {
@@ -71,8 +75,12 @@ function normalizeOutputFormat(value: FormDataEntryValue | null) {
   return "srt";
 }
 
-function isAllowedMedia(file: File) {
-  const name = file.name.toLowerCase();
+function normalizeOutputFormat(value: FormDataEntryValue | null) {
+  return normalizeOutputFormatValue(value);
+}
+
+function isAllowedMediaMetadata(fileName: string, mimeType: string) {
+  const name = fileName.toLowerCase();
   const allowedExtensions = [
     ".mp3",
     ".wav",
@@ -91,10 +99,52 @@ function isAllowedMedia(file: File) {
   ];
 
   return (
-    file.type.startsWith("audio/") ||
-    file.type.startsWith("video/") ||
+    mimeType.startsWith("audio/") ||
+    mimeType.startsWith("video/") ||
+    mimeType === "application/octet-stream" ||
     allowedExtensions.some((extension) => name.endsWith(extension))
   );
+}
+
+function isAllowedMedia(file: File) {
+  return isAllowedMediaMetadata(file.name, file.type.toLowerCase());
+}
+
+function normalizeObjectKey(value: unknown) {
+  const objectKey = String(value || "").trim();
+
+  if (!objectKey || objectKey.includes("..") || objectKey.startsWith("/")) {
+    return null;
+  }
+
+  if (!objectKey.startsWith("srt/uploads/")) {
+    return null;
+  }
+
+  return objectKey;
+}
+
+async function parseN8nResponse(response: Response, outputFormat: string) {
+  const payload = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    return jsonError(
+      "n8n no ha aceptado la generacion de subtitulos.",
+      response.status
+    );
+  }
+
+  const jobId = normalizeJobId(payload);
+
+  if (!jobId) {
+    return jsonError("n8n no ha devuelto un jobId valido.", 502);
+  }
+
+  return NextResponse.json({
+    jobId,
+    status: normalizeStatus(payload),
+    outputFormat,
+  });
 }
 
 export async function POST(request: Request) {
@@ -105,6 +155,65 @@ export async function POST(request: Request) {
       "Falta configurar N8N_SRT_GENERATE_WEBHOOK_URL en el servidor.",
       500
     );
+  }
+
+  const contentType = request.headers.get("content-type") ?? "";
+
+  if (contentType.includes("application/json")) {
+    const input = (await request.json().catch(() => null)) as
+      | Record<string, unknown>
+      | null;
+    const sourceKey = normalizeObjectKey(input?.sourceKey ?? input?.objectKey);
+    const originalName = String(input?.originalName || input?.fileName || "audio.mp3");
+    const mimeType = String(input?.mimeType || "").toLowerCase();
+    const fileSizeBytes = Number(input?.fileSizeBytes || input?.fileSize || 0);
+    const sourceUrl = typeof input?.sourceUrl === "string" ? input.sourceUrl : undefined;
+    const wordsPerSegment = normalizeWordsPerSegmentValue(input?.wordsPerSegment);
+    const outputFormat = normalizeOutputFormatValue(input?.outputFormat);
+
+    if (!sourceKey) {
+      return jsonError("Falta una referencia valida del archivo subido.");
+    }
+
+    if (!sourceUrl || !sourceUrl.startsWith("https://")) {
+      return jsonError("Falta una URL publica valida del archivo subido.");
+    }
+
+    if (!Number.isFinite(fileSizeBytes) || fileSizeBytes <= 0) {
+      return jsonError("El archivo esta vacio.");
+    }
+
+    if (fileSizeBytes > maxFileSizeBytes) {
+      return jsonError("El archivo supera el limite de 500 MB.");
+    }
+
+    if (!isAllowedMediaMetadata(originalName, mimeType)) {
+      return jsonError("Formato no permitido. Sube un archivo de audio o video.");
+    }
+
+    try {
+      const n8nResponse = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sourceKey,
+          objectKey: sourceKey,
+          sourceUrl,
+          originalName,
+          mimeType,
+          fileSizeBytes,
+          wordsPerSegment,
+          outputFormat,
+          uploadMode: "r2",
+        }),
+      });
+
+      return parseN8nResponse(n8nResponse, outputFormat);
+    } catch {
+      return jsonError("No se ha podido conectar con n8n.", 502);
+    }
   }
 
   const formData = await request.formData().catch(() => null);
@@ -148,26 +257,7 @@ export async function POST(request: Request) {
       signal: controller.signal,
     });
 
-    const payload = await n8nResponse.json().catch(() => null);
-
-    if (!n8nResponse.ok) {
-      return jsonError(
-        "n8n no ha aceptado la generacion de subtitulos.",
-        n8nResponse.status
-      );
-    }
-
-    const jobId = normalizeJobId(payload);
-
-    if (!jobId) {
-      return jsonError("n8n no ha devuelto un jobId valido.", 502);
-    }
-
-    return NextResponse.json({
-      jobId,
-      status: normalizeStatus(payload),
-      outputFormat,
-    });
+    return await parseN8nResponse(n8nResponse, outputFormat);
   } catch (error) {
     const aborted = error instanceof Error && error.name === "AbortError";
 

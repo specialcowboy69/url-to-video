@@ -1,9 +1,10 @@
-import crypto from "crypto";
+﻿import crypto from "crypto";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
 const maxMp3SourceBytes = 1024 * 1024 * 1024;
+const maxSrtSourceBytes = 500 * 1024 * 1024;
 const uploadExpiresSeconds = 15 * 60;
 const allowedVideoExtensions = [
   ".mp4",
@@ -15,6 +16,40 @@ const allowedVideoExtensions = [
   ".mpg",
 ];
 const allowedVideoMimeTypes = new Set([
+  "video/mp4",
+  "video/webm",
+  "video/quicktime",
+  "video/x-msvideo",
+  "video/x-matroska",
+  "video/mpeg",
+  "application/octet-stream",
+]);
+const allowedSrtSourceExtensions = [
+  ".mp3",
+  ".wav",
+  ".m4a",
+  ".aac",
+  ".ogg",
+  ".opus",
+  ".flac",
+  ".mp4",
+  ".webm",
+  ".mov",
+  ".mkv",
+  ".avi",
+  ".mpeg",
+  ".mpg",
+];
+const allowedSrtSourceMimeTypes = new Set([
+  "audio/mpeg",
+  "audio/mp3",
+  "audio/wav",
+  "audio/x-wav",
+  "audio/mp4",
+  "audio/aac",
+  "audio/ogg",
+  "audio/opus",
+  "audio/flac",
   "video/mp4",
   "video/webm",
   "video/quicktime",
@@ -52,20 +87,19 @@ function normalizeEndpoint(value: string) {
   return value.trim().replace(/\/+$/g, "");
 }
 
-function sanitizeFileName(value: unknown) {
-  const fallback = "video.mp4";
+function sanitizeFileName(value: unknown, fallback: string) {
   const fileName = String(value || fallback).trim() || fallback;
   return fileName.replace(/[^\w.\-]+/g, "-").replace(/-+/g, "-").slice(0, 120);
 }
 
-function getAllowedExtension(fileName: string) {
+function getAllowedExtension(fileName: string, allowedExtensions: string[]) {
   const lowerName = fileName.toLowerCase();
-  return allowedVideoExtensions.find((extension) => lowerName.endsWith(extension));
+  return allowedExtensions.find((extension) => lowerName.endsWith(extension));
 }
 
 function assertMp3Source(input: Record<string, unknown>) {
-  const fileName = sanitizeFileName(input.fileName);
-  const extension = getAllowedExtension(fileName);
+  const fileName = sanitizeFileName(input.fileName, "video.mp4");
+  const extension = getAllowedExtension(fileName, allowedVideoExtensions);
   const contentType = String(input.contentType || "").toLowerCase();
   const fileSize = Number(input.fileSize || 0);
 
@@ -90,6 +124,42 @@ function assertMp3Source(input: Record<string, unknown>) {
   }
 
   return { fileName, extension: extension.slice(1), contentType, fileSize };
+}
+
+function assertSrtSource(input: Record<string, unknown>) {
+  const fileName = sanitizeFileName(input.fileName, "audio.mp3");
+  const extension = getAllowedExtension(fileName, allowedSrtSourceExtensions);
+  const contentType = String(input.contentType || "").toLowerCase();
+  const fileSize = Number(input.fileSize || 0);
+
+  if (!extension) {
+    throw new Error("Formato no permitido. Sube un archivo de audio o video.");
+  }
+
+  if (!Number.isFinite(fileSize) || fileSize <= 0) {
+    throw new Error("El archivo esta vacio.");
+  }
+
+  if (fileSize > maxSrtSourceBytes) {
+    throw new Error("El archivo supera el limite de 500 MB.");
+  }
+
+  if (
+    contentType &&
+    !contentType.startsWith("audio/") &&
+    !contentType.startsWith("video/") &&
+    !allowedSrtSourceMimeTypes.has(contentType)
+  ) {
+    throw new Error("Formato no permitido. Sube un archivo de audio o video.");
+  }
+
+  return { fileName, extension: extension.slice(1), contentType, fileSize };
+}
+
+function assertUploadSource(input: Record<string, unknown>) {
+  if (input.service === "mp3") return assertMp3Source(input);
+  if (input.service === "srt") return assertSrtSource(input);
+  throw new Error("Servicio de subida no permitido.");
 }
 
 function getRequiredEnv() {
@@ -175,22 +245,23 @@ function createPresignedPutUrl({
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
 
-  if (!body || body.service !== "mp3") {
-    return jsonError("Servicio de subida no permitido.");
+  if (!body) {
+    return jsonError("Solicitud invalida.");
   }
 
   let source;
   let env;
 
   try {
-    source = assertMp3Source(body);
+    source = assertUploadSource(body);
     env = getRequiredEnv();
   } catch (error) {
     return jsonError(error instanceof Error ? error.message : "Solicitud invalida.", 400);
   }
 
+  const service = body.service === "srt" ? "srt" : "mp3";
   const uploadId = crypto.randomUUID();
-  const objectKey = `mp3/uploads/${uploadId}/input.${source.extension}`;
+  const objectKey = `${service}/uploads/${uploadId}/input.${source.extension}`;
   const uploadUrl = createPresignedPutUrl({
     endpoint: env.endpoint,
     accessKeyId: env.accessKeyId,
