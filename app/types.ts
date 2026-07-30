@@ -6,7 +6,7 @@ export type VideoLanguage = "es" | "en";
 
 export type SubtitleOutputFormat = "srt" | "vtt" | "csv";
 
-export type AppState = "idle" | "loading" | "success" | "error";
+export type AppState = "idle" | "starting" | "loading" | "success" | "error";
 
 export type CreateVideoInitialValues = {
   inputMode: InputMode;

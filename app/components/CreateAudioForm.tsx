@@ -74,19 +74,21 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
       return;
     }
 
+    setSubmitting(true);
+
     try {
       const duration = await getVideoDuration(file);
 
       if (Number.isFinite(duration) && duration > maxDurationSeconds) {
         setLocalError(t("durationTooLongError"));
+        setSubmitting(false);
         return;
       }
     } catch {
       setLocalError(t("metadataError"));
+      setSubmitting(false);
       return;
     }
-
-    setSubmitting(true);
 
     try {
       await onSubmit(file);

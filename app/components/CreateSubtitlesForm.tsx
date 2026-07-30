@@ -115,19 +115,21 @@ export function CreateSubtitlesForm({ onSubmit }: CreateSubtitlesFormProps) {
       return;
     }
 
+    setSubmitting(true);
+
     try {
       const duration = await getMediaDuration(file);
 
       if (Number.isFinite(duration) && duration > maxDurationSeconds) {
         setLocalError(t("durationTooLongError"));
+        setSubmitting(false);
         return;
       }
     } catch {
       setLocalError(t("metadataError"));
+      setSubmitting(false);
       return;
     }
-
-    setSubmitting(true);
 
     try {
       await onSubmit(file, wordsPerSegment, outputFormat);

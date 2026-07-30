@@ -6,6 +6,7 @@ import { CreateSubtitlesForm } from "@/app/components/CreateSubtitlesForm";
 import { ErrorState } from "@/app/components/ErrorState";
 import { SubtitlesLoadingState } from "@/app/components/SubtitlesLoadingState";
 import { SubtitlesResultView } from "@/app/components/SubtitlesResultView";
+import { UploadStartingState } from "@/app/components/UploadStartingState";
 import { createSubtitles } from "@/app/lib/api";
 import type { AppState, JobResponse, SubtitleOutputFormat } from "@/app/types";
 
@@ -28,20 +29,29 @@ export function CreateSubtitlesExperience() {
     wordsPerSegment: number,
     selectedOutputFormat: SubtitleOutputFormat
   ) {
-    const payload = await createSubtitles(
-      file,
-      wordsPerSegment,
-      selectedOutputFormat
-    );
-    setJobId(payload.jobId);
     setSrtUrl(null);
     setDownloadUrl(undefined);
     setTranscript(undefined);
     setCueCount(undefined);
     setWordCount(undefined);
-    setOutputFormat(payload.outputFormat ?? selectedOutputFormat);
+    setOutputFormat(selectedOutputFormat);
     setErrorMessage("");
-    setAppState("loading");
+    setJobId(null);
+    setAppState("starting");
+
+    try {
+      const payload = await createSubtitles(
+        file,
+        wordsPerSegment,
+        selectedOutputFormat
+      );
+      setJobId(payload.jobId);
+      setOutputFormat(payload.outputFormat ?? selectedOutputFormat);
+      setAppState("loading");
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "");
+      setAppState("error");
+    }
   }
 
   const handleCompleted = useCallback(
@@ -88,6 +98,16 @@ export function CreateSubtitlesExperience() {
         jobId={jobId}
         onCompleted={handleCompleted}
         onFailed={handleFailed}
+      />
+    );
+  }
+
+  if (appState === "starting") {
+    return (
+      <UploadStartingState
+        eyebrow={result("uploadEyebrow")}
+        title={result("uploadTitle")}
+        subtitle={result("uploadSubtitle")}
       />
     );
   }

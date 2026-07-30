@@ -3,6 +3,7 @@
 import { ArrowRight, Copy, FileVideo, UploadCloud } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { UploadStartingState } from "@/app/components/UploadStartingState";
 import { createSharedVideo } from "@/app/lib/api";
 import type { CreateSharedVideoResponse } from "@/app/types";
 
@@ -102,19 +103,21 @@ export function CreateSharedVideoForm() {
       return;
     }
 
+    setSubmitting(true);
+
     try {
       const duration = await getVideoDuration(file);
 
       if (Number.isFinite(duration) && duration > maxDurationSeconds) {
         setLocalError(t("durationTooLongError"));
+        setSubmitting(false);
         return;
       }
     } catch {
       setLocalError(t("metadataError"));
+      setSubmitting(false);
       return;
     }
-
-    setSubmitting(true);
 
     try {
       const payload = await createSharedVideo(file, slug);
@@ -124,6 +127,16 @@ export function CreateSharedVideoForm() {
     } finally {
       setSubmitting(false);
     }
+  }
+
+  if (submitting) {
+    return (
+      <UploadStartingState
+        eyebrow={t("uploadEyebrow")}
+        title={t("uploadTitle")}
+        subtitle={t("uploadSubtitle")}
+      />
+    );
   }
 
   return (

@@ -6,6 +6,7 @@ import { AudioLoadingState } from "@/app/components/AudioLoadingState";
 import { AudioResultView } from "@/app/components/AudioResultView";
 import { CreateAudioForm } from "@/app/components/CreateAudioForm";
 import { ErrorState } from "@/app/components/ErrorState";
+import { UploadStartingState } from "@/app/components/UploadStartingState";
 import { createAudio } from "@/app/lib/api";
 import type { AppState, JobResponse } from "@/app/types";
 
@@ -19,12 +20,20 @@ export function CreateAudioExperience() {
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleCreateAudio(file: File) {
-    const payload = await createAudio(file);
-    setJobId(payload.jobId);
     setAudioUrl(null);
     setDownloadUrl(undefined);
     setErrorMessage("");
-    setAppState("loading");
+    setJobId(null);
+    setAppState("starting");
+
+    try {
+      const payload = await createAudio(file);
+      setJobId(payload.jobId);
+      setAppState("loading");
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "");
+      setAppState("error");
+    }
   }
 
   const handleCompleted = useCallback((payload: JobResponse) => {
@@ -60,6 +69,16 @@ export function CreateAudioExperience() {
         jobId={jobId}
         onCompleted={handleCompleted}
         onFailed={handleFailed}
+      />
+    );
+  }
+
+  if (appState === "starting") {
+    return (
+      <UploadStartingState
+        eyebrow={result("uploadEyebrow")}
+        title={result("uploadTitle")}
+        subtitle={result("uploadSubtitle")}
       />
     );
   }
