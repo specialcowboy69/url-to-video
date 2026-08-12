@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
+import { ChevronDown } from "lucide-react";
 import { Link, routing, type Locale } from "@/i18n/routing";
 import { localeAlternates, siteUrl } from "@/app/seo";
 import { CookieConsent } from "@/app/components/CookieConsent";
@@ -110,8 +111,11 @@ export default async function LocaleLayout({
               aria-label={home("navigation.label")}
               className="flex flex-wrap items-center gap-4 text-sm font-black text-ink/64"
             >
-              <Link href="/create" className="transition hover:text-ocean">
-                {home("createCta")}
+              <Link
+                href="/article-to-video-ai"
+                className="transition hover:text-ocean"
+              >
+                {home("navigation.articleToVideoAi")}
               </Link>
               <Link
                 href="/video-to-mp3-converter"
@@ -125,9 +129,30 @@ export default async function LocaleLayout({
               >
                 {home("navigation.audioToSubtitles")}
               </Link>
-              <Link href="/share-video" className="transition hover:text-ocean">
-                {home("navigation.shareVideo")}
-              </Link>
+              <details className="group relative">
+                <summary className="flex cursor-pointer list-none items-center gap-1 transition hover:text-ocean [&::-webkit-details-marker]:hidden">
+                  <span>{home("navigation.moreTools")}</span>
+                  <ChevronDown
+                    size={15}
+                    aria-hidden
+                    className="transition group-open:rotate-180"
+                  />
+                </summary>
+                <div className="absolute right-0 z-20 mt-3 flex min-w-44 flex-col gap-1 rounded-2xl border border-ink/10 bg-white p-2 text-sm shadow-soft">
+                  <Link
+                    href="/create"
+                    className="rounded-xl px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                  >
+                    {home("navigation.createStockVideo")}
+                  </Link>
+                  <Link
+                    href="/share-video"
+                    className="rounded-xl px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                  >
+                    {home("navigation.shareVideo")}
+                  </Link>
+                </div>
+              </details>
             </nav>
           </header>
           {children}

@@ -10,6 +10,7 @@ type LoadingStateProps = {
   jobId: string;
   onCompleted: (payload: JobResponse) => void;
   onFailed: (message: string) => void;
+  getJob?: (jobId: string) => Promise<JobResponse>;
 };
 
 const maxPollingRetries = 5;
@@ -20,6 +21,7 @@ export function LoadingState({
   jobId,
   onCompleted,
   onFailed,
+  getJob = getVideoJob,
 }: LoadingStateProps) {
   const t = useTranslations("Loading");
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -42,7 +44,7 @@ export function LoadingState({
 
     async function pollJob() {
       try {
-        const payload = await getVideoJob(jobId);
+        const payload = await getJob(jobId);
 
         if (cancelled) {
           return;
@@ -95,7 +97,7 @@ export function LoadingState({
         window.clearTimeout(timeoutId);
       }
     };
-  }, [jobId, onCompleted, onFailed, t]);
+  }, [getJob, jobId, onCompleted, onFailed, t]);
 
   useEffect(() => {
     if (elapsedSeconds >= 600) {

@@ -10,7 +10,9 @@
     "srtTitle": "Convertir audio a subtitulos online",
     "srtDescription": "Sube un archivo de audio o video y genera subtitulos SRT, VTT o CSV con segmentos configurables.",
     "shareVideoTitle": "Convertidor de video a link compartible online",
-    "shareVideoDescription": "Sube tu video y genera una URL publica temporal para compartirlo durante 24 horas."
+    "shareVideoDescription": "Sube tu video y genera una URL publica temporal para compartirlo durante 24 horas.",
+    "aiVideoTitle": "Convertir articulo en video con imagenes generadas por IA",
+    "aiVideoDescription": "Pega una URL o texto de noticia y genera un MP4 vertical con guion, voz, subtitulos e imagenes creadas por IA."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -22,7 +24,10 @@
       "label": "Menu principal",
       "videoToMp3": "Video to MP3",
       "audioToSubtitles": "Audio to SRT",
-      "shareVideo": "Share video"
+      "shareVideo": "Share video",
+      "articleToVideoAi": "Blog to Video AI",
+      "moreTools": "Mas Herramientas",
+      "createStockVideo": "Create video with stock images and videos"
     },
     "steps": {
       "url": "Pega una URL publica",
@@ -798,6 +803,39 @@
           "answer": "No. El archivo se procesa para generar los subtitulos y devolverte un enlace de descarga."
         }
       }
+    }
+  },
+  "CreateAI": {
+    "eyebrow": "Imagenes generadas por IA",
+    "title": "Convierte una noticia en video con imagenes generadas por IA.",
+    "description": "Pega una URL publica o el texto de la noticia. Generamos guion, voz, subtitulos e imagenes originales para crear un MP4 vertical.",
+    "placeholder": "https://ejemplo.com/noticia",
+    "textPlaceholder": "Pega aqui el texto completo de la noticia...",
+    "urlLabel": "URL de origen",
+    "textLabel": "Texto de la noticia",
+    "urlNotice": "Si la URL no se puede rastrear, puedes cambiar a texto y pegar la noticia directamente.",
+    "textNotice": "Usa esta opcion si la URL tiene captcha, paywall o bloqueo de rastreo.",
+    "inputModeLabel": "Elige como quieres enviar la noticia",
+    "languageLabel": "Idioma del video",
+    "submit": "Crear video IA",
+    "submitting": "Creando",
+    "emptyUrlError": "Pega una URL publica para empezar.",
+    "emptyTextError": "Pega un texto de noticia un poco mas largo para empezar.",
+    "textTooLongError": "El texto no puede superar {max} caracteres.",
+    "textCharacterCount": "{count}/{max} caracteres",
+    "startError": "No se ha podido iniciar el video IA.",
+    "featureCards": {
+      "aiImages": "Imagenes generadas por IA",
+      "subtitles": "Subtitulos",
+      "voice": "Voz narrando la noticia"
+    },
+    "startingEyebrow": "Preparando",
+    "startingTitle": "Preparando tu video IA",
+    "startingSubtitle": "Estamos enviando la noticia al workflow. La generacion de imagenes comenzara en unos segundos.",
+    "captcha": {
+      "label": "Verificacion anti-abuso",
+      "required": "Completa la verificacion antes de crear el video IA.",
+      "configError": "Falta configurar Cloudflare Turnstile para este servicio."
     }
   },
   "CookieConsent": {

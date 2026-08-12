@@ -10,7 +10,9 @@
     "srtTitle": "Convert audio to subtitles online",
     "srtDescription": "Upload an audio or video file and generate SRT, VTT or CSV subtitles with configurable segments.",
     "shareVideoTitle": "Online video to shareable link converter",
-    "shareVideoDescription": "Upload your video and generate a temporary public URL to share it for 24 hours."
+    "shareVideoDescription": "Upload your video and generate a temporary public URL to share it for 24 hours.",
+    "aiVideoTitle": "Turn an article into a video with AI-generated images",
+    "aiVideoDescription": "Paste an article URL or text and generate a vertical MP4 with script, voice, subtitles and AI-generated images."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -22,7 +24,10 @@
       "label": "Main menu",
       "videoToMp3": "Video to MP3",
       "audioToSubtitles": "Audio to SRT",
-      "shareVideo": "Share video"
+      "shareVideo": "Share video",
+      "articleToVideoAi": "Blog to Video AI",
+      "moreTools": "More Tools",
+      "createStockVideo": "Create video with stock images and videos"
     },
     "steps": {
       "url": "Paste a public URL",
@@ -798,6 +803,39 @@
           "answer": "No. The file is processed to generate the subtitles and return a download link."
         }
       }
+    }
+  },
+  "CreateAI": {
+    "eyebrow": "AI-generated images",
+    "title": "Turn an article into a video with AI-generated images.",
+    "description": "Paste a public URL or the article text. We generate the script, voice, subtitles and original images to create a vertical MP4.",
+    "placeholder": "https://example.com/article",
+    "textPlaceholder": "Paste the full article text here...",
+    "urlLabel": "Source URL",
+    "textLabel": "Article text",
+    "urlNotice": "If the URL cannot be crawled, switch to text and paste the article directly.",
+    "textNotice": "Use this option if the URL has a captcha, paywall or crawling block.",
+    "inputModeLabel": "Choose how to send the article",
+    "languageLabel": "Video language",
+    "submit": "Create AI video",
+    "submitting": "Creating",
+    "emptyUrlError": "Paste a public URL to start.",
+    "emptyTextError": "Paste a slightly longer article text to start.",
+    "textTooLongError": "Text cannot exceed {max} characters.",
+    "textCharacterCount": "{count}/{max} characters",
+    "startError": "The AI video could not be started.",
+    "featureCards": {
+      "aiImages": "AI-generated images",
+      "subtitles": "Subtitles",
+      "voice": "Voice narrating the article"
+    },
+    "startingEyebrow": "Starting",
+    "startingTitle": "Preparing your AI video",
+    "startingSubtitle": "We are sending the article to the workflow. Image generation will start in a few seconds.",
+    "captcha": {
+      "label": "Anti-abuse verification",
+      "required": "Complete the verification before creating the AI video.",
+      "configError": "Cloudflare Turnstile is not configured for this service."
     }
   },
   "CookieConsent": {

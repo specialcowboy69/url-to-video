@@ -78,7 +78,7 @@ export function ExampleVideos() {
                 src={example.poster}
                 alt={t(`items.${example.id}.title`)}
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1152px) calc((100vw - 80px) / 3), 368px"
                 className="object-cover transition duration-300 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-ink/24 transition group-hover:bg-ink/12">

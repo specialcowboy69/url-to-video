@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   CreateAudioResponse,
   CreateSharedVideoResponse,
   CreateSubtitlesResponse,
@@ -148,6 +148,68 @@ export async function createVideo(
 
 export async function getVideoJob(jobId: string) {
   const response = await fetch(`/api/videos/${encodeURIComponent(jobId)}`, {
+    method: "GET",
+    cache: "no-store",
+  });
+
+  const payload = await readJsonResponse<JobResponse>(
+    response,
+    "No se ha podido consultar el trabajo."
+  );
+
+  if (!response.ok) {
+    throw new Error(payload.error ?? "No se ha podido consultar el trabajo.");
+  }
+
+  return payload;
+}
+
+export async function createAIVideo(
+  input: string,
+  inputMode: InputMode,
+  language: VideoLanguage,
+  turnstileToken: string
+) {
+  const response = await fetch("/api/videos-ai", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(
+      inputMode === "text"
+        ? {
+            inputMode,
+            articleText: input,
+            mediaMode: "images",
+            visualSource: "ai",
+            language,
+            turnstileToken,
+          }
+        : {
+            inputMode,
+            sourceUrl: input,
+            mediaMode: "images",
+            visualSource: "ai",
+            language,
+            turnstileToken,
+          }
+    ),
+  });
+
+  const payload = await readJsonResponse<CreateVideoResponse>(
+    response,
+    "No se ha podido crear el trabajo."
+  );
+
+  if (!response.ok) {
+    throw new Error(payload.error ?? "No se ha podido crear el trabajo.");
+  }
+
+  return payload;
+}
+
+export async function getAIVideoJob(jobId: string) {
+  const response = await fetch(`/api/videos-ai/${encodeURIComponent(jobId)}`, {
     method: "GET",
     cache: "no-store",
   });
