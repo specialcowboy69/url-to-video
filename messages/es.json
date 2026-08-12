@@ -799,5 +799,13 @@
         }
       }
     }
+  },
+  "CookieConsent": {
+    "ariaLabel": "Aviso de cookies",
+    "eyebrow": "Privacidad",
+    "title": "Usamos cookies para mejorar la experiencia.",
+    "description": "Las cookies esenciales estan siempre activas. Si aceptas todas, tambien activaremos analiticas para entender como se usa la web y mejorar el servicio.",
+    "acceptAll": "Aceptar todas",
+    "essentialOnly": "Solo esenciales"
   }
 }

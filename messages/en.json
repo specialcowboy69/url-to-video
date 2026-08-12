@@ -799,5 +799,13 @@
         }
       }
     }
+  },
+  "CookieConsent": {
+    "ariaLabel": "Cookie notice",
+    "eyebrow": "Privacy",
+    "title": "We use cookies to improve the experience.",
+    "description": "Essential cookies are always active. If you accept all, we will also enable analytics to understand how the website is used and improve the service.",
+    "acceptAll": "Accept all",
+    "essentialOnly": "Essential only"
   }
 }
