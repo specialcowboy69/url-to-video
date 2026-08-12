@@ -213,12 +213,15 @@ function getRedis() {
     return redis;
   }
 
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
+
+  if (!redisUrl || !redisToken) {
     redis = null;
     return redis;
   }
 
-  redis = Redis.fromEnv();
+  redis = new Redis({ url: redisUrl, token: redisToken });
   return redis;
 }
 
@@ -275,7 +278,7 @@ async function checkRateLimit(ip: string) {
         limit,
         remaining: 0,
         retryAfterSeconds: rateLimitWindowSeconds,
-        error: "Falta configurar UPSTASH_REDIS_REST_URL y UPSTASH_REDIS_REST_TOKEN.",
+        error: "Falta configurar Redis: UPSTASH_REDIS_REST_URL/UPSTASH_REDIS_REST_TOKEN o KV_REST_API_URL/KV_REST_API_TOKEN.",
       };
     }
 

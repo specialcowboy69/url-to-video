@@ -9,7 +9,6 @@ export const defaultDescription =
 export const useCaseSlugs = [
   "news-to-video",
   "blog-to-video",
-  "product-to-video",
 ] as const;
 
 export type UseCaseSlug = (typeof useCaseSlugs)[number];
