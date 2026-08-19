@@ -228,7 +228,7 @@ function Feature({
       <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-mist text-ocean">
         {icon}
       </div>
-      <h2 className="text-xl font-black text-ink">{title}</h2>
+      <h3 className="text-xl font-black text-ink">{title}</h3>
       <p className="mt-3 text-sm leading-6 text-ink/64">{text}</p>
     </div>
   );
