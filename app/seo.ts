@@ -19,8 +19,8 @@ export function isUseCaseSlug(slug: string): slug is UseCaseSlug {
 
 export function localeAlternates(path = "") {
   return {
-    es: `${siteUrl}/es${path}`,
     en: `${siteUrl}/en${path}`,
-    "x-default": `${siteUrl}/es${path}`,
+    es: `${siteUrl}/es${path}`,
+    "x-default": `${siteUrl}/en${path}`,
   };
 }

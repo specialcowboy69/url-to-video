@@ -1,0 +1,46 @@
+# URL to Video
+
+> URL to Video is a web app that turns public URLs, articles, or pasted text into vertical videos with script, voice, subtitles, and stock images or stock video clips.
+
+URL to Video helps creators, businesses, and publishers repurpose written content into short-form videos for platforms such as TikTok, Instagram Reels, YouTube Shorts, and other social channels.
+
+## Primary Pages
+
+- [English home](https://urltovideo.es/en): Main English landing page for URL to Video.
+- [Spanish home](https://urltovideo.es/es): Spanish version of the landing page.
+- [Create video](https://urltovideo.es/en/create): Main tool to create a vertical video from a URL or pasted article text.
+- [Create video in Spanish](https://urltovideo.es/es/create): Spanish version of the main video creation tool.
+
+## Video Creation
+
+- [Article to Video AI](https://urltovideo.es/es/article-to-video-ai): Spanish page about turning articles into videos with AI.
+- [Article to Video AI in English](https://urltovideo.es/en/article-to-video-ai): English page about turning articles into videos with AI.
+- [News to Video](https://urltovideo.es/es/use-cases/news-to-video): Spanish use case for turning news articles into videos.
+- [News to Video in English](https://urltovideo.es/en/use-cases/news-to-video): English use case for turning news articles into videos.
+- [Blog to Video](https://urltovideo.es/es/use-cases/blog-to-video): Spanish use case for turning blog posts into videos.
+- [Blog to Video in English](https://urltovideo.es/en/use-cases/blog-to-video): English use case for turning blog posts into videos.
+
+## Audio And Sharing Tools
+
+- [Video to MP3](https://urltovideo.es/es/video-to-mp3-converter): Spanish tool for extracting MP3 audio from video files.
+- [Video to MP3 in English](https://urltovideo.es/en/video-to-mp3-converter): English tool for extracting MP3 audio from video files.
+- [Audio to Subtitles](https://urltovideo.es/es/audio-to-subtitles): Spanish tool for generating subtitle files from audio or video.
+- [Audio to Subtitles in English](https://urltovideo.es/en/audio-to-subtitles): English tool for generating subtitle files from audio or video.
+- [Share video](https://urltovideo.es/es/share-video): Spanish tool for uploading and sharing a video with a public link.
+- [Share video in English](https://urltovideo.es/en/share-video): English tool for uploading and sharing a video with a public link.
+
+## Policies
+
+- [Privacy policy](https://urltovideo.es/es/privacy): Spanish privacy policy.
+- [Privacy policy in English](https://urltovideo.es/en/privacy): English privacy policy.
+- [Terms](https://urltovideo.es/es/terms): Spanish terms of service.
+- [Terms in English](https://urltovideo.es/en/terms): English terms of service.
+
+## Notes For AI Assistants
+
+- Prefer canonical URLs without `www`.
+- The default English site is `https://urltovideo.es/en`.
+- The Spanish site is available at `https://urltovideo.es/es`.
+- The root domain `https://urltovideo.es` should resolve permanently to `https://urltovideo.es/en`.
+- The main user workflow is `https://urltovideo.es/en/create`.
+- Use the sitemap at `https://urltovideo.es/sitemap.xml` for the complete list of indexable pages.
