@@ -101,7 +101,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <header className="sticky top-3 z-40 mx-auto mt-4 flex w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between gap-4 rounded-[28px] border border-white/70 bg-white/78 px-4 py-3 shadow-[0_18px_60px_rgba(11,114,133,0.14)] backdrop-blur-xl sm:w-[calc(100%-2.5rem)] sm:px-5">
+          <header className="sticky top-3 z-40 mx-auto mt-4 flex w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between gap-2 rounded-[28px] border border-white/70 bg-white/78 px-3 py-2 shadow-[0_18px_60px_rgba(11,114,133,0.14)] backdrop-blur-xl sm:w-[calc(100%-2.5rem)] sm:gap-4 sm:px-5 sm:py-3">
             <Link
               href="/"
               aria-label={seo("siteName")}
@@ -113,39 +113,39 @@ export default async function LocaleLayout({
                 width={190}
                 height={44}
                 priority
-                className="h-10 w-auto sm:h-11"
+                className="h-8 w-auto sm:h-11"
               />
             </Link>
             <nav
               aria-label={home("navigation.label")}
-              className="flex flex-1 flex-wrap items-center justify-center gap-2 text-sm font-extrabold text-ink/64 sm:gap-3 lg:-ml-12"
+              className="flex flex-1 flex-wrap items-center justify-end gap-1 text-xs font-extrabold text-ink/64 sm:gap-3 sm:text-sm lg:-ml-12 lg:justify-center"
             >
               <Link
                 href="/article-to-video-ai"
-                className="rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                className="rounded-full px-2 py-2 transition hover:bg-mist hover:text-ocean sm:px-3"
               >
                 {home("navigation.articleToVideoAi")}
               </Link>
               <Link
                 href="/text-to-video-ai"
-                className="rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                className="rounded-full px-2 py-2 transition hover:bg-mist hover:text-ocean sm:px-3"
               >
                 {home("navigation.textToVideoAi")}
               </Link>
               <Link
                 href="/video-to-mp3-converter"
-                className="rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                className="hidden rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean md:inline-flex"
               >
                 {home("navigation.videoToMp3")}
               </Link>
               <Link
                 href="/audio-to-subtitles"
-                className="rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean"
+                className="hidden rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean md:inline-flex"
               >
                 {home("navigation.audioToSubtitles")}
               </Link>
               <details className="group relative">
-                <summary className="flex cursor-pointer list-none items-center gap-1 rounded-full px-3 py-2 transition hover:bg-mist hover:text-ocean [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center gap-1 rounded-full px-2 py-2 transition hover:bg-mist hover:text-ocean sm:px-3 [&::-webkit-details-marker]:hidden">
                   <span>{home("navigation.moreTools")}</span>
                   <ChevronDown
                     size={15}
@@ -154,6 +154,18 @@ export default async function LocaleLayout({
                   />
                 </summary>
                 <div className="absolute right-0 z-20 mt-3 flex min-w-56 flex-col gap-1 rounded-2xl border border-white/70 bg-white/92 p-2 text-sm shadow-soft backdrop-blur-xl">
+                  <Link
+                    href="/video-to-mp3-converter"
+                    className="rounded-xl px-3 py-2 transition hover:bg-mist hover:text-ocean md:hidden"
+                  >
+                    {home("navigation.videoToMp3")}
+                  </Link>
+                  <Link
+                    href="/audio-to-subtitles"
+                    className="rounded-xl px-3 py-2 transition hover:bg-mist hover:text-ocean md:hidden"
+                  >
+                    {home("navigation.audioToSubtitles")}
+                  </Link>
                   <Link
                     href="/create"
                     className="rounded-xl px-3 py-2 transition hover:bg-mist hover:text-ocean"

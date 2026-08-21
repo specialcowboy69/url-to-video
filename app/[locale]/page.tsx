@@ -58,6 +58,38 @@ export default async function Home({ params }: HomeProps) {
     locale,
     namespace: "CreateSeo.suite",
   });
+  const suiteSchemaTools = [
+    {
+      key: "urlVideo",
+      href: "/create",
+      applicationCategory: "VideoApplication",
+    },
+    {
+      key: "articleAi",
+      href: "/article-to-video-ai",
+      applicationCategory: "VideoApplication",
+    },
+    {
+      key: "textAi",
+      href: "/text-to-video-ai",
+      applicationCategory: "VideoApplication",
+    },
+    {
+      key: "mp3",
+      href: "/video-to-mp3-converter",
+      applicationCategory: "AudioApplication",
+    },
+    {
+      key: "subtitles",
+      href: "/audio-to-subtitles",
+      applicationCategory: "MultimediaApplication",
+    },
+    {
+      key: "share",
+      href: "/share-video",
+      applicationCategory: "MultimediaApplication",
+    },
+  ] as const;
 
   const softwareSchema = {
     "@context": "https://schema.org",
@@ -77,7 +109,22 @@ export default async function Home({ params }: HomeProps) {
       home("steps.mode"),
       home("steps.mp4"),
       seo("createDescription"),
+      ...suiteSchemaTools.map((tool) => suite(`items.${tool.key}.title`)),
     ],
+    hasPart: suiteSchemaTools.map((tool) => ({
+      "@type": "SoftwareApplication",
+      name: suite(`items.${tool.key}.title`),
+      applicationCategory: tool.applicationCategory,
+      operatingSystem: "Web",
+      url: `${siteUrl}/${locale}${tool.href}`,
+      description: suite(`items.${tool.key}.text`),
+      isAccessibleForFree: true,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "EUR",
+      },
+    })),
   };
 
   const steps = [home("steps.url"), home("steps.mode"), home("steps.mp4")];
@@ -277,7 +324,7 @@ export default async function Home({ params }: HomeProps) {
             </p>
           </div>
 
-          <div className="mt-12 grid auto-rows-[minmax(230px,auto)] gap-4 lg:grid-cols-4 lg:auto-rows-[255px]">
+          <div className="mt-12 grid auto-rows-[minmax(320px,auto)] gap-4 lg:grid-cols-4 lg:auto-rows-[340px]">
             {platformTools.map((tool) => (
               <ToolBentoCard
                 key={tool.key}
