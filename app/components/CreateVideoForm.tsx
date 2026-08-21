@@ -110,14 +110,14 @@ export function CreateVideoForm({
     <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-10">
       <div className="mb-10 flex items-center justify-between gap-4">
         <div>
-          <h1 className="max-w-3xl text-5xl font-black leading-none text-ink sm:text-7xl">
+          <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.05] text-ink sm:text-7xl">
             {t("title")}
           </h1>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {featureCards.map((feature) => (
               <div
                 key={feature}
-                className="flex min-h-16 items-center gap-3 rounded-2xl border border-ink/10 bg-white/82 px-4 text-sm font-bold text-ink shadow-sm"
+                className="flex min-h-16 items-center gap-3 rounded-2xl border border-white/60 bg-white/82 px-4 text-sm font-bold text-ink shadow-sm backdrop-blur"
               >
                 <CheckCircle2 className="shrink-0 text-ocean" size={18} />
                 <span>{feature}</span>
@@ -129,7 +129,7 @@ export function CreateVideoForm({
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-[32px] border border-ink/10 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
+        className="rounded-[32px] border border-white/60 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
       >
         <div className="flex flex-col gap-4">
           <div>
@@ -146,7 +146,7 @@ export function CreateVideoForm({
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="flex-1">
               {inputMode === "text" ? (
-                <label className="relative block rounded-2xl border border-ink/12 bg-white px-4 py-3 focus-within:border-ocean">
+                <label className="relative block rounded-2xl border border-ink/12 bg-white px-4 py-3 shadow-sm transition focus-within:border-ocean focus-within:shadow-[0_0_0_4px_rgba(11,114,133,0.08)]">
                   <span className="sr-only">{t("textLabel")}</span>
                   <textarea
                     value={articleText}
@@ -159,7 +159,7 @@ export function CreateVideoForm({
                   />
                 </label>
               ) : (
-                <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 focus-within:border-ocean">
+                <label className="relative flex min-h-16 items-center rounded-2xl border border-ink/12 bg-white px-4 shadow-sm transition focus-within:border-ocean focus-within:shadow-[0_0_0_4px_rgba(11,114,133,0.08)]">
                   <Link2
                     className="mr-3 shrink-0 text-ocean"
                     size={22}
@@ -192,10 +192,14 @@ export function CreateVideoForm({
             <button
               type="submit"
               disabled={submitting}
-              className="flex h-14 min-w-40 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65 lg:mt-1"
+              className="group flex h-14 min-w-40 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-[0_14px_36px_rgba(215,255,71,0.32)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65 lg:mt-1"
             >
               <span>{submitting ? t("submitting") : t("submit")}</span>
-              <ArrowRight size={19} aria-hidden />
+              <ArrowRight
+                size={19}
+                aria-hidden
+                className="transition-transform group-hover:translate-x-1"
+              />
             </button>
           </div>
 

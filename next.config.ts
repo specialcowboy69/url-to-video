@@ -5,12 +5,35 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  async headers() {
+    return [
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "pub-5d88690ab45b4187800a2f33589c6c13.r2.dev",
         pathname: "/examples/**",
+      },
+      {
+        protocol: "https",
+        hostname: "pub-5d88690ab45b4187800a2f33589c6c13.r2.dev",
+        pathname: "/blog_to_video_image.jpeg",
+      },
+      {
+        protocol: "https",
+        hostname: "pub-5d88690ab45b4187800a2f33589c6c13.r2.dev",
+        pathname: "/use_cases_*.jpeg",
       },
     ],
   },

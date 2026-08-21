@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { siteUrl, useCaseSlugs } from "@/app/seo";
+import { seoPageSlugs, siteUrl } from "@/app/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "weekly" as const,
         priority: 0.82,
       },
+      ...seoPageSlugs.map((slug) => ({
+        url: `${siteUrl}/${locale}/${slug}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: slug === "text-to-video-ai" ? 0.86 : 0.84,
+      })),
       {
         url: `${siteUrl}/${locale}/privacy`,
         lastModified: now,
@@ -49,12 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "yearly" as const,
         priority: 0.35,
       },
-      ...useCaseSlugs.map((slug) => ({
-        url: `${siteUrl}/${locale}/use-cases/${slug}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.75,
-      })),
     ]),
   ];
 }

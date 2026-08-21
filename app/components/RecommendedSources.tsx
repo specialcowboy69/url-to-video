@@ -25,7 +25,7 @@ export function RecommendedSources() {
   );
 
   return (
-    <section className="mt-6 rounded-[24px] border border-ink/10 bg-white/72 p-4 shadow-sm backdrop-blur sm:p-5">
+    <section className="mt-6 rounded-[24px] border border-white/60 bg-white/78 p-4 shadow-sm backdrop-blur sm:p-5">
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
@@ -65,7 +65,7 @@ export function RecommendedSources() {
                   className={`shrink-0 rounded-full border px-4 py-2 text-sm font-black transition ${
                     isActive
                       ? "border-ocean bg-ocean text-white"
-                      : "border-ink/10 bg-white text-ink/68 hover:border-ocean/40 hover:text-ink"
+                      : "border-white/70 bg-white/82 text-ink/68 hover:border-ocean/40 hover:text-ink"
                   }`}
                 >
                   {label}
@@ -85,7 +85,7 @@ export function RecommendedSources() {
                 href={source.url}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex min-h-20 items-center justify-between gap-3 rounded-2xl border border-ink/10 bg-white px-4 py-3 transition hover:border-ocean/45 hover:shadow-sm"
+                className="group flex min-h-20 items-center justify-between gap-3 rounded-2xl border border-white/70 bg-white/88 px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:border-ocean/45 hover:shadow-soft"
               >
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-black text-ink">

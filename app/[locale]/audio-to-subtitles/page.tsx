@@ -15,7 +15,7 @@ import {
   Video,
 } from "lucide-react";
 import { CreateSubtitlesExperience } from "@/app/components/CreateSubtitlesExperience";
-import { localeAlternates, siteUrl } from "@/app/seo";
+import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type AudioToSubtitlesPageProps = {
   params: Promise<{
@@ -28,14 +28,22 @@ export async function generateMetadata({
 }: AudioToSubtitlesPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Seo" });
+  const title = t("srtTitle");
+  const description = t("srtDescription");
 
   return {
-    title: t("srtTitle"),
-    description: t("srtDescription"),
+    title,
+    description,
     alternates: {
       canonical: `${siteUrl}/${locale}/audio-to-subtitles`,
       languages: localeAlternates("/audio-to-subtitles"),
     },
+    ...pageSocialMetadata({
+      locale,
+      path: "/audio-to-subtitles",
+      title,
+      description,
+    }),
   };
 }
 

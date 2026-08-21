@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalPage } from "@/app/[locale]/legal-page";
-import { localeAlternates, siteUrl } from "@/app/seo";
+import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type PageProps = {
   params: Promise<{
@@ -14,14 +14,17 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Legal.privacy" });
+  const title = t("title");
+  const description = t("description");
 
   return {
-    title: t("title"),
-    description: t("description"),
+    title,
+    description,
     alternates: {
       canonical: `${siteUrl}/${locale}/privacy`,
       languages: localeAlternates("/privacy"),
     },
+    ...pageSocialMetadata({ locale, path: "/privacy", title, description }),
   };
 }
 

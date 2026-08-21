@@ -21,7 +21,7 @@ export function ResultView({ videoUrl, downloadUrl, onReset }: ResultViewProps) 
       <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
         {t("eyebrow")}
       </p>
-      <h1 className="mt-4 text-4xl font-black leading-tight text-ink sm:text-6xl">
+      <h1 className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
         {t("title")}
       </h1>
       <p className="mt-6 max-w-xl text-base leading-7 text-ink/68">
