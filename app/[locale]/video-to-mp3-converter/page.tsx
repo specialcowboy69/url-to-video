@@ -15,7 +15,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CreateAudioExperience } from "@/app/components/CreateAudioExperience";
-import { localeAlternates, siteUrl } from "@/app/seo";
+import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type VideoToMp3PageProps = {
   params: Promise<{
@@ -28,14 +28,22 @@ export async function generateMetadata({
 }: VideoToMp3PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Seo" });
+  const title = t("mp3Title");
+  const description = t("mp3Description");
 
   return {
-    title: t("mp3Title"),
-    description: t("mp3Description"),
+    title,
+    description,
     alternates: {
       canonical: `${siteUrl}/${locale}/video-to-mp3-converter`,
       languages: localeAlternates("/video-to-mp3-converter"),
     },
+    ...pageSocialMetadata({
+      locale,
+      path: "/video-to-mp3-converter",
+      title,
+      description,
+    }),
   };
 }
 

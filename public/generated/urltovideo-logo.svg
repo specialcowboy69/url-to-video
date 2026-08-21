@@ -1,0 +1,14 @@
+<svg width="520" height="120" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">urltovideo logo</title>
+  <desc id="desc">Transparent wordmark logo for urltovideo</desc>
+  <g>
+    <rect x="14" y="18" width="84" height="84" rx="26" fill="#141414"/>
+    <path d="M41 44.5C41 38.701 45.701 34 51.5 34H68.5C74.299 34 79 38.701 79 44.5V75.5C79 81.299 74.299 86 68.5 86H51.5C45.701 86 41 81.299 41 75.5V44.5Z" fill="#D7FF47"/>
+    <path d="M57 51.5L70 60L57 68.5V51.5Z" fill="#141414"/>
+    <path d="M31 42C31 36.477 35.477 32 41 32H49" stroke="#0B7285" stroke-width="6" stroke-linecap="round"/>
+    <path d="M89 78C89 83.523 84.523 88 79 88H71" stroke="#0B7285" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <text x="122" y="75" fill="#141414" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900" letter-spacing="-1">
+    url<tspan fill="#0B7285">to</tspan><tspan fill="#141414">video</tspan>
+  </text>
+</svg>

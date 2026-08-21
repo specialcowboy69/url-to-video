@@ -18,14 +18,16 @@ import type {
 
 type CreateAIVideoExperienceProps = {
   initialValues: CreateVideoInitialValues;
+  copyNamespace?: "CreateAI" | "TextToVideoAI";
 };
 
 export function CreateAIVideoExperience({
   initialValues,
+  copyNamespace = "CreateAI",
 }: CreateAIVideoExperienceProps) {
   const result = useTranslations("Result");
   const error = useTranslations("Error");
-  const createAI = useTranslations("CreateAI");
+  const createAI = useTranslations(copyNamespace);
   const [appState, setAppState] = useState<AppState>("idle");
   const [jobId, setJobId] = useState<string | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -115,6 +117,7 @@ export function CreateAIVideoExperience({
   return (
     <CreateAIVideoForm
       initialValues={initialValues}
+      copyNamespace={copyNamespace}
       onSubmit={handleCreateVideo}
     />
   );

@@ -14,7 +14,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CreateSharedVideoForm } from "@/app/components/CreateSharedVideoForm";
-import { localeAlternates, siteUrl } from "@/app/seo";
+import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type ShareVideoPageProps = {
   params: Promise<{
@@ -27,14 +27,17 @@ export async function generateMetadata({
 }: ShareVideoPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Seo" });
+  const title = t("shareVideoTitle");
+  const description = t("shareVideoDescription");
 
   return {
-    title: t("shareVideoTitle"),
-    description: t("shareVideoDescription"),
+    title,
+    description,
     alternates: {
       canonical: `${siteUrl}/${locale}/share-video`,
       languages: localeAlternates("/share-video"),
     },
+    ...pageSocialMetadata({ locale, path: "/share-video", title, description }),
   };
 }
 

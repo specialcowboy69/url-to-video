@@ -15,6 +15,8 @@ URL to Video helps creators, businesses, and publishers repurpose written conten
 
 - [Article to Video AI](https://urltovideo.es/es/article-to-video-ai): Spanish page about turning articles into videos with AI.
 - [Article to Video AI in English](https://urltovideo.es/en/article-to-video-ai): English page about turning articles into videos with AI.
+- [Text to Video AI](https://urltovideo.es/en/text-to-video-ai): Main English page for converting pasted scripts and raw text into AI videos.
+- [Text to Video AI in Spanish](https://urltovideo.es/es/text-to-video-ai): Spanish page for converting pasted scripts and raw text into AI videos.
 - [News to Video](https://urltovideo.es/es/use-cases/news-to-video): Spanish use case for turning news articles into videos.
 - [News to Video in English](https://urltovideo.es/en/use-cases/news-to-video): English use case for turning news articles into videos.
 - [Blog to Video](https://urltovideo.es/es/use-cases/blog-to-video): Spanish use case for turning blog posts into videos.

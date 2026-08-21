@@ -12,7 +12,7 @@ const config: Config = {
         coral: "#ff6b57",
       },
       boxShadow: {
-        soft: "0 24px 70px rgba(20, 20, 20, 0.12)",
+        soft: "0 24px 70px rgba(11, 114, 133, 0.12)",
       },
     },
   },

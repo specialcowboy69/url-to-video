@@ -23,7 +23,7 @@ export function ModeToggle({ value, onChange, disabled }: ModeToggleProps) {
 
   return (
     <div
-      className="grid grid-cols-2 gap-2 rounded-full border border-ink/10 bg-white p-1 shadow-sm"
+      className="grid grid-cols-2 gap-2 rounded-full border border-white/70 bg-white/82 p-1 shadow-sm backdrop-blur"
       role="radiogroup"
       aria-label={t("aria")}
     >
@@ -40,7 +40,7 @@ export function ModeToggle({ value, onChange, disabled }: ModeToggleProps) {
             onClick={() => onChange(optionValue)}
             className={`flex h-12 items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold transition ${
               active
-                ? "bg-ink text-white"
+                ? "bg-ink text-white shadow-sm"
                 : "text-ink/68 hover:bg-mist disabled:hover:bg-transparent"
             } disabled:cursor-not-allowed disabled:opacity-60`}
           >

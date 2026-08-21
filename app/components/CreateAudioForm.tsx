@@ -104,7 +104,7 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
         <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
           {t("eyebrow")}
         </p>
-        <h1 className="mt-4 max-w-3xl text-5xl font-black leading-none text-ink sm:text-7xl">
+        <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1.05] text-ink sm:text-7xl">
           {t("title")}
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-ink/64">
@@ -114,7 +114,7 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-[32px] border border-ink/10 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
+        className="rounded-[32px] border border-white/60 bg-white/88 p-4 shadow-soft backdrop-blur sm:p-6"
       >
         <button
           type="button"
@@ -161,7 +161,7 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65"
+          className="group mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-citrus px-6 text-sm font-black text-ink shadow-[0_14px_36px_rgba(215,255,71,0.32)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-65"
         >
           <span>{submitting ? t("submitting") : t("submit")}</span>
           <ArrowRight size={19} aria-hidden />
