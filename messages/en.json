@@ -18,7 +18,7 @@
   },
   "Home": {
     "eyebrow": "URL to Video",
-    "title": "Convert a URL into a video with stock videos and images",
+    "title": "Convert a url into a video",
     "description": "Create vertical videos from news, articles, blogs or product pages. The workflow generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
     "createCta": "Create video",
     "stockCta": "Create video with stock videos or images",
