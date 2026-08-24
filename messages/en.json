@@ -18,8 +18,8 @@
   },
   "Home": {
     "eyebrow": "URL to Video",
-    "title": "Convert a url into a video",
-    "description": "Create vertical videos from news, articles, blogs or product pages. The workflow generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
+    "title": "Convert a URL into a video with stock videos and images",
+    "description": "Create vertical videos from news, articles, blogs or product pages. The tool generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
     "createCta": "Create video",
     "stockCta": "Create video with stock videos or images",
     "aiCta": "Create video with AI",
@@ -49,7 +49,7 @@
         "text": "Turn written content into an audiovisual format designed for Shorts, Reels and TikTok."
       },
       "speed": {
-        "title": "Fast workflow",
+        "title": "Fast tool",
         "text": "Get your video in under 5 minutes. Delays may happen during periods of high demand."
       },
       "social": {
@@ -81,7 +81,7 @@
     "useCases": {
       "eyebrow": "Use cases",
       "title": "Built for the way you create video",
-      "description": "Start from a public URL or pasted text, then choose the workflow that fits the content you want to publish.",
+      "description": "Start from a public URL or pasted text, then choose the tool that fits the content you want to publish.",
       "tabs": {
         "creators": "Creators",
         "professionals": "Professionals"
@@ -92,7 +92,7 @@
         "description": "Create vertical MP4 videos from article URLs or pasted text, with narration, subtitles and visual assets ready for social formats.",
         "bullets": {
           "source": "Start from a public URL or paste the article text",
-          "visuals": "Choose stock visuals or AI-generated images depending on the workflow",
+          "visuals": "Choose stock visuals or AI-generated images depending on the tool",
           "captions": "Generate voiceover and synchronized subtitles",
           "export": "Download a vertical MP4 for Shorts, Reels or TikTok"
         },
@@ -172,7 +172,7 @@
     "suite": {
       "eyebrow": "Media tools",
       "title": "AI-powered media tools",
-      "description": "Create, repurpose, convert and share video or audio from one browser-based workflow, without mandatory signup for the core tools.",
+      "description": "Create, repurpose, convert and share video or audio from one browser-based toolset, without mandatory signup for the core tools.",
       "items": {
         "urlVideo": {
           "title": "URL to Video with stock visuals",
@@ -209,7 +209,7 @@
     "snippet": {
       "eyebrow": "Free AI video generator",
       "title": "What makes URL to Video a useful free AI video generator online?",
-      "answer": "URL to Video is a free AI video generator online that turns public links or pasted text into vertical videos with voiceover, subtitles and stock visuals. It runs in the browser, requires no signup for the basic workflow and exports clean MP4 videos for social media."
+      "answer": "URL to Video is a free AI video generator online that turns public links or pasted text into vertical videos with voiceover, subtitles and stock visuals. It runs in the browser, requires no signup for the basic tool and exports clean MP4 videos for social media."
     },
     "comparison": {
       "eyebrow": "Comparison",
@@ -253,7 +253,7 @@
       "items": {
         "cloud": {
           "title": "Direct cloud generation",
-          "text": "Paste a URL or script and the cloud workflow creates a vertical MP4 you can download, usually within a few minutes depending on demand."
+          "text": "Paste a URL or script and the cloud generator creates a vertical MP4 you can download, usually within a few minutes depending on demand."
         },
         "subtitles": {
           "title": "Synchronized subtitles",
@@ -669,7 +669,7 @@
           "text": "Start the conversion from the browser without downloading desktop programs."
         },
         "speed": {
-          "title": "Simple workflow",
+          "title": "Simple process",
           "text": "Upload the file, wait for processing and download the MP3 when the job finishes."
         },
         "limits": {
@@ -793,7 +793,38 @@
         "trim": {
           "question": "Can I trim the video before converting it?",
           "answer": "Not yet. The tool converts the full audio track from the uploaded file."
+        },
+        "free": {
+          "question": "Is this online video to MP3 converter free?",
+          "answer": "You can use the converter from the browser without creating an account. Current limits include videos up to 1 GB and up to one hour long."
+        },
+        "online": {
+          "question": "Can I convert video to MP3 online without software?",
+          "answer": "Yes. Upload a supported video file, let the browser-based converter extract the audio and download the generated MP3 when processing finishes."
         }
+      }
+    },
+    "decision": {
+      "eyebrow": "Online MP3 conversion",
+      "title": "Use an online video to MP3 converter when you only need the audio",
+      "description": "The fastest path is to upload a supported video file, extract the audio track and download the MP3 from the browser. This is ideal for owned clips, lessons, interviews and recordings where you do not need full video editing software.",
+      "items": {
+        "free": {
+          "title": "Free browser tool",
+          "text": "Use the converter from the browser without creating an account. Current file limits help keep processing stable."
+        },
+        "online": {
+          "title": "Online conversion",
+          "text": "No desktop app is needed. Upload the video, wait for extraction and download the MP3 when the job finishes."
+        },
+        "formats": {
+          "title": "Common video formats",
+          "text": "MP4, MOV, WEBM, MKV, AVI, MPEG and MPG files are supported for audio extraction."
+        }
+      },
+      "links": {
+        "free": "Is the online video to MP3 converter free?",
+        "formats": "What video formats can I convert to MP3?"
       }
     }
   },
@@ -831,7 +862,7 @@
         },
         "formats": {
           "title": "SRT, VTT and CSV export",
-          "text": "Download the result in the format that best fits your editor, player or workflow."
+          "text": "Download the result in the format that best fits your editor, player or project."
         },
         "privacy": {
           "title": "HTTPS processing",
@@ -983,11 +1014,15 @@
     },
     "startingEyebrow": "Starting",
     "startingTitle": "Preparing your AI video",
-    "startingSubtitle": "We are sending the article to the workflow. Image generation will start in a few seconds.",
+    "startingSubtitle": "We are sending the article to the generator. Image generation will start in a few seconds.",
     "captcha": {
       "label": "Anti-abuse verification",
       "required": "Complete the verification before creating the AI video.",
       "configError": "Cloudflare Turnstile is not configured for this service."
+    },
+    "freeGenerations": {
+      "text": "You have 3 free generations per day. If you run out, you can try our tool that creates videos using stock images and videos.",
+      "link": "Try the stock tool"
     }
   },
   "TextToVideoAI": {
@@ -1016,11 +1051,15 @@
     },
     "startingEyebrow": "Starting",
     "startingTitle": "Preparing your text to video",
-    "startingSubtitle": "We are sending your text to the workflow. Visual generation will start in a few seconds.",
+    "startingSubtitle": "We are sending your text to the generator. Visual generation will start in a few seconds.",
     "captcha": {
       "label": "Anti-abuse verification",
       "required": "Complete the verification before creating the AI video.",
       "configError": "Cloudflare Turnstile is not configured for this service."
+    },
+    "freeGenerations": {
+      "text": "You have 3 free generations per day. If you run out, you can try our tool that creates videos using stock images and videos.",
+      "link": "Try the stock tool"
     }
   },
   "TextToVideoSeo": {
@@ -1035,7 +1074,7 @@
       "items": {
         "shortScripts": {
           "title": "TikTok and Reels scripts",
-          "text": "Write or paste the script you want to narrate. The workflow turns it into a short video with voiceover, captions and visuals built to keep attention."
+          "text": "Write or paste the script you want to narrate. The tool turns it into a short video with voiceover, captions and visuals built to keep attention."
         },
         "breakingNews": {
           "title": "Breaking news without a web page",
@@ -1048,7 +1087,7 @@
       }
     },
     "steps": {
-      "eyebrow": "Workflow",
+      "eyebrow": "Process",
       "title": "How to generate videos from text",
       "items": {
         "paste": {
@@ -1061,7 +1100,7 @@
         },
         "download": {
           "title": "Generate and download the MP4",
-          "text": "Click Create AI video and the cloud workflow will process the voice, subtitles and vertical video render."
+          "text": "Click Create AI video and the cloud generator will process the voice, subtitles and vertical video render."
         }
       }
     },
@@ -1075,7 +1114,7 @@
         },
         "visuals": {
           "question": "Which AI visuals are used to generate the video from text?",
-          "answer": "The workflow uses AI image generation to interpret the script scene by scene and create visuals that match the main ideas narrated by the voiceover."
+          "answer": "The tool uses AI image generation to interpret the script scene by scene and create visuals that match the main ideas narrated by the voiceover."
         },
         "languages": {
           "question": "Can I choose different languages for the final video?",
@@ -1121,7 +1160,7 @@
       }
     },
     "steps": {
-      "eyebrow": "Workflow",
+      "eyebrow": "Process",
       "title": "How to turn an article into a video",
       "items": {
         "paste": {
@@ -1138,7 +1177,7 @@
         },
         "download": {
           "title": "Generate and download the MP4",
-          "text": "The cloud workflow creates the script, voice, subtitles and vertical MP4 ready for short-form social publishing."
+          "text": "The cloud generator creates the script, voice, subtitles and vertical MP4 ready for short-form social publishing."
         }
       }
     },
@@ -1146,7 +1185,7 @@
       "eyebrow": "Comparison",
       "title": "Article to video AI vs manual video editing",
       "headers": {
-        "feature": "Workflow",
+        "feature": "Process",
         "ours": "URL to Video",
         "manual": "Manual editing"
       },
@@ -1219,7 +1258,7 @@
         },
         "paywall": {
           "question": "What happens if the article is behind a paywall?",
-          "answer": "If the article cannot be crawled, switch to Text mode and paste the article body directly. This keeps the workflow focused on the content instead of the blocked URL."
+          "answer": "If the article cannot be crawled, switch to Text mode and paste the article body directly. This keeps the tool focused on the content instead of the blocked URL."
         },
         "blogs": {
           "question": "Can I turn blog posts into videos?",

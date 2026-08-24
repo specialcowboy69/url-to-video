@@ -11,6 +11,7 @@ import {
   maxArticleTextLength,
   minArticleTextLength,
 } from "@/app/lib/videoInputLimits";
+import { Link } from "@/i18n/routing";
 import type {
   CreateVideoInitialValues,
   InputMode,
@@ -297,6 +298,15 @@ export function CreateAIVideoForm({
                 {t("captcha.configError")}
               </p>
             )}
+            <p className="mt-3 border-t border-ink/8 pt-3 text-sm font-semibold leading-6 text-ink/62">
+              {t("freeGenerations.text")}{" "}
+              <Link
+                href="/create"
+                className="font-black text-ocean underline decoration-ocean/30 underline-offset-4 transition hover:text-ink"
+              >
+                {t("freeGenerations.link")}
+              </Link>
+            </p>
           </div>
         </div>
 
