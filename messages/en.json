@@ -1,7 +1,7 @@
 {
   "Seo": {
     "siteName": "URL to Video",
-    "defaultTitle": "Convert a URL into a video with stock videos and images",
+    "defaultTitle": "Convert a url into a video",
     "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
     "createTitle": "Free AI Video Generator Online",
     "createDescription": "Create AI videos online from a URL or text. Generate a vertical MP4 with voice, subtitles and stock visuals from your browser.",
@@ -18,7 +18,7 @@
   },
   "Home": {
     "eyebrow": "URL to Video",
-    "title": "Convert a URL into a video with stock videos and images",
+    "title": "Convert a url into a video",
     "description": "Create vertical videos from news, articles, blogs or product pages. The tool generates the script, voice, subtitles and visual assets so you can publish faster on social media.",
     "createCta": "Create video",
     "stockCta": "Create video with stock videos or images",
