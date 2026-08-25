@@ -19,7 +19,7 @@
   "Home": {
     "eyebrow": "URL to Video",
     "title": "Convertir URL en video con videos e imagenes de stock",
-    "description": "Crea videos verticales desde noticias, articulos, blogs o paginas de producto. El flujo genera guion, voz, subtitulos y material visual para publicar mas rapido en redes sociales.",
+    "description": "Crea videos verticales desde noticias, articulos, blogs o paginas de producto. La herramienta genera guion, voz, subtitulos y material visual para publicar mas rapido en redes sociales.",
     "createCta": "Crear video",
     "stockCta": "Crear video con videos o imagenes de stock",
     "aiCta": "Crear video con IA",
@@ -49,7 +49,7 @@
         "text": "Convierte una pieza escrita en un formato audiovisual pensado para Shorts, Reels y TikTok."
       },
       "speed": {
-        "title": "Flujo rapido",
+        "title": "Herramienta rapida",
         "text": "Obten tu video en menos de 5 minutos. Pueden ocasionarse retrasos en momentos de mucha demanda"
       },
       "social": {
@@ -81,7 +81,7 @@
     "useCases": {
       "eyebrow": "Casos de uso",
       "title": "Pensado para distintas formas de crear video",
-      "description": "Empieza desde una URL publica o texto pegado, y elige el flujo que encaja con el contenido que quieres publicar.",
+      "description": "Empieza desde una URL publica o texto pegado, y elige la herramienta que encaja con el contenido que quieres publicar.",
       "tabs": {
         "creators": "Creadores",
         "professionals": "Profesionales"
@@ -92,7 +92,7 @@
         "description": "Crea videos verticales MP4 desde URLs de articulos o texto pegado, con narracion, subtitulos y material visual listo para formatos sociales.",
         "bullets": {
           "source": "Empieza desde una URL publica o pega el texto del articulo",
-          "visuals": "Elige visuales de stock o imagenes generadas con IA segun el flujo",
+          "visuals": "Elige visuales de stock o imagenes generadas con IA segun la herramienta",
           "captions": "Genera voz y subtitulos sincronizados",
           "export": "Descarga un MP4 vertical para Shorts, Reels o TikTok"
         },
@@ -172,7 +172,7 @@
     "suite": {
       "eyebrow": "Herramientas multimedia",
       "title": "Suite de herramientas multimedia con IA",
-      "description": "Crea, reutiliza, convierte y comparte video o audio desde un flujo basado en navegador, sin registro obligatorio para las herramientas principales.",
+      "description": "Crea, reutiliza, convierte y comparte video o audio desde un conjunto de herramientas basado en navegador, sin registro obligatorio para las herramientas principales.",
       "items": {
         "urlVideo": {
           "title": "URL a video con stock",
@@ -209,7 +209,7 @@
     "snippet": {
       "eyebrow": "Free AI video generator",
       "title": "Que hace que URL to Video sea un buen free AI video generator online?",
-      "answer": "URL to Video es un free AI video generator online que convierte enlaces publicos o texto pegado en videos verticales con voz, subtitulos y visuales de stock. Funciona desde el navegador, no exige registro para el flujo basico y exporta MP4 limpios para redes sociales."
+      "answer": "URL to Video es un free AI video generator online que convierte enlaces publicos o texto pegado en videos verticales con voz, subtitulos y visuales de stock. Funciona desde el navegador, no exige registro para la herramienta basica y exporta MP4 limpios para redes sociales."
     },
     "comparison": {
       "eyebrow": "Comparativa",
@@ -253,7 +253,7 @@
       "items": {
         "cloud": {
           "title": "Generacion directa en la nube",
-          "text": "Pega una URL o guion y el workflow en la nube crea un MP4 vertical descargable, normalmente en pocos minutos segun la demanda."
+          "text": "Pega una URL o guion y el generador en la nube crea un MP4 vertical descargable, normalmente en pocos minutos segun la demanda."
         },
         "subtitles": {
           "title": "Subtitulos sincronizados",
@@ -550,7 +550,7 @@
     "audience": "Para quien",
     "benefits": {
       "one": "Reduce el tiempo entre publicar y distribuir.",
-      "two": "Mantiene un flujo visual adaptado a formato vertical.",
+      "two": "Mantiene un estilo visual adaptado a formato vertical.",
       "three": "Centraliza guion, voz, subtitulos y render en un solo proceso."
     },
     "items": {
@@ -669,7 +669,7 @@
           "text": "La conversion se inicia desde el navegador, sin descargar programas de escritorio."
         },
         "speed": {
-          "title": "Flujo sencillo",
+          "title": "Proceso sencillo",
           "text": "Sube el archivo, espera el procesado y descarga el MP3 cuando el trabajo termine."
         },
         "limits": {
@@ -793,7 +793,38 @@
         "trim": {
           "question": "Puedo cortar el video antes de convertirlo?",
           "answer": "Todavia no. La herramienta convierte la pista de audio completa del archivo subido."
+        },
+        "free": {
+          "question": "Este convertidor online de video a MP3 es gratis?",
+          "answer": "Puedes usar el convertidor desde el navegador sin crear una cuenta. Los limites actuales aceptan videos de hasta 1 GB y hasta una hora de duracion."
+        },
+        "online": {
+          "question": "Puedo convertir video a MP3 online sin software?",
+          "answer": "Si. Sube un archivo de video compatible, deja que el convertidor desde navegador extraiga el audio y descarga el MP3 generado cuando termine el procesado."
         }
+      }
+    },
+    "decision": {
+      "eyebrow": "Conversion MP3 online",
+      "title": "Usa un convertidor online de video a MP3 cuando solo necesitas el audio",
+      "description": "La ruta mas rapida es subir un archivo de video compatible, extraer la pista de audio y descargar el MP3 desde el navegador. Es ideal para clips propios, clases, entrevistas y grabaciones donde no necesitas un editor de video completo.",
+      "items": {
+        "free": {
+          "title": "Herramienta gratis desde navegador",
+          "text": "Usa el convertidor desde el navegador sin crear una cuenta. Los limites actuales ayudan a mantener estable el procesado."
+        },
+        "online": {
+          "title": "Conversion online",
+          "text": "No necesitas una app de escritorio. Sube el video, espera la extraccion y descarga el MP3 cuando termine el trabajo."
+        },
+        "formats": {
+          "title": "Formatos de video habituales",
+          "text": "Acepta archivos MP4, MOV, WEBM, MKV, AVI, MPEG y MPG para extraer audio."
+        }
+      },
+      "links": {
+        "free": "El convertidor online de video a MP3 es gratis?",
+        "formats": "Que formatos de video puedo convertir a MP3?"
       }
     }
   },
@@ -831,7 +862,7 @@
         },
         "formats": {
           "title": "Exportacion SRT, VTT y CSV",
-          "text": "Descarga el resultado en el formato que mejor encaje con tu editor, reproductor o flujo de trabajo."
+          "text": "Descarga el resultado en el formato que mejor encaje con tu editor, reproductor o proyecto."
         },
         "privacy": {
           "title": "Procesamiento con HTTPS",
@@ -983,11 +1014,15 @@
     },
     "startingEyebrow": "Preparando",
     "startingTitle": "Preparando tu video IA",
-    "startingSubtitle": "Estamos enviando la noticia al workflow. La generacion de imagenes comenzara en unos segundos.",
+    "startingSubtitle": "Estamos enviando la noticia al generador. La generacion de imagenes comenzara en unos segundos.",
     "captcha": {
       "label": "Verificacion anti-abuso",
       "required": "Completa la verificacion antes de crear el video IA.",
       "configError": "Falta configurar Cloudflare Turnstile para este servicio."
+    },
+    "freeGenerations": {
+      "text": "Tienes 3 generaciones gratuitas al dia. Si se te gastan, puedes probar nuestra herramienta que genera videos utilizando imagenes y videos de stock.",
+      "link": "Probar herramienta de stock"
     }
   },
   "TextToVideoAI": {
@@ -1016,11 +1051,15 @@
     },
     "startingEyebrow": "Preparando",
     "startingTitle": "Preparando tu text to video",
-    "startingSubtitle": "Estamos enviando tu texto al workflow. La generacion visual comenzara en unos segundos.",
+    "startingSubtitle": "Estamos enviando tu texto al generador. La generacion visual comenzara en unos segundos.",
     "captcha": {
       "label": "Verificacion anti-abuso",
       "required": "Completa la verificacion antes de crear el video IA.",
       "configError": "Falta configurar Cloudflare Turnstile para este servicio."
+    },
+    "freeGenerations": {
+      "text": "Tienes 3 generaciones gratuitas al dia. Si se te gastan, puedes probar nuestra herramienta que genera videos utilizando imagenes y videos de stock.",
+      "link": "Probar herramienta de stock"
     }
   },
   "TextToVideoSeo": {
@@ -1035,7 +1074,7 @@
       "items": {
         "shortScripts": {
           "title": "Guiones para TikTok y Reels",
-          "text": "Escribe o pega el guion que quieres narrar. El flujo lo convierte en un video corto con voz, subtitulos y visuales pensados para retener la atencion."
+          "text": "Escribe o pega el guion que quieres narrar. La herramienta lo convierte en un video corto con voz, subtitulos y visuales pensados para retener la atencion."
         },
         "breakingNews": {
           "title": "Noticias de ultima hora sin web",
@@ -1048,7 +1087,7 @@
       }
     },
     "steps": {
-      "eyebrow": "Flujo",
+      "eyebrow": "Proceso",
       "title": "Pasos para generar videos a partir de texto",
       "items": {
         "paste": {
@@ -1061,7 +1100,7 @@
         },
         "download": {
           "title": "Genera y descarga el MP4",
-          "text": "Haz clic en Crear video IA y el workflow en la nube procesara la voz, los subtitulos y el render vertical."
+          "text": "Haz clic en Crear video IA y el generador en la nube procesara la voz, los subtitulos y el render vertical."
         }
       }
     },
@@ -1075,7 +1114,7 @@
         },
         "visuals": {
           "question": "Que visuales de IA se utilizan para generar el video desde texto?",
-          "answer": "El flujo usa generacion de imagenes con IA para interpretar el guion escena por escena y crear visuales alineados con las ideas principales narradas por la voz."
+          "answer": "La herramienta usa generacion de imagenes con IA para interpretar el guion escena por escena y crear visuales alineados con las ideas principales narradas por la voz."
         },
         "languages": {
           "question": "Puedo elegir diferentes idiomas para el video final?",
@@ -1121,7 +1160,7 @@
       }
     },
     "steps": {
-      "eyebrow": "Flujo",
+      "eyebrow": "Proceso",
       "title": "Como convertir un articulo en video",
       "items": {
         "paste": {
@@ -1138,7 +1177,7 @@
         },
         "download": {
           "title": "Genera y descarga el MP4",
-          "text": "El workflow en la nube crea el guion, voz, subtitulos y MP4 vertical listo para publicar en formato corto."
+          "text": "El generador en la nube crea el guion, voz, subtitulos y MP4 vertical listo para publicar en formato corto."
         }
       }
     },
@@ -1146,7 +1185,7 @@
       "eyebrow": "Comparativa",
       "title": "Article to video AI frente a edicion manual",
       "headers": {
-        "feature": "Flujo",
+        "feature": "Proceso",
         "ours": "URL to Video",
         "manual": "Edicion manual"
       },
@@ -1219,7 +1258,7 @@
         },
         "paywall": {
           "question": "Que ocurre si el articulo esta tras un paywall?",
-          "answer": "Si el articulo no se puede rastrear, cambia al modo Texto y pega el cuerpo directamente. Asi el flujo trabaja sobre el contenido en vez de depender de la URL bloqueada."
+          "answer": "Si el articulo no se puede rastrear, cambia al modo Texto y pega el cuerpo directamente. Asi la herramienta trabaja sobre el contenido en vez de depender de la URL bloqueada."
         },
         "blogs": {
           "question": "Puedo convertir posts de blog en videos?",

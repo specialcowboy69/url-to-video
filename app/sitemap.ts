@@ -41,7 +41,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${siteUrl}/${locale}/${slug}`,
         lastModified: now,
         changeFrequency: "monthly" as const,
-        priority: slug === "text-to-video-ai" ? 0.86 : 0.84,
+        priority: slug === "text-to-video-ai"
+          ? 0.86
+          : slug === "convert-blog-post-to-video" ||
+              slug === "mp4-to-mp3-converter" ||
+              slug === "faceless-reels-generator" ||
+              slug === "free-text-to-video-ai"
+            ? 0.8
+            : slug.startsWith("questions/")
+              ? 0.64
+              : 0.84,
       })),
       {
         url: `${siteUrl}/${locale}/privacy`,

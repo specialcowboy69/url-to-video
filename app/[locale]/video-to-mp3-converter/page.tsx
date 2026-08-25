@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
+  ArrowRight,
   CheckCircle2,
   Clock3,
   Download,
@@ -15,6 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CreateAudioExperience } from "@/app/components/CreateAudioExperience";
+import { Link } from "@/i18n/routing";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type VideoToMp3PageProps = {
@@ -75,10 +77,26 @@ export default async function VideoToMp3Page({
     { key: "music", icon: Music },
   ];
   const comparisonRows = ["install", "setup", "device", "cost"];
+  const decisionCards = ["free", "online", "formats"].map((key) => ({
+    title: seo(`decision.items.${key}.title`),
+    text: seo(`decision.items.${key}.text`),
+  }));
+  const decisionLinks = [
+    {
+      href: "/questions/is-online-video-to-mp3-converter-free",
+      label: seo("decision.links.free"),
+    },
+    {
+      href: "/questions/what-video-formats-can-i-convert-to-mp3",
+      label: seo("decision.links.formats"),
+    },
+  ];
   const faqs = [
     "mp4",
     "quality",
     "formats",
+    "free",
+    "online",
     "duration",
     "fileSize",
     "privacy",
@@ -239,6 +257,56 @@ export default async function VideoToMp3Page({
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-ink/64">
                   {seo(`formats.items.${format}.text`)}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
+              {seo("decision.eyebrow")}
+            </p>
+            <h2 className="mt-3 text-4xl font-black leading-tight text-ink">
+              {seo("decision.title")}
+            </h2>
+            <p className="mt-4 text-base leading-7 text-ink/66">
+              {seo("decision.description")}
+            </p>
+            <div className="mt-6 grid gap-3">
+              {decisionLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group inline-flex items-center gap-2 text-sm font-black text-ocean underline decoration-2 underline-offset-4 transition hover:text-ink"
+                >
+                  {item.label}
+                  <ArrowRight
+                    size={16}
+                    aria-hidden
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {decisionCards.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-2xl border border-ink/10 bg-white p-5 shadow-sm"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-mist text-ocean">
+                  <CheckCircle2 size={21} aria-hidden />
+                </div>
+                <h3 className="mt-4 text-lg font-black text-ink">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-ink/64">
+                  {card.text}
                 </p>
               </article>
             ))}

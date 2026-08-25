@@ -96,6 +96,34 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const home = await getTranslations({ locale, namespace: "Home" });
   const seo = await getTranslations({ locale, namespace: "Seo" });
+  const footerCopy =
+    locale === "es"
+      ? {
+          resources: "Recursos",
+          convertBlogPost: "Convertir blog post en video",
+          articleQuestion: "Como crear un video desde un articulo",
+          mp4ToMp3: "Convertidor MP4 a MP3",
+          videoToMp3Question: "Como convertir video a MP3",
+          facelessReels: "Generador de faceless reels",
+          freeTextToVideo: "Text to video AI gratis",
+          product: "Producto",
+          articleToVideo: "Article to Video AI",
+          textToVideo: "Text to Video AI",
+          videoToMp3: "Video to MP3",
+        }
+      : {
+          resources: "Resources",
+          convertBlogPost: "Convert blog post to video",
+          articleQuestion: "How to make a video from an article",
+          mp4ToMp3: "MP4 to MP3 converter",
+          videoToMp3Question: "How to convert video to MP3",
+          facelessReels: "Faceless reels generator",
+          freeTextToVideo: "Free text to video AI",
+          product: "Product",
+          articleToVideo: "Article to Video AI",
+          textToVideo: "Text to Video AI",
+          videoToMp3: "Video to MP3",
+        };
 
   return (
     <html lang={locale}>
@@ -183,6 +211,114 @@ export default async function LocaleLayout({
             </nav>
           </header>
           {children}
+          <footer className="mx-auto w-full max-w-6xl px-5 pb-10 pt-4">
+            <div className="grid gap-8 rounded-[28px] border border-white/70 bg-white/78 p-6 text-sm shadow-sm backdrop-blur md:grid-cols-[1fr_1fr_auto] md:p-8">
+              <div>
+                <Link
+                  href="/"
+                  aria-label={seo("siteName")}
+                  className="inline-flex rounded-2xl transition hover:opacity-82 focus:outline-none focus-visible:ring-4 focus-visible:ring-ocean/25"
+                >
+                  <Image
+                    src="/generated/urltovideo-logo.svg"
+                    alt={seo("siteName")}
+                    width={150}
+                    height={35}
+                    className="h-8 w-auto"
+                  />
+                </Link>
+                <p className="mt-3 max-w-sm font-semibold leading-6 text-ink/58">
+                  {seo("defaultDescription")}
+                </p>
+              </div>
+              <nav aria-label={footerCopy.resources}>
+                <h2 className="text-xs font-black uppercase tracking-[0.16em] text-ocean">
+                  {footerCopy.resources}
+                </h2>
+                <ul className="mt-4 space-y-3 font-bold text-ink/62">
+                  <li>
+                    <Link
+                      href="/convert-blog-post-to-video"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.convertBlogPost}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/questions/how-to-make-a-video-from-an-article"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.articleQuestion}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/mp4-to-mp3-converter"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.mp4ToMp3}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/questions/how-to-convert-video-to-mp3"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.videoToMp3Question}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/faceless-reels-generator"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.facelessReels}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/free-text-to-video-ai"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.freeTextToVideo}
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+              <nav aria-label={footerCopy.product}>
+                <h2 className="text-xs font-black uppercase tracking-[0.16em] text-ocean">
+                  {footerCopy.product}
+                </h2>
+                <ul className="mt-4 space-y-3 font-bold text-ink/62">
+                  <li>
+                    <Link
+                      href="/article-to-video-ai"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.articleToVideo}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/text-to-video-ai"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.textToVideo}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/video-to-mp3-converter"
+                      className="transition hover:text-ocean"
+                    >
+                      {footerCopy.videoToMp3}
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </footer>
           <CookieConsent />
         </NextIntlClientProvider>
         <Analytics />
