@@ -64,16 +64,24 @@
       "open": "Watch video: {title}",
       "close": "Close video",
       "items": {
-        "inflacion": {
-          "title": "Inflation fell at the fastest pace in years in June as gas prices moderated.",
+        "aiExampleOne": {
+          "title": "AI-generated article video example 1",
+          "description": "Example of a vertical AI-generated video created from an article, with voiceover, subtitles and AI-generated visuals.",
           "language": "English"
         },
-        "calorResidual": {
-          "title": "Scientists manage to create electricity from waste heat",
-          "language": "Spanish"
+        "aiExampleTwo": {
+          "title": "AI-generated article video example 2",
+          "description": "Short vertical example showing how URL to Video turns written content into a narrated social video with captions and generated scenes.",
+          "language": "English"
         },
-        "adultez": {
-          "title": "What happened to adult life? Welcome to Generation Z's liquid adulthood.",
+        "aiExampleThree": {
+          "title": "AI-generated article video example 3",
+          "description": "Example of a text-to-video AI render using narration, subtitles and AI-generated visuals for short-form social media.",
+          "language": "English"
+        },
+        "aiExampleFour": {
+          "title": "AI-generated article video example 4",
+          "description": "Vertical AI video example created for Shorts, Reels and TikTok-style publishing from written source content.",
           "language": "English"
         }
       }

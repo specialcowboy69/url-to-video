@@ -10,6 +10,8 @@ import {
   Wand2,
 } from "lucide-react";
 import { CreateAIVideoExperience } from "@/app/components/CreateAIVideoExperience";
+import { ExampleVideos } from "@/app/components/ExampleVideos";
+import { buildExampleVideoSchema } from "@/app/lib/exampleVideoSchema";
 import { maxArticleTextLength } from "@/app/lib/videoInputLimits";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 import type { CreateVideoInitialValues, VideoLanguage } from "@/app/types";
@@ -77,6 +79,7 @@ export default async function TextToVideoAIPage({
   setRequestLocale(locale);
 
   const seo = await getTranslations({ locale, namespace: "TextToVideoSeo" });
+  const examples = await getTranslations({ locale, namespace: "Home.examples" });
   const faqItems = faqKeys.map((key) => ({
     question: seo(`faq.items.${key}.question`),
     answer: seo(`faq.items.${key}.answer`, { max: maxArticleTextLength }),
@@ -106,13 +109,18 @@ export default async function TextToVideoAIPage({
       },
     })),
   };
+  const exampleVideoSchema = buildExampleVideoSchema({
+    locale,
+    pagePath: "/text-to-video-ai",
+    text: examples,
+  });
 
   return (
     <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([howToSchema, faqSchema]),
+          __html: JSON.stringify([howToSchema, faqSchema, ...exampleVideoSchema]),
         }}
       />
 
@@ -120,6 +128,7 @@ export default async function TextToVideoAIPage({
         initialValues={getInitialValues(locale)}
         copyNamespace="TextToVideoAI"
       />
+      <ExampleVideos />
 
       <section className="border-t border-white/70 bg-white/72 px-5 py-16 backdrop-blur">
         <div className="mx-auto max-w-6xl">
