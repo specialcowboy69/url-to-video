@@ -3,26 +3,9 @@
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { exampleVideos } from "@/app/data/exampleVideos";
 
-const examples = [
-  {
-    id: "inflacion",
-    videoUrl:
-      "https://pub-5d88690ab45b4187800a2f33589c6c13.r2.dev/examples/inflacion.mp4",
-  },
-  {
-    id: "calorResidual",
-    videoUrl:
-      "https://pub-5d88690ab45b4187800a2f33589c6c13.r2.dev/examples/calor%20residual.mp4",
-  },
-  {
-    id: "adultez",
-    videoUrl:
-      "https://pub-5d88690ab45b4187800a2f33589c6c13.r2.dev/examples/adultez.mp4",
-  },
-] as const;
-
-type Example = (typeof examples)[number];
+type Example = (typeof exampleVideos)[number];
 
 export function ExampleVideos() {
   const t = useTranslations("Home.examples");
@@ -80,7 +63,7 @@ export function ExampleVideos() {
         ref={carouselRef}
         className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {examples.map((example) => (
+        {exampleVideos.map((example) => (
           <ExampleVideoSlide
             key={example.id}
             example={example}

@@ -64,16 +64,24 @@
       "open": "Ver video: {title}",
       "close": "Cerrar video",
       "items": {
-        "inflacion": {
-          "title": "La inflacion cayo al ritmo mas rapido en anos en junio, debido a la moderacion de los precios de la gasolina.",
+        "aiExampleOne": {
+          "title": "Ejemplo de video de articulo generado con IA 1",
+          "description": "Ejemplo de video vertical generado con IA desde un articulo, con voz, subtitulos y visuales generados con IA.",
           "language": "Ingles"
         },
-        "calorResidual": {
-          "title": "Cientificos consiguen crear electricidad a partir de calor residual",
-          "language": "Espanol"
+        "aiExampleTwo": {
+          "title": "Ejemplo de video de articulo generado con IA 2",
+          "description": "Ejemplo vertical corto que muestra como URL to Video convierte contenido escrito en un video narrado para redes sociales con subtitulos y escenas generadas.",
+          "language": "Ingles"
         },
-        "adultez": {
-          "title": "Que paso con la vida adulta? Bienvenidos a la adultez liquida de la Generacion Z.",
+        "aiExampleThree": {
+          "title": "Ejemplo de video de articulo generado con IA 3",
+          "description": "Ejemplo de render text-to-video con IA usando narracion, subtitulos y visuales generados para video social de formato corto.",
+          "language": "Ingles"
+        },
+        "aiExampleFour": {
+          "title": "Ejemplo de video de articulo generado con IA 4",
+          "description": "Ejemplo de video vertical generado con IA para Shorts, Reels y publicaciones tipo TikTok desde contenido escrito.",
           "language": "Ingles"
         }
       }

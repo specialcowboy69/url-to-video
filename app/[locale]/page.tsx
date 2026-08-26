@@ -21,6 +21,7 @@ import { Link } from "@/i18n/routing";
 import { AudienceUseCases } from "@/app/components/AudienceUseCases";
 import { ExampleVideos } from "@/app/components/ExampleVideos";
 import { HeroDemoVideo } from "@/app/components/HeroDemoVideo";
+import { buildExampleVideoSchema } from "@/app/lib/exampleVideoSchema";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type HomeProps = {
@@ -54,6 +55,7 @@ export default async function Home({ params }: HomeProps) {
 
   const home = await getTranslations({ locale, namespace: "Home" });
   const seo = await getTranslations({ locale, namespace: "Seo" });
+  const examples = await getTranslations({ locale, namespace: "Home.examples" });
   const suite = await getTranslations({
     locale,
     namespace: "CreateSeo.suite",
@@ -126,6 +128,10 @@ export default async function Home({ params }: HomeProps) {
       },
     })),
   };
+  const exampleVideoSchema = buildExampleVideoSchema({
+    locale,
+    text: examples,
+  });
 
   const steps = [home("steps.url"), home("steps.mode"), home("steps.mp4")];
   const platformTools = [
@@ -182,7 +188,9 @@ export default async function Home({ params }: HomeProps) {
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([softwareSchema, ...exampleVideoSchema]),
+        }}
       />
 
       <section className="relative isolate overflow-hidden px-5 pb-14 pt-10">

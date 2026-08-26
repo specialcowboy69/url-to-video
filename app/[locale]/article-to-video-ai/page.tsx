@@ -16,6 +16,8 @@ import {
   Video,
 } from "lucide-react";
 import { CreateAIVideoExperience } from "@/app/components/CreateAIVideoExperience";
+import { ExampleVideos } from "@/app/components/ExampleVideos";
+import { buildExampleVideoSchema } from "@/app/lib/exampleVideoSchema";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 import type { CreateVideoInitialValues, VideoLanguage } from "@/app/types";
 
@@ -102,6 +104,7 @@ export default async function ArticleToVideoAIPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const seo = await getTranslations({ locale, namespace: "ArticleToVideoSeo" });
+  const examples = await getTranslations({ locale, namespace: "Home.examples" });
 
   const faqItems = faqKeys.map((key) => ({
     question: seo(`faq.items.${key}.question`),
@@ -132,17 +135,23 @@ export default async function ArticleToVideoAIPage({
       },
     })),
   };
+  const exampleVideoSchema = buildExampleVideoSchema({
+    locale,
+    pagePath: "/article-to-video-ai",
+    text: examples,
+  });
 
   return (
     <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([howToSchema, faqSchema]),
+          __html: JSON.stringify([howToSchema, faqSchema, ...exampleVideoSchema]),
         }}
       />
 
       <CreateAIVideoExperience initialValues={getInitialValues(locale)} />
+      <ExampleVideos />
 
       <section className="border-t border-white/70 bg-white/72 px-5 py-16 backdrop-blur">
         <div className="mx-auto max-w-6xl">
