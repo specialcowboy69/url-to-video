@@ -6,6 +6,7 @@ import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { UploadStartingState } from "@/app/components/UploadStartingState";
 import { createSharedVideo } from "@/app/lib/api";
 import type { CreateSharedVideoResponse } from "@/app/types";
+import { Link } from "@/i18n/routing";
 
 const maxFileSizeBytes = 1024 * 1024 * 1024;
 const maxDurationSeconds = 60 * 60;
@@ -150,6 +151,15 @@ export function CreateSharedVideoForm() {
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-ink/64">
           {t("description")}
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/64">
+          {t("createPrompt")}{" "}
+          <Link
+            href="/create"
+            className="font-bold text-ocean underline underline-offset-4 transition hover:text-ink"
+          >
+            {t("createCta")}
+          </Link>
         </p>
       </div>
 

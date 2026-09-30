@@ -20,6 +20,7 @@ import { ExampleVideos } from "@/app/components/ExampleVideos";
 import { buildExampleVideoSchema } from "@/app/lib/exampleVideoSchema";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 import type { CreateVideoInitialValues, VideoLanguage } from "@/app/types";
+import { Link } from "@/i18n/routing";
 
 type ArticleToVideoAIPageProps = {
   params: Promise<{
@@ -50,8 +51,8 @@ const useCases = [
 
 const steps = [
   { key: "paste", icon: FileText },
-  { key: "visuals", icon: Video },
   { key: "language", icon: Languages },
+  { key: "visuals", icon: Video },
   { key: "download", icon: Captions },
 ] as const;
 
@@ -167,6 +168,15 @@ export default async function ArticleToVideoAIPage({
                 {seo("explanation.answer")}
               </p>
             </div>
+            <p className="mt-4 text-sm font-semibold leading-6 text-ink/62">
+              {seo("stockAlternative.text")}{" "}
+              <Link
+                href="/create"
+                className="font-black text-ocean underline decoration-ocean/30 underline-offset-4 transition hover:text-ink"
+              >
+                {seo("stockAlternative.link")}
+              </Link>
+            </p>
           </div>
         </div>
       </section>

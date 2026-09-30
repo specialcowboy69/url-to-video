@@ -7,6 +7,7 @@ import { InputModeToggle } from "@/app/components/InputModeToggle";
 import { LanguageToggle } from "@/app/components/LanguageToggle";
 import { ModeToggle } from "@/app/components/ModeToggle";
 import { RecommendedSources } from "@/app/components/RecommendedSources";
+import { Link } from "@/i18n/routing";
 import {
   maxArticleTextLength,
   minArticleTextLength,
@@ -113,6 +114,18 @@ export function CreateVideoForm({
           <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.05] text-ink sm:text-7xl">
             {t("title")}
           </h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-ink/64">
+            {t("description")}
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/64">
+            {t("sharePrompt")}{" "}
+            <Link
+              href="/share-video"
+              className="font-bold text-ocean underline underline-offset-4 transition hover:text-ink"
+            >
+              {t("shareCta")}
+            </Link>
+          </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {featureCards.map((feature) => (
               <div

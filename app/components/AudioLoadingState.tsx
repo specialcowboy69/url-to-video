@@ -7,6 +7,7 @@ import { getAudioJob } from "@/app/lib/api";
 import type { JobResponse } from "@/app/types";
 
 type AudioLoadingStateProps = {
+  embedded?: boolean;
   jobId: string;
   onCompleted: (payload: JobResponse) => void;
   onFailed: (message: string) => void;
@@ -17,11 +18,13 @@ const pollingIntervalMs = 4000;
 const retryIntervalMs = 5000;
 
 export function AudioLoadingState({
+  embedded = false,
   jobId,
   onCompleted,
   onFailed,
 }: AudioLoadingStateProps) {
   const t = useTranslations("AudioLoading");
+  const Heading = embedded ? "h2" : "h1";
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -95,16 +98,20 @@ export function AudioLoadingState({
   }, [elapsedSeconds, onFailed, t]);
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center">
+    <section
+      className={embedded
+        ? "mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-6 text-center"
+        : "mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center"}
+    >
       <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-ink text-white shadow-soft">
         <Loader2 className="animate-spin" size={40} aria-hidden />
       </div>
       <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
         {t("job", { jobId: jobId.slice(0, 8) })}
       </p>
-      <h1 className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
+      <Heading className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
         {t("title")}
-      </h1>
+      </Heading>
       <p className="mt-6 max-w-xl text-base leading-7 text-ink/62">
         {t("subtitle")}
       </p>

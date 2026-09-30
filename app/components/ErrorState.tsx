@@ -4,24 +4,30 @@ import { AlertTriangle, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type ErrorStateProps = {
+  embedded?: boolean;
   message: string;
   onReset: () => void;
 };
 
-export function ErrorState({ message, onReset }: ErrorStateProps) {
+export function ErrorState({ embedded = false, message, onReset }: ErrorStateProps) {
   const t = useTranslations("Error");
+  const Heading = embedded ? "h2" : "h1";
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center">
+    <section
+      className={embedded
+        ? "mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-6 text-center"
+        : "mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center"}
+    >
       <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-coral text-white shadow-soft">
         <AlertTriangle size={34} aria-hidden />
       </div>
       <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
         {t("eyebrow")}
       </p>
-      <h1 className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
+      <Heading className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
         {t("title")}
-      </h1>
+      </Heading>
       <p className="mt-6 max-w-xl text-base leading-7 text-ink/68">
         {message}
       </p>

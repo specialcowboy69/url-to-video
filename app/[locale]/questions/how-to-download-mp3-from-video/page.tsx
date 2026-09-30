@@ -16,13 +16,13 @@ const ladderPath = "/mp4-to-mp3-converter";
 
 const copy = {
   en: {
-    title: "How to Download MP3 From Video",
+    title: "How to Download MP3 Audio from a Video File",
     description:
-      "Learn how to extract the audio from a video file and download it as an MP3 using an online video to MP3 converter.",
+      "Extract audio from a video file on your device and download an MP3. Upload files up to 1 GB and one hour long; video links are not supported.",
     eyebrow: "Quick answer",
-    h1: "How do I download an MP3 from a video?",
+    h1: "How do I extract and download MP3 from a video file?",
     answer:
-      "Upload the video file to a video to MP3 converter, wait for the tool to extract the audio track, then download the generated MP3. This works when the source video includes audio and stays within the converter limits.",
+      "Choose a video file saved on your device, upload it to the converter and download the MP3 when processing finishes. The video must contain audio and be no larger than 1 GB or longer than one hour. Pasting a video link is not supported.",
     stepsTitle: "Simple download process",
     steps: [
       "Choose a video file saved on your device.",
@@ -32,21 +32,21 @@ const copy = {
     ],
     detailTitle: "What should I check before downloading?",
     detail:
-      "Make sure the video contains audio, the file is yours or you have permission to process it, and the upload fits the current limits. For MP4 files, the MP4-to-MP3 guide is usually the clearest path.",
+      "Make sure the video contains audio, the file is yours or you have permission to process it, and the upload fits the current limits. For MP4 files, you can also use the MP4-specific page.",
     nextTitle: "Next step",
     nextText:
-      "Open the converter if your video is ready. If your source file is an MP4 and you want the format-specific guide, start with the MP4-to-MP3 page.",
+      "Open the converter if your video is ready. If your source file is an MP4, you can also use the MP4-specific page.",
     toolCta: "Open the video to MP3 converter",
-    ladderCta: "See the MP4 to MP3 guide",
+    ladderCta: "Convert an MP4 file to MP3",
   },
   es: {
-    title: "Como Descargar MP3 Desde un Video",
+    title: "Cómo descargar audio MP3 de un archivo de vídeo",
     description:
-      "Aprende como extraer el audio de un archivo de video y descargarlo como MP3 usando un convertidor online de video a MP3.",
+      "Extrae el audio de un archivo de vídeo de tu dispositivo y descarga un MP3. Admite archivos de hasta 1 GB y una hora; no admite enlaces de vídeo.",
     eyebrow: "Respuesta rapida",
-    h1: "Como descargo un MP3 desde un video?",
+    h1: "¿Cómo extraigo y descargo MP3 de un archivo de vídeo?",
     answer:
-      "Sube el archivo de video a un convertidor de video a MP3, espera a que la herramienta extraiga la pista de audio y descarga el MP3 generado. Funciona cuando el video original incluye audio y se mantiene dentro de los limites del convertidor.",
+      "Elige un archivo de vídeo guardado en tu dispositivo, súbelo al convertidor y descarga el MP3 cuando termine el procesado. El vídeo debe contener audio y no superar 1 GB ni una hora. No se admite pegar un enlace de vídeo.",
     stepsTitle: "Proceso simple de descarga",
     steps: [
       "Elige un archivo de video guardado en tu dispositivo.",
@@ -56,12 +56,12 @@ const copy = {
     ],
     detailTitle: "Que deberia revisar antes de descargar?",
     detail:
-      "Comprueba que el video contiene audio, que el archivo es tuyo o tienes permiso para procesarlo, y que la subida encaja con los limites actuales. Para archivos MP4, la guia MP4 a MP3 suele ser el camino mas claro.",
+      "Comprueba que el video contiene audio, que el archivo es tuyo o tienes permiso para procesarlo, y que la subida encaja con los limites actuales. Para archivos MP4, tambien puedes usar la página específica de MP4.",
     nextTitle: "Siguiente paso",
     nextText:
-      "Abre el convertidor si tu video esta listo. Si tu archivo de origen es un MP4 y quieres la guia especifica del formato, empieza por la pagina MP4 a MP3.",
+      "Abre el convertidor si tu video esta listo. Si tu archivo de origen es un MP4, tambien puedes usar la página específica de MP4.",
     toolCta: "Abrir el convertidor de video a MP3",
-    ladderCta: "Ver la guia MP4 a MP3",
+    ladderCta: "Convierte un archivo MP4 a MP3",
   },
 } as const;
 
@@ -172,6 +172,14 @@ export default async function DownloadMp3FromVideoPage({
               {text.answer}
             </p>
           </section>
+
+          <Link
+            href={moneyPath}
+            className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-citrus px-5 py-3 text-sm font-black text-ink shadow-[0_14px_36px_rgba(215,255,71,0.35)] transition hover:brightness-95"
+          >
+            <span>{text.toolCta}</span>
+            <ArrowRight size={17} className="shrink-0" aria-hidden />
+          </Link>
 
           <section className="mt-10">
             <h2 className="text-3xl font-extrabold text-ink">

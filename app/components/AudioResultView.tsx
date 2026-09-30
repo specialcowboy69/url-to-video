@@ -4,30 +4,37 @@ import { CheckCircle2, Download, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type AudioResultViewProps = {
+  embedded?: boolean;
   audioUrl: string;
   downloadUrl?: string;
   onReset: () => void;
 };
 
 export function AudioResultView({
+  embedded = false,
   audioUrl,
   downloadUrl,
   onReset,
 }: AudioResultViewProps) {
   const t = useTranslations("AudioResult");
+  const Heading = embedded ? "h2" : "h1";
   const finalDownloadUrl = downloadUrl ?? audioUrl;
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center">
+    <section
+      className={embedded
+        ? "mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-6 text-center"
+        : "mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-5 py-10 text-center"}
+    >
       <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-citrus text-ink shadow-soft">
         <CheckCircle2 size={44} aria-hidden />
       </div>
       <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
         {t("eyebrow")}
       </p>
-      <h1 className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
+      <Heading className="mt-4 text-4xl font-extrabold leading-tight text-ink sm:text-6xl">
         {t("title")}
-      </h1>
+      </Heading>
       <p className="mt-6 max-w-xl text-base leading-7 text-ink/68">
         {t("subtitle")}
       </p>

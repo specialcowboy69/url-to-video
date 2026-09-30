@@ -11,6 +11,8 @@ import {
   Video,
 } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { articleAiDemoVideoUrl } from "@/app/data/demoVideos";
+import { HeroDemoVideo } from "@/app/components/HeroDemoVideo";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type ConvertBlogPostToVideoPageProps = {
@@ -25,42 +27,48 @@ const moneyPath = "/article-to-video-ai";
 
 const copy = {
   en: {
-    title: "Convert Blog Posts to Videos",
+    title: "How to Convert a Blog Post to Video with AI",
     description:
-      "Turn existing blog posts into short vertical videos with script, voiceover, subtitles and AI visuals for Shorts, Reels and TikTok.",
-    eyebrow: "Blog to video tool",
-    h1: "Convert a blog post to video without opening an editor.",
+      "See how to turn a blog post into a vertical video. The AI creates the script for social media, narration, subtitles and images from your content.",
+    eyebrow: "Blog to video guide",
+    h1: "How to turn a blog post into a short video with AI",
     intro:
-      "Use this tool when you already have a blog post, guide or SEO article and want a short video version for social distribution. URL to Video reads the article, creates a concise script, adds voiceover, subtitles and visual scenes, then exports a vertical MP4.",
-    primaryCta: "Create an article video",
+      "Start with a public article URL or paste its text into the generator. You do not need to write a script: the system creates one optimized for social media, then adds narration, subtitles and AI-generated images. This guide shows the process.",
+    primaryCta: "Open the article-to-video generator",
     secondaryCta: "Read the quick answer",
+    demoTitle: "See the AI article-to-video process",
+    demoCaption:
+      "Demonstration of the AI workflow. Your starting point is the article; the system creates the script and video.",
+    demoFallback: "Open the demonstration video",
+    textAlternative: "Starting from text? Open Text to Video AI",
+    processEyebrow: "Process",
     direct: {
       eyebrow: "Best fit",
       title: "When should you turn a blog post into a video?",
       text:
-        "Blog posts with one clear idea, a strong headline and useful sections are the best candidates. The goal is not to copy the full article into video, but to turn the main argument into a short clip people can watch on mobile.",
+        "Use an existing blog post, news article or guide as the source. You do not need to turn it into a script first: the system adapts the content into a short video for social media.",
     },
     stepsTitle: "Blog post to video process",
     steps: [
       {
-        title: "Choose a focused blog post",
+        title: "Provide your article",
         text:
-          "Pick an article that explains one topic, answers one question or summarizes one product angle.",
+          "Open the article-to-video generator and paste a public blog URL. If you already have the article text, use Text mode.",
       },
       {
-        title: "Paste the public URL",
+        title: "Choose a language and generate",
         text:
-          "Use the article URL when it can be crawled, or paste the article text if the site blocks automated reading.",
+          "Choose English or Spanish and start generation. You do not need to prepare a script.",
       },
       {
-        title: "Generate voice and subtitles",
+        title: "The AI creates the video",
         text:
-          "The tool creates a short script, natural voiceover and synchronized subtitles for a vertical video.",
+          "The system creates a script optimized for social media, narration, AI images and synchronized subtitles from your content.",
       },
       {
-        title: "Publish the MP4",
+        title: "Review and download",
         text:
-          "Download the finished video and reuse the article on TikTok, Instagram Reels or YouTube Shorts.",
+          "Watch the result and download the vertical MP4 to publish on your social channels.",
       },
     ],
     benefitsTitle: "Why this works for content teams",
@@ -71,49 +79,55 @@ const copy = {
     ],
     bridgeTitle: "Need the short answer first?",
     bridgeText:
-      "If you are still checking the basic process, start with the question page. It explains the simple version and then points back to this tool.",
+      "If you are still checking the basic process, start with the question page. It explains the simple version and then points back to this guide.",
     bridgeCta: "How to make a video from an article",
     finalTitle: "Ready to convert a blog post?",
     finalText:
       "Open the article-to-video generator, paste your URL and create a vertical MP4 with voiceover, subtitles and AI-generated images.",
   },
   es: {
-    title: "Convertir Posts de Blog en Videos",
+    title: "Cómo convertir un artículo de blog en vídeo con IA",
     description:
-      "Convierte posts de blog en videos verticales cortos con guion, voz, subtitulos y visuales IA para Shorts, Reels y TikTok.",
-    eyebrow: "Herramienta blog a video",
-    h1: "Convierte un post de blog en video sin abrir un editor.",
+      "Descubre cómo convertir un artículo de blog en un vídeo vertical. La IA crea el guion para redes, la narración, los subtítulos y las imágenes a partir de tu contenido.",
+    eyebrow: "Guía de blog a vídeo",
+    h1: "Cómo convertir un artículo de blog en un vídeo corto con IA",
     intro:
-      "Usa esta herramienta cuando ya tienes un post, guia o articulo SEO y quieres una version en video corto para redes sociales. URL to Video lee el articulo, crea un guion breve, anade voz, subtitulos y escenas visuales, y exporta un MP4 vertical.",
-    primaryCta: "Crear video desde articulo",
+      "Parte de la URL de un artículo público o pega su texto en el generador. No necesitas preparar un guion: el sistema lo crea optimizado para redes y añade narración, subtítulos e imágenes generadas por IA. Esta guía muestra el proceso.",
+    primaryCta: "Abrir el generador de artículo a vídeo",
     secondaryCta: "Leer la respuesta rapida",
+    demoTitle: "Mira el proceso de artículo a vídeo con IA",
+    demoCaption:
+      "Demostración del flujo con IA. Tú aportas el artículo; el sistema crea el guion y el vídeo.",
+    demoFallback: "Abrir el vídeo de demostración",
+    textAlternative: "¿Partes de un texto? Abre Texto a vídeo con IA",
+    processEyebrow: "Proceso",
     direct: {
       eyebrow: "Mejor caso de uso",
       title: "Cuando conviene convertir un post de blog en video?",
       text:
-        "Los posts con una idea clara, un titular fuerte y secciones utiles son los mejores candidatos. El objetivo no es copiar todo el articulo en video, sino transformar el argumento principal en un clip corto para movil.",
+        "Usa un post de blog, una noticia o una guía como fuente. No necesitas convertirlo primero en un guion: el sistema adapta el contenido a un vídeo corto para redes.",
     },
     stepsTitle: "Proceso de blog post a video",
     steps: [
       {
-        title: "Elige un post enfocado",
+        title: "Aporta tu artículo",
         text:
-          "Escoge un articulo que explique un tema, responda una pregunta o resuma un angulo de producto.",
+          "Abre el generador de artículo a vídeo y pega la URL de un blog público. Si ya tienes el texto del artículo, usa el modo Texto.",
       },
       {
-        title: "Pega la URL publica",
+        title: "Elige el idioma y genera",
         text:
-          "Usa la URL del articulo si se puede rastrear, o pega el texto cuando la web bloquee la lectura automatica.",
+          "Elige español o inglés e inicia la generación. No necesitas preparar un guion.",
       },
       {
-        title: "Genera voz y subtitulos",
+        title: "La IA crea el vídeo",
         text:
-          "La herramienta crea un guion corto, voz natural y subtitulos sincronizados para video vertical.",
+          "El sistema crea a partir de tu contenido un guion optimizado para redes, narración, imágenes IA y subtítulos sincronizados.",
       },
       {
-        title: "Publica el MP4",
+        title: "Revisa y descarga",
         text:
-          "Descarga el video terminado y reutiliza el articulo en TikTok, Instagram Reels o YouTube Shorts.",
+          "Mira el resultado y descarga el MP4 vertical para publicarlo en tus redes.",
       },
     ],
     benefitsTitle: "Por que funciona para equipos de contenido",
@@ -124,7 +138,7 @@ const copy = {
     ],
     bridgeTitle: "Necesitas primero la respuesta corta?",
     bridgeText:
-      "Si todavia estas validando el proceso basico, empieza por la pagina de pregunta. Explica la version simple y vuelve a enlazar esta herramienta.",
+      "Si todavia estas validando el proceso basico, empieza por la pagina de pregunta. Explica la version simple y vuelve a enlazar esta guía.",
     bridgeCta: "Como crear un video desde un articulo",
     finalTitle: "Listo para convertir un post?",
     finalText:
@@ -248,6 +262,40 @@ export default async function ConvertBlogPostToVideoPage({
         </div>
       </section>
 
+      <section className="px-5 pb-16" aria-labelledby="blog-ai-demo-title">
+        <div className="mx-auto max-w-6xl">
+          <h2
+            id="blog-ai-demo-title"
+            className="text-3xl font-extrabold leading-tight text-ink sm:text-4xl"
+          >
+            {text.demoTitle}
+          </h2>
+          <figure className="mt-6">
+            <HeroDemoVideo
+              src={articleAiDemoVideoUrl}
+              ariaLabelledBy="blog-ai-demo-title"
+            />
+            <figcaption className="mt-4 max-w-3xl text-sm leading-6 text-ink/64">
+              {text.demoCaption}
+            </figcaption>
+          </figure>
+          <div className="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap">
+            <a
+              href={articleAiDemoVideoUrl}
+              className="text-sm font-bold text-ocean underline underline-offset-4 transition hover:text-ink"
+            >
+              {text.demoFallback}
+            </a>
+            <Link
+              href="/text-to-video-ai"
+              className="text-sm font-bold text-ocean underline underline-offset-4 transition hover:text-ink"
+            >
+              {text.textAlternative}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-white/70 bg-white/68 px-5 py-16 backdrop-blur">
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
@@ -272,7 +320,7 @@ export default async function ConvertBlogPostToVideoPage({
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-            Workflow
+            {text.processEyebrow}
           </p>
           <h2 className="mt-3 text-4xl font-extrabold leading-tight text-ink">
             {text.stepsTitle}

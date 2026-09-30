@@ -10,7 +10,7 @@ import { UploadStartingState } from "@/app/components/UploadStartingState";
 import { createAudio } from "@/app/lib/api";
 import type { AppState, JobResponse } from "@/app/types";
 
-export function CreateAudioExperience() {
+export function CreateAudioExperience({ embedded = false }: { embedded?: boolean } = {}) {
   const result = useTranslations("AudioResult");
   const error = useTranslations("Error");
   const [appState, setAppState] = useState<AppState>("idle");
@@ -66,6 +66,7 @@ export function CreateAudioExperience() {
   if (appState === "loading" && jobId) {
     return (
       <AudioLoadingState
+        embedded={embedded}
         jobId={jobId}
         onCompleted={handleCompleted}
         onFailed={handleFailed}
@@ -76,6 +77,7 @@ export function CreateAudioExperience() {
   if (appState === "starting") {
     return (
       <UploadStartingState
+        embedded={embedded}
         eyebrow={result("uploadEyebrow")}
         title={result("uploadTitle")}
         subtitle={result("uploadSubtitle")}
@@ -86,6 +88,7 @@ export function CreateAudioExperience() {
   if (appState === "success" && audioUrl) {
     return (
       <AudioResultView
+        embedded={embedded}
         audioUrl={audioUrl}
         downloadUrl={downloadUrl}
         onReset={reset}
@@ -96,11 +99,12 @@ export function CreateAudioExperience() {
   if (appState === "error") {
     return (
       <ErrorState
+        embedded={embedded}
         message={errorMessage || error("fallback")}
         onReset={reset}
       />
     );
   }
 
-  return <CreateAudioForm onSubmit={handleCreateAudio} />;
+  return <CreateAudioForm embedded={embedded} onSubmit={handleCreateAudio} />;
 }
