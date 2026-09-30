@@ -21,6 +21,7 @@ import { Link } from "@/i18n/routing";
 import { AudienceUseCases } from "@/app/components/AudienceUseCases";
 import { ExampleVideos } from "@/app/components/ExampleVideos";
 import { HeroDemoVideo } from "@/app/components/HeroDemoVideo";
+import { articleAiDemoVideoUrl } from "@/app/data/demoVideos";
 import { buildExampleVideoSchema } from "@/app/lib/exampleVideoSchema";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
@@ -262,7 +263,7 @@ export default async function Home({ params }: HomeProps) {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_0%,rgba(215,255,71,0.24),transparent_30%),radial-gradient(circle_at_88%_20%,rgba(11,114,133,0.32),transparent_32%)]" />
             <div className="relative">
               <HeroDemoVideo
-                src="https://pub-5d88690ab45b4187800a2f33589c6c13.r2.dev/article_to_video_ai_video.mp4"
+                src={articleAiDemoVideoUrl}
               />
             </div>
           </div>

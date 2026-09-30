@@ -3,18 +3,18 @@
     "siteName": "URL to Video",
     "defaultTitle": "Convert a url into a video",
     "defaultDescription": "Turn a public URL into a vertical video with script, voice, subtitles and visual assets generated for social media.",
-    "createTitle": "Free AI Video Generator Online",
-    "createDescription": "Create AI videos online from a URL or text. Generate a vertical MP4 with voice, subtitles and stock visuals from your browser.",
+    "createTitle": "URL to Video Generator with Voice & Captions",
+    "createDescription": "Turn a public article URL or pasted text into a vertical video with narration, subtitles and stock images or clips. Download the result as MP4.",
     "mp3Title": "Convert video to MP3 free and online",
     "mp3Description": "Extract audio from video files such as MP4, MOV, MKV or AVI and download an MP3 from the browser without installing software.",
     "srtTitle": "Convert audio to subtitles online",
     "srtDescription": "Upload an audio or video file and generate SRT, VTT or CSV subtitles with configurable segments.",
-    "shareVideoTitle": "Online video to shareable link converter",
-    "shareVideoDescription": "Upload your video and generate a temporary public URL to share it for 24 hours.",
+    "shareVideoTitle": "Video Link Generator — Upload and Share",
+    "shareVideoDescription": "Upload a video file and get a public link valid for 24 hours. Share an existing video without creating an account.",
     "aiVideoTitle": "Article to Video AI Generator",
     "aiVideoDescription": "Turn articles, blog posts and news URLs into vertical AI videos with script, voiceover, subtitles and AI-generated images.",
     "textToVideoTitle": "Text to Video AI Generator",
-    "textToVideoDescription": "Convert text to video with AI. Paste a script, article draft or raw text and generate a vertical MP4 with voice, subtitles and AI-generated visuals."
+    "textToVideoDescription": "Turn text into a narrated video with AI images. Paste your content; the system creates the script for social media, voiceover, subtitles and vertical MP4."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -133,7 +133,10 @@
   },
   "Create": {
     "eyebrow": "URL to Video",
-    "title": "Turn a URL into a short ready to publish.",
+    "title": "Turn an article URL into a short video",
+    "description": "Paste a public article link or your text to create a new video with narration, subtitles and stock visuals.",
+    "sharePrompt": "Already have a video and need a link?",
+    "shareCta": "Upload and share your video",
     "placeholder": "https://example.com/article",
     "textPlaceholder": "Paste the full article text here...",
     "urlLabel": "Source URL",
@@ -318,7 +321,7 @@
   "Audio": {
     "eyebrow": "Video to MP3",
     "title": "Convert your video into MP3.",
-    "description": "Upload a video file and we will extract the audio as an MP3 ready to download.",
+    "description": "Upload a video file from your device to extract its audio as MP3. Pasting a video link is not supported.",
     "dropTitle": "Select a video",
     "dropSubtitle": "Common video files such as MP4, MOV, WEBM or MKV are supported.",
     "selectedFile": "Selected file: {size}",
@@ -407,8 +410,10 @@
   },
   "ShareVideo": {
     "eyebrow": "Share video",
-    "title": "Online video to shareable link converter",
-    "description": "Upload your video and generate a public URL to share on social media, documentation or messages without losing quality. The link remains active for 24 hours.",
+    "title": "Upload a video and get a link",
+    "description": "Choose a video file from your device and get a public link valid for 24 hours. No account required.",
+    "createPrompt": "Want to create a new video from an article instead?",
+    "createCta": "Turn an article into a video",
     "dropTitle": "Select a video from your device",
     "dropSubtitle": "Supported formats: MP4, MOV, WebM, AVI and MKV. Files up to 1 GB.",
     "selectedFile": "Selected file: {size}",
@@ -999,7 +1004,7 @@
   "CreateAI": {
     "eyebrow": "AI-generated images",
     "title": "Turn an article into a video with AI-generated images.",
-    "description": "Paste a public URL or the article text. We generate the script, voice, subtitles and original images to create a vertical MP4.",
+    "description": "Paste a public article URL or its text. The system creates a script optimized for social media, narration, subtitles and AI-generated images, then produces a vertical MP4. No prepared script is needed.",
     "placeholder": "https://example.com/article",
     "textPlaceholder": "Paste the full article text here...",
     "urlLabel": "Source URL",
@@ -1035,12 +1040,12 @@
   },
   "TextToVideoAI": {
     "eyebrow": "Text to Video AI",
-    "title": "Convert text to video with AI.",
-    "description": "Paste a script, article draft, product summary or raw text. This AI video generator from text creates a vertical MP4 with voice, subtitles and AI-generated images.",
+    "title": "Turn your text into a narrated video with AI images",
+    "description": "Paste your text, an article draft or a product summary. The system creates a script optimized for social media and turns it into a vertical video with narration, subtitles and AI-generated images. You do not need to write the script.",
     "placeholder": "https://example.com/article",
-    "textPlaceholder": "Paste your script or text here...",
+    "textPlaceholder": "Paste your text, article draft or summary here...",
     "urlLabel": "Source URL",
-    "textLabel": "Text or script",
+    "textLabel": "Your text",
     "urlNotice": "Use URL mode if your content is already published online.",
     "textNotice": "Use text mode to convert text to video without needing a published URL.",
     "inputModeLabel": "Choose your input",
@@ -1048,7 +1053,7 @@
     "submit": "Create AI video",
     "submitting": "Creating",
     "emptyUrlError": "Paste a public URL to start.",
-    "emptyTextError": "Paste a slightly longer text or script to start.",
+    "emptyTextError": "Paste a longer text or summary to start.",
     "textTooLongError": "Text cannot exceed {max} characters.",
     "textCharacterCount": "{count}/{max} characters",
     "startError": "The AI video could not be started.",
@@ -1074,15 +1079,15 @@
     "explanation": {
       "eyebrow": "How it works",
       "title": "How does Text to Video AI work?",
-      "answer": "Text to video tools process written scripts with artificial intelligence to create automatic vertical MP4 videos. The AI reads the meaning of the text, creates a natural voiceover, adds synchronized subtitles and generates visual scenes designed for social media."
+      "answer": "The system reads your text, creates a script optimized for social media and produces a vertical MP4 with narration, synchronized subtitles and AI-generated images. You provide the content; the system writes the script."
     },
     "useCases": {
       "eyebrow": "Use cases",
       "title": "Use cases for converting text to video with AI",
       "items": {
         "shortScripts": {
-          "title": "TikTok and Reels scripts",
-          "text": "Write or paste the script you want to narrate. The tool turns it into a short video with voiceover, captions and visuals built to keep attention."
+          "title": "Text for Reels and Shorts",
+          "text": "Paste your content or a draft. The system creates the script for a short social video, then adds narration, subtitles and AI images."
         },
         "breakingNews": {
           "title": "Breaking news without a web page",
@@ -1090,7 +1095,7 @@
         },
         "productSummaries": {
           "title": "DTC product summaries",
-          "text": "Paste product features, benefits or ad copy. The AI creates a visual video draft for ecommerce, Meta Ads, TikTok Ads and social publishing."
+          "text": "Paste a product description or its main features. The system creates a narrated summary with AI-generated illustrations; it does not reproduce your original product photos or guarantee an exact visual match."
         }
       }
     },
@@ -1099,16 +1104,16 @@
       "title": "How to generate videos from text",
       "items": {
         "paste": {
-          "title": "Paste your script text",
-          "text": "Open the Text tab in the form above and paste your script, article draft or raw text. Text inputs can be up to {max} characters."
+          "title": "Paste your text",
+          "text": "Paste your text, article draft or summary into the form above. You can provide up to {max} characters; no prepared script is required."
         },
         "visuals": {
-          "title": "Choose the visual style",
-          "text": "Generate your AI video with original AI images, voiceover and subtitles designed for vertical social media formats."
+          "title": "Let the AI create the script and images",
+          "text": "Choose the output language and start generation. The system adapts your content into a script for social media and generates the images."
         },
         "download": {
-          "title": "Generate and download the MP4",
-          "text": "Click Create AI video and the cloud generator will process the voice, subtitles and vertical video render."
+          "title": "Review and download the MP4",
+          "text": "When generation finishes, review the narrated video with subtitles and download the vertical MP4."
         }
       }
     },
@@ -1118,11 +1123,11 @@
       "items": {
         "limit": {
           "question": "What is the text limit for converting text into video?",
-          "answer": "The system supports text inputs up to {max} characters per video render, which is enough for most short-form scripts, article summaries and social video drafts."
+          "answer": "You can provide up to {max} characters of text, an article draft or a summary. The system creates the video script from that content."
         },
         "visuals": {
           "question": "Which AI visuals are used to generate the video from text?",
-          "answer": "The tool uses AI image generation to interpret the script scene by scene and create visuals that match the main ideas narrated by the voiceover."
+          "answer": "The system generates images to illustrate the script it creates from your text. You do not need to supply a script or choose stock footage."
         },
         "languages": {
           "question": "Can I choose different languages for the final video?",
@@ -1135,7 +1140,7 @@
     "explanation": {
       "eyebrow": "Article to video AI",
       "title": "How does an article to video AI generator work?",
-      "answer": "An article to video AI generator reads a public article URL, extracts the main ideas, turns them into a short script, adds voiceover and subtitles, then matches the narration with stock visuals or AI-generated images to create a vertical MP4 for social media."
+      "answer": "The generator reads your article, creates a script optimized for social media and turns it into a vertical video with narration, subtitles and AI-generated images. You do not need to write a script or choose stock footage."
     },
     "useCases": {
       "eyebrow": "Use cases",
@@ -1151,7 +1156,7 @@
         },
         "productPages": {
           "title": "Product pages into video summaries",
-          "text": "Transform product descriptions, benefits and feature pages into short videos for ecommerce, paid social and launch content."
+          "text": "Turn a product description into a narrated summary with AI-generated illustrations. The generator does not reproduce the original product photos or guarantee an exact visual match."
         },
         "education": {
           "title": "Educational articles into explainers",
@@ -1176,16 +1181,16 @@
           "text": "Add the URL of a public article, blog post or news story. If a site blocks crawling, switch to Text mode and paste the article body."
         },
         "visuals": {
-          "title": "Choose visuals",
-          "text": "Select stock footage or AI-generated images depending on the style you want for your article video."
+          "title": "Generate the script and AI images",
+          "text": "Start generation. The system adapts the article into a script for social media and creates the images, narration and subtitles."
         },
         "language": {
           "title": "Select output language",
           "text": "Choose English or Spanish for the generated voiceover, subtitles and final video narration."
         },
         "download": {
-          "title": "Generate and download the MP4",
-          "text": "The cloud generator creates the script, voice, subtitles and vertical MP4 ready for short-form social publishing."
+          "title": "Review and download the MP4",
+          "text": "When the video is ready, review the result and download the vertical MP4."
         }
       }
     },
@@ -1220,7 +1225,7 @@
         },
         "visuals": {
           "feature": "Visual selection",
-          "ours": "Stock or AI visuals",
+          "ours": "AI-generated images",
           "manual": "Manual search and editing"
         },
         "bestFor": {
@@ -1285,6 +1290,10 @@
           "answer": "Yes. The output is designed as a vertical 9:16 MP4 for short-form social platforms."
         }
       }
+    },
+    "stockAlternative": {
+      "text": "Prefer stock images or clips instead of AI-generated images?",
+      "link": "Open the stock video generator"
     }
   },
   "CookieConsent": {

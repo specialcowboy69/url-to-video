@@ -11,6 +11,7 @@ import {
   UploadCloud,
 } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { CreateAudioExperience } from "@/app/components/CreateAudioExperience";
 import { localeAlternates, pageSocialMetadata, siteUrl } from "@/app/seo";
 
 type Mp4ToMp3PageProps = {
@@ -32,8 +33,10 @@ const copy = {
     eyebrow: "MP4 audio extraction",
     h1: "Convert MP4 to MP3 online from your browser.",
     intro:
-      "Use this page when you already have an MP4 file and only need the audio. URL to Video extracts the audio track, creates an MP3 and gives you a download link without opening a video editor.",
-    primaryCta: "Convert video to MP3",
+      "Upload an MP4 file from your device to extract its audio and download an MP3. Files can be up to 1 GB and one hour long. Pasting a video link is not supported.",
+    primaryCta: "Convert MP4 to MP3",
+    converterLabel: "MP4 to MP3 converter",
+    otherFormatsCta: "Convert other video formats to MP3",
     secondaryCta: "Read the quick answer",
     direct: {
       eyebrow: "Best fit",
@@ -81,7 +84,7 @@ const copy = {
     ],
     finalTitle: "Ready to extract MP3 audio from an MP4?",
     finalText:
-      "Open the video-to-MP3 converter, upload your MP4 and download the extracted MP3 audio file.",
+      "Use the converter on this page to upload your MP4 and download its audio as MP3.",
   },
   es: {
     title: "Convertidor MP4 a MP3",
@@ -90,8 +93,10 @@ const copy = {
     eyebrow: "Extraccion de audio MP4",
     h1: "Convierte MP4 a MP3 online desde el navegador.",
     intro:
-      "Usa esta pagina cuando ya tienes un archivo MP4 y solo necesitas el audio. URL to Video extrae la pista de audio, crea un MP3 y te da un enlace de descarga sin abrir un editor de video.",
-    primaryCta: "Convertir video a MP3",
+      "Sube un archivo MP4 de tu dispositivo para extraer su audio y descargar un MP3. El archivo puede tener hasta 1 GB y una hora. No se admite pegar un enlace de vídeo.",
+    primaryCta: "Convertir MP4 a MP3",
+    converterLabel: "Convertidor MP4 a MP3",
+    otherFormatsCta: "Convierte otros formatos de vídeo a MP3",
     secondaryCta: "Leer la respuesta rapida",
     direct: {
       eyebrow: "Mejor caso de uso",
@@ -139,7 +144,7 @@ const copy = {
     ],
     finalTitle: "Listo para extraer audio MP3 de un MP4?",
     finalText:
-      "Abre el convertidor de video a MP3, sube tu MP4 y descarga el archivo de audio extraido.",
+      "Usa el convertidor de esta página para subir tu MP4 y descargar su audio en MP3.",
   },
 } as const;
 
@@ -235,8 +240,8 @@ export default async function Mp4ToMp3Page({ params }: Mp4ToMp3PageProps) {
               {text.intro}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href={moneyPath}
+              <a
+                href="#mp4-converter"
                 className="group inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-citrus px-6 py-3 text-sm font-black text-ink shadow-[0_14px_36px_rgba(215,255,71,0.35)] transition hover:brightness-95"
               >
                 {text.primaryCta}
@@ -245,7 +250,7 @@ export default async function Mp4ToMp3Page({ params }: Mp4ToMp3PageProps) {
                   aria-hidden
                   className="transition-transform group-hover:translate-x-1"
                 />
-              </Link>
+              </a>
               <Link
                 href={howToPath}
                 className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-ink/10 bg-white px-6 py-3 text-sm font-black text-ink shadow-sm transition hover:bg-mist hover:text-ocean"
@@ -254,6 +259,21 @@ export default async function Mp4ToMp3Page({ params }: Mp4ToMp3PageProps) {
               </Link>
             </div>
           </div>
+          <section
+            id="mp4-converter"
+            aria-label={text.converterLabel}
+            className="mt-8 scroll-mt-6"
+          >
+            <CreateAudioExperience embedded />
+            <p className="mx-auto max-w-4xl px-5 text-sm font-semibold">
+              <Link
+                href={moneyPath}
+                className="text-ocean underline decoration-2 underline-offset-4 transition hover:text-ink"
+              >
+                {text.otherFormatsCta}
+              </Link>
+            </p>
+          </section>
         </div>
       </section>
 
@@ -381,8 +401,8 @@ export default async function Mp4ToMp3Page({ params }: Mp4ToMp3PageProps) {
               {text.finalText}
             </p>
           </div>
-          <Link
-            href={moneyPath}
+          <a
+            href="#mp4-converter"
             className="group inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-ink px-6 py-3 text-sm font-black text-white transition hover:bg-ocean"
           >
             {text.primaryCta}
@@ -391,7 +411,7 @@ export default async function Mp4ToMp3Page({ params }: Mp4ToMp3PageProps) {
               aria-hidden
               className="transition-transform group-hover:translate-x-1"
             />
-          </Link>
+          </a>
         </div>
       </section>
     </main>

@@ -52,7 +52,7 @@
       "competitorRelativeUrl": null,
       "sourceType": "manual-strategy",
       "usedAt": "2026-08-23",
-      "notes": "Assigned to an existing URLtoVideo page. Also present in Google Sheet import.",
+      "notes": "Assigned to an existing URLtoVideo page. Also present in Google Sheet import. Approved 2026-09-29 AI demo/intent plan, Task 4 groundwork: Article remains the AI-visual tool; the system creates the script automatically from supplied content. Stock is a secondary alternative linked to localized /create, not an AI-form selector; no product photo/logo fidelity promise. Stock demo explicitly deferred by the user. Controller reports source reviews clean and lint/build, whitespace and post-tracker-update invariants exit 0; final full browser rerun pending after harness-only fixes; deployment unconfirmed. Final acceptance 2026-09-29: the FULL all-mode browser rerun passed 242 checks with 0 failures; the earlier pending rerun status is superseded. Local frontend validation only; no engine jobs, uploads or deployment confirmed.",
       "googleSheet": {
         "volume": 20,
         "cpc": 43.02,
@@ -77,7 +77,7 @@
       "competitorRelativeUrl": null,
       "sourceType": "manual-strategy",
       "usedAt": "2026-08-23",
-      "notes": "Assigned to an existing URLtoVideo page."
+      "notes": "Assigned to an existing URLtoVideo page. Approved 2026-09-29 AI demo/intent plan, Task 4 groundwork: Blog remains an intermediate guide with tool CTAs, reusing the existing Home MP4 through a shared source. Public URL or pasted content -> choose language/generate -> automatic script, voice, AI visuals and captions -> review/download. Controller reports actual Chrome playback and URL/article workflow/result captions; no text-input scene inferred. AAC present, native textTracks 0; spoken audio listening, caption coverage and transcription not reviewed, full accessibility unvalidated. Controller reports source reviews clean and lint/build, whitespace and post-tracker-update invariants exit 0; final full browser rerun pending after harness-only fixes; deployment unconfirmed. Final acceptance 2026-09-29: the FULL all-mode browser rerun passed 242 checks with 0 failures; the earlier pending rerun status is superseded. Local frontend validation only; no engine jobs, uploads or deployment confirmed."
     },
     {
       "keyword": "how to make a video from an article",
@@ -661,7 +661,7 @@
       "keyword": "mp4 to mp3 converter",
       "status": "used",
       "cluster": "audio-tools",
-      "pageType": "intermediate",
+      "pageType": "money-or-tool",
       "targetUrl": "/en/mp4-to-mp3-converter",
       "buyerStage": "decision",
       "priority": "done",
@@ -682,7 +682,7 @@
         "intent": "transactional",
         "sourceFile": "C:/Users/USUARIO/Downloads/keywords para urltovideo - Hoja 1.csv"
       },
-      "notes": "Assigned to the MP4-specific intermediate page in the audio-tools ladder."
+      "notes": "Assigned to the MP4-specific intermediate page in the audio-tools ladder. Approved 2026-09-29 plan classifies this existing URL as money-or-tool; task 3 reports integration of the shared converter on the MP4 page, with an optional general-converter link for other formats. Status from worker reports: implementado localmente; pendiente de despliegue. Final controller validation pending; deployment unconfirmed."
     },
     {
       "keyword": "youtube video to mp3",
@@ -3922,7 +3922,7 @@
         "intent": "transactional",
         "sourceFile": "C:/Users/USUARIO/Downloads/keywords para urltovideo - Hoja 1.csv"
       },
-      "notes": "Assigned to the download-focused question page that links to the video-to-MP3 converter."
+      "notes": "Assigned to the download-focused question page that links to the video-to-MP3 converter. Approved 2026-09-29 plan: task 2 reports device-video-file extraction copy, exclusion of pasted video links, a direct general-converter CTA immediately after the answer and retained MP4-specific support. Status from worker reports: implementado localmente; pendiente de despliegue. Final controller validation pending; deployment unconfirmed."
     },
     {
       "keyword": "video to mp3 downloader",
@@ -24351,7 +24351,7 @@
       "competitorRelativeUrl": null,
       "sourceType": "manual-strategy",
       "usedAt": "2026-08-24",
-      "notes": "Manual support question for video-to-MP3 download intent."
+      "notes": "Manual support question for video-to-MP3 download intent. Approved 2026-09-29 plan: task 2 reports device-video-file extraction copy, exclusion of pasted video links, a direct general-converter CTA immediately after the answer and retained MP4-specific support. Status from worker reports: implementado localmente; pendiente de despliegue. Final controller validation pending; deployment unconfirmed."
     },
     {
       "keyword": "is it safe to convert video to mp3 online",
@@ -24571,7 +24571,7 @@
       ],
       "intermediate": "/en/mp4-to-mp3-converter",
       "money": "/en/video-to-mp3-converter",
-      "notes": "Audio-tools ladder: format, online, free, download, safety and limits questions feed the MP4 page and existing video-to-MP3 converter."
+      "notes": "Audio-tools ladder: format, online, free, download, safety and limits questions feed the MP4 page and existing video-to-MP3 converter. Approved 2026-09-29 exception: the historical intermediate path remains in this structure; task 3 reports that it now offers direct conversion through the shared tool, with an optional jump to the general converter for other formats. Task 2 reports the download question's direct general-tool CTA. Status from worker reports: implementado localmente; pendiente de despliegue. Final controller validation pending; deployment unconfirmed."
     },
     {
       "colony": [

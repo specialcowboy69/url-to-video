@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
 type CreateAudioFormProps = {
+  embedded?: boolean;
   onSubmit: (file: File) => Promise<void>;
 };
 
@@ -43,7 +44,7 @@ function isAllowedVideo(file: File) {
   );
 }
 
-export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
+export function CreateAudioForm({ embedded = false, onSubmit }: CreateAudioFormProps) {
   const t = useTranslations("Audio");
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -99,18 +100,24 @@ export function CreateAudioForm({ onSubmit }: CreateAudioFormProps) {
   }
 
   return (
-    <section className="mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-5 py-10">
-      <div className="mb-10">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
-          {t("eyebrow")}
-        </p>
-        <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1.05] text-ink sm:text-7xl">
-          {t("title")}
-        </h1>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-ink/64">
-          {t("description")}
-        </p>
-      </div>
+    <section
+      className={embedded
+        ? "mx-auto flex w-full max-w-4xl flex-col px-5 py-6"
+        : "mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-5 py-10"}
+    >
+      {!embedded ? (
+        <div className="mb-10">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-ocean">
+            {t("eyebrow")}
+          </p>
+          <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1.05] text-ink sm:text-7xl">
+            {t("title")}
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-ink/64">
+            {t("description")}
+          </p>
+        </div>
+      ) : null}
 
       <form
         onSubmit={handleSubmit}

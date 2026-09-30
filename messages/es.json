@@ -3,18 +3,18 @@
     "siteName": "URL to Video",
     "defaultTitle": "Convertir URL en video con videos e imagenes de stock",
     "defaultDescription": "Convierte una URL publica en un video vertical con guion, voz, subtitulos y material visual generado para redes sociales.",
-    "createTitle": "Free AI Video Generator Online",
-    "createDescription": "Crea videos con IA online desde una URL o texto. Genera un MP4 vertical con voz, subtitulos y visuales de stock desde el navegador.",
+    "createTitle": "Convierte una URL en vídeo con voz y subtítulos",
+    "createDescription": "Convierte la URL de un artículo público o un texto en un vídeo vertical con narración, subtítulos e imágenes o clips de stock. Descarga el resultado en MP4.",
     "mp3Title": "Convertir video a MP3 gratis y online",
     "mp3Description": "Extrae el audio de archivos de video como MP4, MOV, MKV o AVI y descarga un MP3 desde el navegador, sin instalar software.",
     "srtTitle": "Convertir audio a subtitulos online",
     "srtDescription": "Sube un archivo de audio o video y genera subtitulos SRT, VTT o CSV con segmentos configurables.",
-    "shareVideoTitle": "Convertidor de video a link compartible online",
-    "shareVideoDescription": "Sube tu video y genera una URL publica temporal para compartirlo durante 24 horas.",
+    "shareVideoTitle": "Generador de enlaces de vídeo — Sube y comparte",
+    "shareVideoDescription": "Sube un archivo de vídeo y obtén un enlace público válido durante 24 horas. Comparte un vídeo existente sin crear una cuenta.",
     "aiVideoTitle": "Article to Video AI Generator",
     "aiVideoDescription": "Convierte articulos, blogs y URLs de noticias en videos verticales con guion, voz, subtitulos e imagenes generadas por IA.",
     "textToVideoTitle": "Generador Text to Video con IA",
-    "textToVideoDescription": "Convierte texto a video con IA. Pega un guion, borrador o texto y genera un MP4 vertical con voz, subtitulos e imagenes generadas por IA."
+    "textToVideoDescription": "Convierte texto en un vídeo narrado con imágenes IA. Pega tu contenido; el sistema crea el guion para redes, la voz, los subtítulos y el MP4 vertical."
   },
   "Home": {
     "eyebrow": "URL to Video",
@@ -133,7 +133,10 @@
   },
   "Create": {
     "eyebrow": "URL to Video",
-    "title": "Convierte una URL en un short listo para publicar.",
+    "title": "Convierte la URL de un artículo en un vídeo corto",
+    "description": "Pega el enlace de un artículo público o tu texto para crear un vídeo nuevo con narración, subtítulos y recursos de stock.",
+    "sharePrompt": "¿Ya tienes un vídeo y necesitas un enlace?",
+    "shareCta": "Sube y comparte tu vídeo",
     "placeholder": "https://ejemplo.com/noticia",
     "textPlaceholder": "Pega aqui el texto completo de la noticia...",
     "urlLabel": "URL de origen",
@@ -318,7 +321,7 @@
   "Audio": {
     "eyebrow": "Video to MP3",
     "title": "Convierte tu video en MP3.",
-    "description": "Sube un archivo de video y extraemos el audio en formato MP3 listo para descargar.",
+    "description": "Sube un archivo de vídeo de tu dispositivo para extraer su audio en MP3. No se admite pegar un enlace de vídeo.",
     "dropTitle": "Selecciona un video",
     "dropSubtitle": "Aceptamos archivos de video comunes como MP4, MOV, WEBM o MKV.",
     "selectedFile": "Archivo seleccionado: {size}",
@@ -407,8 +410,10 @@
   },
   "ShareVideo": {
     "eyebrow": "Share video",
-    "title": "Convertidor de video a link compartible online",
-    "description": "Sube tu video y genera una URL publica para compartir en redes sociales, documentacion o mensajes, sin perder calidad. El enlace permanece activo durante 24 horas.",
+    "title": "Sube un vídeo y obtén un enlace",
+    "description": "Elige un archivo de vídeo de tu dispositivo y obtén un enlace público válido durante 24 horas. Sin registro.",
+    "createPrompt": "¿Quieres crear un vídeo nuevo a partir de un artículo?",
+    "createCta": "Convierte un artículo en vídeo",
     "dropTitle": "Seleccionar video de tu equipo",
     "dropSubtitle": "Formatos soportados: MP4, MOV, WebM, AVI y MKV. Archivos de hasta 1 GB.",
     "selectedFile": "Archivo seleccionado: {size}",
@@ -999,7 +1004,7 @@
   "CreateAI": {
     "eyebrow": "Imagenes generadas por IA",
     "title": "Convierte una noticia en video con imagenes generadas por IA.",
-    "description": "Pega una URL publica o el texto de la noticia. Generamos guion, voz, subtitulos e imagenes originales para crear un MP4 vertical.",
+    "description": "Pega la URL de un artículo público o su texto. El sistema crea un guion optimizado para redes, narración, subtítulos e imágenes IA y produce un MP4 vertical. No necesitas preparar un guion.",
     "placeholder": "https://ejemplo.com/noticia",
     "textPlaceholder": "Pega aqui el texto completo de la noticia...",
     "urlLabel": "URL de origen",
@@ -1035,12 +1040,12 @@
   },
   "TextToVideoAI": {
     "eyebrow": "Text to Video AI",
-    "title": "Convierte texto a video con IA.",
-    "description": "Pega un guion, borrador de articulo, resumen de producto o texto libre. Este generador de texto a video crea un MP4 vertical con voz, subtitulos e imagenes generadas por IA.",
+    "title": "Convierte tu texto en un vídeo narrado con imágenes IA",
+    "description": "Pega tu texto, un borrador de artículo o un resumen de producto. El sistema crea un guion optimizado para redes y lo convierte en un vídeo vertical con narración, subtítulos e imágenes IA. No necesitas escribir el guion.",
     "placeholder": "https://ejemplo.com/articulo",
-    "textPlaceholder": "Pega aqui tu guion o texto...",
+    "textPlaceholder": "Pega aquí tu texto, borrador de artículo o resumen...",
     "urlLabel": "URL de origen",
-    "textLabel": "Texto o guion",
+    "textLabel": "Tu texto",
     "urlNotice": "Usa el modo URL si tu contenido ya esta publicado online.",
     "textNotice": "Usa el modo texto para convertir texto a video sin necesitar una URL publicada.",
     "inputModeLabel": "Elige tu entrada",
@@ -1048,7 +1053,7 @@
     "submit": "Crear video IA",
     "submitting": "Creando",
     "emptyUrlError": "Pega una URL publica para empezar.",
-    "emptyTextError": "Pega un texto o guion un poco mas largo para empezar.",
+    "emptyTextError": "Pega un texto o resumen más largo para empezar.",
     "textTooLongError": "El texto no puede superar {max} caracteres.",
     "textCharacterCount": "{count}/{max} caracteres",
     "startError": "No se ha podido iniciar el video IA.",
@@ -1074,15 +1079,15 @@
     "explanation": {
       "eyebrow": "Como funciona",
       "title": "Como funciona la tecnologia Text to Video con IA?",
-      "answer": "Las herramientas de text to video procesan guiones escritos con inteligencia artificial para crear videos MP4 verticales automaticos. La IA interpreta el significado del texto, genera locucion natural, anade subtitulos sincronizados y crea escenas visuales pensadas para redes sociales."
+      "answer": "El sistema lee tu texto, crea un guion optimizado para redes y produce un MP4 vertical con narración, subtítulos sincronizados e imágenes IA. Tú aportas el contenido; el sistema escribe el guion."
     },
     "useCases": {
       "eyebrow": "Casos de uso",
       "title": "Casos de uso para convertir texto a video con IA",
       "items": {
         "shortScripts": {
-          "title": "Guiones para TikTok y Reels",
-          "text": "Escribe o pega el guion que quieres narrar. La herramienta lo convierte en un video corto con voz, subtitulos y visuales pensados para retener la atencion."
+          "title": "Textos para Reels y Shorts",
+          "text": "Pega tu contenido o un borrador. El sistema crea el guion de un vídeo corto para redes y añade narración, subtítulos e imágenes IA."
         },
         "breakingNews": {
           "title": "Noticias de ultima hora sin web",
@@ -1090,7 +1095,7 @@
         },
         "productSummaries": {
           "title": "Resumenes de productos DTC",
-          "text": "Pega caracteristicas, beneficios o copy publicitario. La IA crea un borrador visual para ecommerce, Meta Ads, TikTok Ads y publicacion en redes."
+          "text": "Pega la descripción de un producto o sus características principales. El sistema crea un resumen narrado con ilustraciones IA; no reproduce las fotos originales del producto ni garantiza una coincidencia visual exacta."
         }
       }
     },
@@ -1099,16 +1104,16 @@
       "title": "Pasos para generar videos a partir de texto",
       "items": {
         "paste": {
-          "title": "Pega el texto del guion",
-          "text": "Abre la pestana Texto del formulario superior y pega tu guion, borrador o texto libre. Los textos pueden tener hasta {max} caracteres."
+          "title": "Pega tu texto",
+          "text": "Pega tu texto, borrador de artículo o resumen en el formulario. Puedes aportar hasta {max} caracteres; no necesitas un guion preparado."
         },
         "visuals": {
-          "title": "Elige el estilo visual",
-          "text": "Genera tu video IA con imagenes originales, voz en off y subtitulos disenados para formatos verticales de redes sociales."
+          "title": "Deja que la IA cree el guion y las imágenes",
+          "text": "Elige el idioma de salida e inicia la generación. El sistema adapta tu contenido a un guion para redes y genera las imágenes."
         },
         "download": {
-          "title": "Genera y descarga el MP4",
-          "text": "Haz clic en Crear video IA y el generador en la nube procesara la voz, los subtitulos y el render vertical."
+          "title": "Revisa y descarga el MP4",
+          "text": "Cuando termine la generación, revisa el vídeo narrado con subtítulos y descarga el MP4 vertical."
         }
       }
     },
@@ -1118,11 +1123,11 @@
       "items": {
         "limit": {
           "question": "Cual es el limite de caracteres para convertir texto en video?",
-          "answer": "El sistema admite textos de hasta {max} caracteres por renderizado, suficiente para la mayoria de guiones cortos, resumenes de articulos y borradores de video social."
+          "answer": "Puedes aportar hasta {max} caracteres de texto, un borrador de artículo o un resumen. El sistema crea el guion del vídeo a partir de ese contenido."
         },
         "visuals": {
           "question": "Que visuales de IA se utilizan para generar el video desde texto?",
-          "answer": "La herramienta usa generacion de imagenes con IA para interpretar el guion escena por escena y crear visuales alineados con las ideas principales narradas por la voz."
+          "answer": "El sistema genera imágenes para ilustrar el guion que crea a partir de tu texto. No necesitas aportar un guion ni elegir clips de stock."
         },
         "languages": {
           "question": "Puedo elegir diferentes idiomas para el video final?",
@@ -1135,7 +1140,7 @@
     "explanation": {
       "eyebrow": "Article to video AI",
       "title": "Como funciona un article to video AI generator?",
-      "answer": "Un generador article to video AI lee la URL de un articulo publico, extrae las ideas principales, las convierte en un guion breve, anade voz y subtitulos, y combina la narracion con visuales de stock o imagenes generadas por IA para crear un MP4 vertical para redes sociales."
+      "answer": "El generador lee tu artículo, crea un guion optimizado para redes y lo convierte en un vídeo vertical con narración, subtítulos e imágenes IA. No necesitas escribir un guion ni elegir clips de stock."
     },
     "useCases": {
       "eyebrow": "Casos de uso",
@@ -1151,7 +1156,7 @@
         },
         "productPages": {
           "title": "Paginas de producto en resumenes de video",
-          "text": "Convierte descripciones, beneficios y paginas de producto en videos cortos para ecommerce, paid social y lanzamientos."
+          "text": "Convierte la descripción de un producto en un resumen narrado con ilustraciones IA. El generador no reproduce las fotos originales del producto ni garantiza una coincidencia visual exacta."
         },
         "education": {
           "title": "Articulos educativos en explainers",
@@ -1176,16 +1181,16 @@
           "text": "Anade la URL de un articulo, blog o noticia publica. Si una web bloquea el rastreo, cambia al modo Texto y pega el cuerpo del articulo."
         },
         "visuals": {
-          "title": "Elige visuales",
-          "text": "Selecciona videos de stock o imagenes generadas por IA segun el estilo que quieras para tu video de articulo."
+          "title": "Genera el guion y las imágenes IA",
+          "text": "Inicia la generación. El sistema adapta el artículo a un guion para redes y crea las imágenes, la narración y los subtítulos."
         },
         "language": {
           "title": "Selecciona el idioma de salida",
           "text": "Elige ingles o espanol para la voz, subtitulos y narracion final del video."
         },
         "download": {
-          "title": "Genera y descarga el MP4",
-          "text": "El generador en la nube crea el guion, voz, subtitulos y MP4 vertical listo para publicar en formato corto."
+          "title": "Revisa y descarga el MP4",
+          "text": "Cuando el vídeo esté listo, revisa el resultado y descarga el MP4 vertical."
         }
       }
     },
@@ -1220,7 +1225,7 @@
         },
         "visuals": {
           "feature": "Seleccion visual",
-          "ours": "Stock o imagenes IA",
+          "ours": "Imágenes generadas por IA",
           "manual": "Busqueda y edicion manual"
         },
         "bestFor": {
@@ -1285,6 +1290,10 @@
           "answer": "Si. La salida esta pensada como MP4 vertical 9:16 para plataformas de video corto."
         }
       }
+    },
+    "stockAlternative": {
+      "text": "¿Prefieres imágenes o clips de stock en lugar de imágenes IA?",
+      "link": "Abre el generador con stock"
     }
   },
   "CookieConsent": {
